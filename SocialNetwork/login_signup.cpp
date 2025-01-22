@@ -1,6 +1,7 @@
 #include "login_signup.h"
 #include "ui_login_signup.h"
 #include <QPropertyAnimation>
+#include <QGraphicsDropShadowEffect>
 #include <QPushButton>
 #include <QFrame>
 
@@ -10,6 +11,7 @@ Login_SignUp::Login_SignUp(QWidget *parent)
 {
     ui->setupUi(this);
 
+    setFramesShadow();
     connect(ui->openLoginSignupPB, SIGNAL(toggled(bool)), this, SLOT(animation()));
 
 
@@ -19,6 +21,14 @@ Login_SignUp::Login_SignUp(QWidget *parent)
 Login_SignUp::~Login_SignUp()
 {
     delete ui;
+}
+
+void Login_SignUp::setFramesShadow() {
+    QGraphicsDropShadowEffect *coverShadow = new QGraphicsDropShadowEffect(ui->mainFrame);
+    coverShadow->setBlurRadius(40.0);
+    coverShadow->setColor(palette().color(QPalette::Shadow));
+    coverShadow->setOffset(0.0);
+    ui->mainFrame->setGraphicsEffect(coverShadow);
 }
 
 void Login_SignUp::animation() {

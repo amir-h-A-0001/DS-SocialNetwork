@@ -1,16 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>Backgrounds/download (1).jpg</file>
-        <file>Backgrounds/download (2).jpg</file>
-        <file>Backgrounds/download (3).jpg</file>
-        <file>Backgrounds/download.jpg</file>
-        <file>Backgrounds/Ethereal Forest Glow _ Mobile Wallpaper _ Fantasy Wallpaper.jpg</file>
-        <file>Backgrounds/fading forest green.jpg</file>
-        <file>Backgrounds/Firewatch Green Wallpaper.jpg</file>
-        <file>Backgrounds/Forest_Wallpaper_Background_Images,_HD_Pictures_and_Wallpaper_For.jpg</file>
-        <file>Backgrounds/Premium Vector _ Woodland forest landscape with trees.jpg</file>
-        <file>Backgrounds/Ethereal Forest Glow _ Mobile Wallpaper _ Fantasy Wallpaper.png</file>
-        <file>Backgrounds/Premium Vector _ Woodland forest landscape with trees.png</file>
         <file>Backgrounds/Premium_Vector_Woodland_forest_landscape_with_trees_enhanced.png</file>
     </qresource>
 </RCC>

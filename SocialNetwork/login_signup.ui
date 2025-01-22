@@ -14,7 +14,11 @@
    <string>Login Signup</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QMainWindow {
+	
+	background-color: rgb(176, 188, 157);
+
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="mainFrame">
@@ -387,17 +391,9 @@ QLabel {
      </sizepolicy>
     </property>
     <property name="styleSheet">
-     <string notr="true">/*QFrame {
-	background-image: url(:/Backgrounds/							Premium_Vector_Woodland_forest_landscape_with_trees_enhanced.png);
-	border-radius: 15px;
-	background-size: cover;	
-	 background-repeat: no-repeat;
-    background-position: center;
-}
-*/
-
-QFrame {
-    background-image: url(:/Backgrounds/Premium_Vector_Woodland_forest_landscape_with_trees_enhanced.png);
+     <string notr="true">QFrame {
+    
+	background-image: url(:/Backgrounds/Premium_Vector_Woodland_forest_landscape_with_trees_enhanced.png);
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 15px;
