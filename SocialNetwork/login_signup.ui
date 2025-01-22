@@ -6,21 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>994</width>
     <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Login Signup</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="frame">
+   <widget class="QWidget" name="mainWidget" native="true">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>11</x>
-      <y>14</y>
-      <width>475</width>
-      <height>625</height>
+      <x>110</x>
+      <y>80</y>
+      <width>791</width>
+      <height>491</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -29,12 +35,43 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
+    <property name="styleSheet">
+     <string notr="true">QWidget {
+	
+	background-color: rgb(255, 255, 255);
+	border-radius: 10px;
+}
+</string>
     </property>
-    <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
-    </property>
+    <widget class="QFrame" name="picture">
+     <property name="geometry">
+      <rect>
+       <x>4</x>
+       <y>4</y>
+       <width>380</width>
+       <height>483</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QFrame {
+	background-color: rgb(7, 78, 24);
+	border-radius
+}
+</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
