@@ -10,15 +10,8 @@ Login_SignUp::Login_SignUp(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QFrame *frame = ui->picture;
-    QPushButton *button = ui->openLoginPB;
+    connect(ui->openLoginSignupPB, SIGNAL(toggled(bool)), this, SLOT(animation()));
 
-    QPropertyAnimation *frameAnimation = new QPropertyAnimation(frame, "geometry", this);
-    frameAnimation->setDuration(225);
-    frameAnimation->setStartValue(frame->geometry());
-    frameAnimation->setEndValue(QRect(frame->x() + 350, frame->y(), frame->width(), frame->height()));
-
-    connect(button, SIGNAL(clicked(bool)), frameAnimation, SLOT(start()));
 
 
 }
@@ -26,4 +19,35 @@ Login_SignUp::Login_SignUp(QWidget *parent)
 Login_SignUp::~Login_SignUp()
 {
     delete ui;
+}
+
+void Login_SignUp::animation() {
+    QFrame *frame = ui->picture;
+    QPushButton *button = ui->openLoginSignupPB;
+
+    QPropertyAnimation *frameAnimationLogin = new QPropertyAnimation(frame, "geometry", this);
+    frameAnimationLogin->setDuration(225);
+    frameAnimationLogin->setStartValue(frame->geometry());
+    frameAnimationLogin->setEndValue(QRect(frame->x() + 350, frame->y(), frame->width(), frame->height()));
+
+    QPropertyAnimation *frameAnimationSignup = new QPropertyAnimation(frame, "geometry", this);
+    frameAnimationSignup ->setDuration(225);
+    frameAnimationSignup ->setStartValue(frame->geometry());
+    frameAnimationSignup ->setEndValue(QRect(frame->x() - 350, frame->y(), frame->width(), frame->height()));
+
+    if(button->isChecked()) {
+        button->hide();
+        frameAnimationLogin->start();
+        button->setText("Signup");
+
+    } else {
+        button->hide();
+        frameAnimationSignup->start();
+        button->setText("Login");
+    }
+
+    connect(frameAnimationLogin, SIGNAL(finished()), button, SLOT(show()));
+    connect(frameAnimationSignup, SIGNAL(finished()), button, SLOT(show()));
+
+
 }
