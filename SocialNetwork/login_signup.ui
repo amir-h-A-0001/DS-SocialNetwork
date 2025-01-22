@@ -38,13 +38,12 @@
 	border-radius: 10px;
 }
 QLineEdit {
-	/*background-color: rgb(206, 206, 206);
-	background-color: rgb(214, 214, 214);*/
 	background-color: rgb(230, 230, 230);
+	
+	font: 10pt &quot;HvDTrial Brandon Text&quot;;
     border: 1px solid #cccccc;
     border-radius: 5px;
     padding: 5px;
-    font-size: 10px;
 	color: rgb(0, 0, 0);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -58,7 +57,7 @@ QLineEdit:hover {
 
 QPushButton {
   /* background-color: rgb(230, 230, 230);*/
-	
+	font: 9pt &quot;HvDTrial Brandon Text&quot;;
 	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(39, 61, 29, 255), stop:1 rgba(197, 255, 192, 255));
 	color: rgb(0, 0, 0);
     border: 1px solid #cccccc;
@@ -70,6 +69,7 @@ QPushButton:hover {
 
 QLabel {
     color: #333333;
+	font: 10pt &quot;HvDTrial Brandon Text&quot;;
     background-color: transparent;
     padding: 5px;
 }
@@ -87,7 +87,7 @@ QLabel {
       <rect>
        <x>5</x>
        <y>6</y>
-       <width>341</width>
+       <width>351</width>
        <height>421</height>
       </rect>
      </property>
@@ -109,13 +109,13 @@ QLabel {
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="openLoginPB">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>300</y>
-        <width>171</width>
-        <height>41</height>
+        <x>120</x>
+        <y>320</y>
+        <width>101</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -299,11 +299,10 @@ QLabel {
       <string>Signup</string>
      </property>
     </widget>
-    <zorder>nameLE</zorder>
+    <zorder>emailLE</zorder>
+    <zorder>passwordLE</zorder>
+    <zorder>signupPB</zorder>
     <zorder>usernaemLE</zorder>
-    <zorder></zorder>
-    <zorder></zorder>
-    <zorder>picture</zorder>
     <zorder>creatAccountLB</zorder>
     <zorder>nameLE</zorder>
     <zorder>passwordLE_2</zorder>
@@ -312,6 +311,7 @@ QLabel {
     <zorder>rpPasswordERLB</zorder>
     <zorder>nameERLB</zorder>
     <zorder>emailERLB</zorder>
+    <zorder>picture</zorder>
    </widget>
   </widget>
  </widget>
