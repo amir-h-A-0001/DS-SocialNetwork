@@ -34,6 +34,14 @@ private:
     bool checkAllSignupErrors ();
     bool checkUsernameSignupError ();
     bool checkPasswordSignupError ();
+    bool checkNameSignupError ();
+    bool checkEmailError ();
+
+    // Error Texts
+    QString emptyError ();
+    QString invalidError ();
+    QString notFoundError ();
+
 
     Ui::Login_SignUp *ui;
 };

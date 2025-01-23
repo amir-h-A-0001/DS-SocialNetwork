@@ -101,7 +101,7 @@ QLabel {
       <string>Name</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="usernaemLE">
+    <widget class="QLineEdit" name="usernameLE">
      <property name="geometry">
       <rect>
        <x>428</x>
@@ -358,7 +358,7 @@ QLabel {
     <zorder>emailLE</zorder>
     <zorder>passwordLE</zorder>
     <zorder>signupPB</zorder>
-    <zorder>usernaemLE</zorder>
+    <zorder>usernameLE</zorder>
     <zorder>creatAccountLB</zorder>
     <zorder>nameLE</zorder>
     <zorder>passwordLE_2</zorder>

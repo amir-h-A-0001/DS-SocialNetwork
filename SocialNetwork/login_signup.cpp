@@ -14,8 +14,6 @@ Login_SignUp::Login_SignUp(QWidget *parent)
     setFramesShadow();
     connect(ui->openLoginSignupPB, SIGNAL(toggled(bool)), this, SLOT(animation()));
 
-
-
 }
 
 Login_SignUp::~Login_SignUp()
@@ -32,7 +30,9 @@ void Login_SignUp::setFramesShadow() {
 }
 
 bool Login_SignUp::checkAllLoginErrors() {
-
+    if(checkUsernameLoginError() && checkPasswordLoginError())
+        return true;
+    return false;
 }
 
 bool Login_SignUp::checkUsernameLoginError() {
@@ -44,15 +44,97 @@ bool Login_SignUp::checkPasswordLoginError() {
 }
 
 bool Login_SignUp::checkAllSignupErrors() {
-
+    if(checkUsernameSignupError() && checkPasswordSignupError()
+        && checkNameSignupError() && checkEmailError())
+        return true;
+    return false;
 }
 
 bool Login_SignUp::checkUsernameSignupError() {
+    QLabel  * usernameError = ui->usernameERLB;
+    QString const username = ui->usernameLE->text();
+    if(username.length() == 0) {
+        usernameError->setText(emptyError());
+        return false;
+    }
 
+    for(auto it : username)
+        if(it.isSymbol() || it.isSpace()) {
+            usernameError->setText(invalidError());
+            return false;
+        }
+
+    return true;
 }
 
 bool Login_SignUp::checkPasswordSignupError() {
+    QLabel  * passwordError = ui->passwordERLB;
+    QString const password = ui->passwordLE->text();
 
+    if(password.length() == 0) {
+        passwordError->setText(emptyError());
+        return false;
+    }
+
+    for(auto it : password)
+        if(it.isSymbol() || it.isSpace()) {
+            passwordError->setText(invalidError());
+            return false;
+        }
+
+    return true;
+}
+
+bool Login_SignUp::checkNameSignupError() {
+    QLabel * nameError = ui->nameERLB;
+    QString const name = ui->nameLE->text();
+
+    if(name.length() == 0) {
+        nameError->setText(emptyError());
+        return false;
+    }
+
+    for(auto it : name)
+        if(it.isSpace() || it.isSymbol()) {
+            nameError->setText(invalidError());
+            return false;
+        }
+
+    return true;
+}
+
+bool Login_SignUp::checkEmailError() {
+    QLabel * emailError = ui->emailERLB;
+    QString const email = ui->emailLE->text();
+    QChar const tmp = '@';
+
+    if(email.length() == 0) {
+        emailError->setText(emptyError());
+        return false;
+    }
+
+    for(auto it : email) {
+        if(it == tmp)
+            continue;
+        if(it.isSpace() || it.isSymbol()) {
+            emailError->setText(invalidError());
+            return false;
+        }
+    }
+
+    return true;
+}
+
+QString Login_SignUp::emptyError() {
+    return "This feild is empty !";
+}
+
+QString Login_SignUp::invalidError() {
+    return "Invalid data !";
+}
+
+QString Login_SignUp::notFoundError() {
+    return "This data doesn't exists !";
 }
 
 
