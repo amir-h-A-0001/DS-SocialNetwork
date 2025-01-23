@@ -16,7 +16,6 @@ public:
     explicit Login_SignUp(QWidget *parent = nullptr);
     ~Login_SignUp();
 
-    void setFramesShadow ();
 
 
 
@@ -24,6 +23,7 @@ private slots :
     void animation ();
 
 private:
+    void setFramesShadow ();
     Ui::Login_SignUp *ui;
 };
 
