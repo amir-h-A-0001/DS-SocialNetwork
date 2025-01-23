@@ -1,13 +1,14 @@
-#include "mainwindow.h"
 #include "login_signup.h"
 #include <QApplication>
+#include <database.h>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
+
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-    Login_SignUp s;
-    s.show();
+
+    DataBase database;
+    Login_SignUp login_Signup(&database);
+    login_Signup.show();
+
     return a.exec();
 }

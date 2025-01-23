@@ -5,11 +5,14 @@
 #include <QPushButton>
 #include <QFrame>
 
-Login_SignUp::Login_SignUp(QWidget *parent)
+Login_SignUp::Login_SignUp(DataBase *database, QWidget *parent)
     : QMainWindow(parent)
+    , database(database)
     , ui(new Ui::Login_SignUp)
 {
     ui->setupUi(this);
+
+
 
     setFramesShadow();
     connect(ui->openLoginSignupPB, SIGNAL(toggled(bool)), this, SLOT(animation()));
@@ -36,11 +39,51 @@ bool Login_SignUp::checkAllLoginErrors() {
 }
 
 bool Login_SignUp::checkUsernameLoginError() {
+    QString const username = ui->usernameLE->text();
+    QLabel * usernameError = ui->usernameLoginERLB;
 
+    if(username.length() == 0) {
+        usernameError->setText(emptyError());
+        return false;
+    }
+
+    for(auto it : username)
+        if(it.isSpace() || it.isSymbol()) {
+            usernameError->setText(invalidError());
+            return false;
+        }
+
+    if(database->findUser(username) == nullptr) {
+        usernameError->setText(notFoundError());
+        return false;
+    }
+
+    return true;
 }
 
 bool Login_SignUp::checkPasswordLoginError() {
+    QString const password = ui->passwordLoginLE->text();
+    QLabel *passwordError = ui->passwordLoginERLB;
 
+    if(password.length() == 0) {
+        passwordError->setText(emptyError());
+        return false;
+    }
+
+    for(auto it : password)
+        if(it.isSpace() || it.isSymbol()) {
+            passwordError->setText(invalidError());
+            return false;
+        }
+
+    if(checkUsernameLoginError()) {
+        User * user = database->findUser(ui->usernameLoginLE->text());
+        if(user->getPassword() != password) {
+            passwordError->setText(notFoundError());
+            return false;
+        }
+    }
+    return true;
 }
 
 bool Login_SignUp::checkAllSignupErrors() {

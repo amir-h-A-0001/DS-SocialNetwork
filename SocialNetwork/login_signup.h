@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QPropertyAnimation>
+#include <database.h>
 
 namespace Ui {
 class Login_SignUp;
@@ -13,7 +14,7 @@ class Login_SignUp : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Login_SignUp(QWidget *parent = nullptr);
+    explicit Login_SignUp(DataBase *database, QWidget *parent = nullptr);
     ~Login_SignUp();
 
 
@@ -22,6 +23,10 @@ private slots :
     void animation ();
 
 private:
+    // Database
+    DataBase * database;
+
+
     // Set Shadows for frames
     void setFramesShadow ();
 
