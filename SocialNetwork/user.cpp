@@ -70,6 +70,46 @@ void User::setPosts(const std::list<Post> &newPosts)
     posts = newPosts;
 }
 
+QString User::getEmail() const
+{
+    return email;
+}
+
+void User::setEmail(const QString &newEmail)
+{
+    email = newEmail;
+}
+
+void User::addFriend(QString username)
+{
+    this->friends.push_back(username);
+}
+
+void User::removeFriend(QString username)
+{
+    this->friends.remove(username);
+}
+
+void User::addPost(Post &post)
+{
+    this->posts.push_back(post);
+}
+
+void User::removePost(Post &post)
+{
+    this->posts.remove(post);
+}
+
+QDate User::getJoinDate() const
+{
+    return joinDate;
+}
+
+void User::setJoinDate(const QDate &newJoinDate)
+{
+    joinDate = newJoinDate;
+}
+
 User::User() {}
 
 User::User(const QString &username, const QString &password, const QString &name, const QPixmap &avatar) : username(username),

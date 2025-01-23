@@ -1,3 +1,8 @@
 #include "suggestwidget.h"
 
-suggestWidget::suggestWidget() {}
+suggestWidget::suggestWidget(User* user) {
+
+
+
+
+}
