@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setFramesShadow();
+    ui->searchSVP->show();
+    ui->suggestionSA->show();
 }
 
 MainWindow::~MainWindow()
