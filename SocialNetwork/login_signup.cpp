@@ -31,6 +31,31 @@ void Login_SignUp::setFramesShadow() {
     ui->mainFrame->setGraphicsEffect(coverShadow);
 }
 
+bool Login_SignUp::checkAllLoginErrors() {
+
+}
+
+bool Login_SignUp::checkUsernameLoginError() {
+
+}
+
+bool Login_SignUp::checkPasswordLoginError() {
+
+}
+
+bool Login_SignUp::checkAllSignupErrors() {
+
+}
+
+bool Login_SignUp::checkUsernameSignupError() {
+
+}
+
+bool Login_SignUp::checkPasswordSignupError() {
+
+}
+
+
 void Login_SignUp::animation() {
     QFrame *frame = ui->picture;
     QPushButton *button = ui->openLoginSignupPB;

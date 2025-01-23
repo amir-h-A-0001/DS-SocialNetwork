@@ -17,13 +17,24 @@ public:
     ~Login_SignUp();
 
 
-
-
 private slots :
+    // Animation slot
     void animation ();
 
 private:
+    // Set Shadows for frames
     void setFramesShadow ();
+
+    // Check Errors for Login
+    bool checkAllLoginErrors ();
+    bool checkUsernameLoginError ();
+    bool checkPasswordLoginError ();
+
+    // Check Errors for Signup
+    bool checkAllSignupErrors ();
+    bool checkUsernameSignupError ();
+    bool checkPasswordSignupError ();
+
     Ui::Login_SignUp *ui;
 };
 
