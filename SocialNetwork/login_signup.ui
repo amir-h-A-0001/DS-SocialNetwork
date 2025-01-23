@@ -15,7 +15,6 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow {
-	
 	background-color: rgb(176, 188, 157);
 
 }</string>
