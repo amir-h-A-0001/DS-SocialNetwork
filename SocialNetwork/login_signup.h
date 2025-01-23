@@ -43,9 +43,7 @@ private:
     bool checkEmailError ();
 
     // Error Texts
-    QString emptyError ();
-    QString invalidError ();
-    QString notFoundError ();
+    QString allErrorTexts (int const i);
 
 
     Ui::Login_SignUp *ui;

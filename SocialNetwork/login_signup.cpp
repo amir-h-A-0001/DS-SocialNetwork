@@ -12,8 +12,6 @@ Login_SignUp::Login_SignUp(DataBase *database, QWidget *parent)
 {
     ui->setupUi(this);
 
-
-
     setFramesShadow();
     connect(ui->openLoginSignupPB, SIGNAL(toggled(bool)), this, SLOT(animation()));
 
@@ -33,9 +31,11 @@ void Login_SignUp::setFramesShadow() {
 }
 
 bool Login_SignUp::checkAllLoginErrors() {
-    if(checkUsernameLoginError() && checkPasswordLoginError())
-        return true;
-    return false;
+    bool error1, error2;
+    error1 = checkUsernameLoginError();
+    error2 = checkPasswordLoginError();
+
+    return error1 && error2;
 }
 
 bool Login_SignUp::checkUsernameLoginError() {
@@ -43,18 +43,18 @@ bool Login_SignUp::checkUsernameLoginError() {
     QLabel * usernameError = ui->usernameLoginERLB;
 
     if(username.length() == 0) {
-        usernameError->setText(emptyError());
+        usernameError->setText(allErrorTexts(0));
         return false;
     }
 
     for(auto it : username)
         if(it.isSpace() || it.isSymbol()) {
-            usernameError->setText(invalidError());
+            usernameError->setText(allErrorTexts(2));
             return false;
         }
 
     if(database->findUser(username) == nullptr) {
-        usernameError->setText(notFoundError());
+        usernameError->setText(allErrorTexts(1));
         return false;
     }
 
@@ -66,20 +66,20 @@ bool Login_SignUp::checkPasswordLoginError() {
     QLabel *passwordError = ui->passwordLoginERLB;
 
     if(password.length() == 0) {
-        passwordError->setText(emptyError());
+        passwordError->setText(allErrorTexts(0));
         return false;
     }
 
     for(auto it : password)
         if(it.isSpace() || it.isSymbol()) {
-            passwordError->setText(invalidError());
+            passwordError->setText(allErrorTexts(2));
             return false;
         }
 
     if(checkUsernameLoginError()) {
         User * user = database->findUser(ui->usernameLoginLE->text());
         if(user->getPassword() != password) {
-            passwordError->setText(notFoundError());
+            passwordError->setText(allErrorTexts(1));
             return false;
         }
     }
@@ -87,25 +87,33 @@ bool Login_SignUp::checkPasswordLoginError() {
 }
 
 bool Login_SignUp::checkAllSignupErrors() {
-    if(checkUsernameSignupError() && checkPasswordSignupError()
-        && checkNameSignupError() && checkEmailError())
-        return true;
-    return false;
+    bool error1, error2, error3, error4;
+    error1 = checkUsernameSignupError();
+    error2 = checkPasswordSignupError();
+    error3 = checkNameSignupError();
+    error4 = checkEmailError();
+
+    return error1 && error2 && error3 && error4;
 }
 
 bool Login_SignUp::checkUsernameSignupError() {
     QLabel  * usernameError = ui->usernameERLB;
     QString const username = ui->usernameLE->text();
     if(username.length() == 0) {
-        usernameError->setText(emptyError());
+        usernameError->setText(allErrorTexts(0));
         return false;
     }
 
     for(auto it : username)
         if(it.isSymbol() || it.isSpace()) {
-            usernameError->setText(invalidError());
+            usernameError->setText(allErrorTexts(2));
             return false;
         }
+
+    if(database->findUser(username) != nullptr) {
+        usernameError->setText(allErrorTexts(3));
+        return false;
+    }
 
     return true;
 }
@@ -115,15 +123,20 @@ bool Login_SignUp::checkPasswordSignupError() {
     QString const password = ui->passwordLE->text();
 
     if(password.length() == 0) {
-        passwordError->setText(emptyError());
+        passwordError->setText(allErrorTexts(0));
         return false;
     }
 
     for(auto it : password)
         if(it.isSymbol() || it.isSpace()) {
-            passwordError->setText(invalidError());
+            passwordError->setText(allErrorTexts(2));
             return false;
         }
+
+    if(password.length() < 8) {
+        passwordError->setText(allErrorTexts(4));
+        return false;
+    }
 
     return true;
 }
@@ -133,13 +146,13 @@ bool Login_SignUp::checkNameSignupError() {
     QString const name = ui->nameLE->text();
 
     if(name.length() == 0) {
-        nameError->setText(emptyError());
+        nameError->setText(allErrorTexts(0));
         return false;
     }
 
     for(auto it : name)
         if(it.isSpace() || it.isSymbol()) {
-            nameError->setText(invalidError());
+            nameError->setText(allErrorTexts(2));
             return false;
         }
 
@@ -152,7 +165,7 @@ bool Login_SignUp::checkEmailError() {
     QChar const tmp = '@';
 
     if(email.length() == 0) {
-        emailError->setText(emptyError());
+        emailError->setText(allErrorTexts(0));
         return false;
     }
 
@@ -160,7 +173,7 @@ bool Login_SignUp::checkEmailError() {
         if(it == tmp)
             continue;
         if(it.isSpace() || it.isSymbol()) {
-            emailError->setText(invalidError());
+            emailError->setText(allErrorTexts(2));
             return false;
         }
     }
@@ -168,18 +181,29 @@ bool Login_SignUp::checkEmailError() {
     return true;
 }
 
-QString Login_SignUp::emptyError() {
-    return "This feild is empty !";
-}
+QString Login_SignUp::allErrorTexts(const int i) {
+    QString emptyError ("This feild is empty !");
+    QString notFoundError ("This data doesn't exists !");
+    QString invalidError ("Invalid data !");
+    QString repeatedUsername ("This username is already taken !");
+    QString shortPassword ("Password is too short");
 
-QString Login_SignUp::invalidError() {
-    return "Invalid data !";
-}
+    switch (i) {
+    case 0:
+        return emptyError;
+    case 1:
+        return notFoundError;
+    case 2:
+        return invalidError;
+    case 3:
+        return repeatedUsername;
+    case 4:
+        return shortPassword;
+    default:
+        return "What ?";
+    }
 
-QString Login_SignUp::notFoundError() {
-    return "This data doesn't exists !";
 }
-
 
 void Login_SignUp::animation() {
     QFrame *frame = ui->picture;
