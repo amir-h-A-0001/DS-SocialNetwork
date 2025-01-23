@@ -13,7 +13,9 @@ private:
     QString password;
     QString name;
     QString bio;
+    QString email;
     QPixmap avatar;
+    QDate joinDate;
 
     std::list<QString> friends;
     std::list<Post> posts;
@@ -35,6 +37,13 @@ public:
     void setFriends(const std::list<QString> &newFriends);
     std::list<Post>* getPosts_ptr();
     void setPosts(const std::list<Post> &newPosts);
+    QString getEmail() const;
+    void setEmail(const QString &newEmail);
+    QDate getJoinDate() const;
+    void setJoinDate(const QDate &newJoinDate);
+
+    void addFriend(QString username);
+    void addPost(Post& post);
 };
 
 #endif // USER_H

@@ -1,10 +1,25 @@
 #ifndef SUGGESTWIDGET_H
 #define SUGGESTWIDGET_H
 
-class suggestWidget
+#include <QFrame>
+#include <QObject>
+#include <QLabel>
+#include <QPushButton>
+#include <user.h>
+
+class suggestWidget : public QFrame
 {
+ Q_OBJECT
+
+    QFrame avatar;
+    QLabel username;
+    QLabel source;
+    QPushButton request;
+
+    User* user;
+
 public:
-    suggestWidget();
+    suggestWidget(User* user);
 };
 
 #endif // SUGGESTWIDGET_H
