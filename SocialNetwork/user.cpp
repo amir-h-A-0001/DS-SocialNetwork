@@ -85,9 +85,19 @@ void User::addFriend(QString username)
     this->friends.push_back(username);
 }
 
+void User::removeFriend(QString username)
+{
+    this->friends.remove(username);
+}
+
 void User::addPost(Post &post)
 {
     this->posts.push_back(post);
+}
+
+void User::removePost(Post &post)
+{
+    this->posts.remove(post);
 }
 
 QDate User::getJoinDate() const

@@ -43,7 +43,9 @@ public:
     void setJoinDate(const QDate &newJoinDate);
 
     void addFriend(QString username);
+    void removeFriend(QString username);
     void addPost(Post& post);
+    void removePost(Post& post);
 };
 
 #endif // USER_H

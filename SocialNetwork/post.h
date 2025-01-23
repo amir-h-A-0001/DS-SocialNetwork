@@ -22,6 +22,12 @@ public:
     void setText(const QString &newText);
     QString getHashCode() const;
     void setHashCode(const QString &newHashCode);
+
+    bool operator == (const Post cp){
+        if(cp.hashCode == this->hashCode)
+            return true;
+        return false;
+    }
 };
 
 #endif // POST_H

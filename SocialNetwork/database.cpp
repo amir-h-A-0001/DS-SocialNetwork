@@ -22,11 +22,16 @@ DataBase::DataBase() {
     // temporary variables
     User tmp_user;
     Post tmp_post;
+
     QDate tmp_date;
     int y,mon,d;
+
     QTime tmp_time;
     int h,min,s;
-    //
+
+    QPixmap tmp_pixmap;
+    QByteArray byteArray;
+    //-----
 
     while(read_Qry.next()){
 
@@ -35,7 +40,10 @@ DataBase::DataBase() {
         tmp_user.setName(read_Qry.value(2).toString());
         tmp_user.setBio(read_Qry.value(3).toString());
         tmp_user.setEmail(read_Qry.value(4).toString());
-        //tmp_user.setAvatar(read_Qry.value(5));
+
+        byteArray = read_Qry.value(5).toByteArray();
+        tmp_pixmap.loadFromData(byteArray);
+        tmp_user.setAvatar(tmp_pixmap);
 
         y=read_Qry.value(6).toInt();
         mon=read_Qry.value(7).toInt();
@@ -136,12 +144,10 @@ void DataBase::editAllRequests()
     }
 }
 
-User *DataBase::checkPassword(QString username, QString password)
+User *DataBase::findUser(QString username)
 {
     std::map<QString,User>::iterator itr = this->users.find(username);
     if(itr == this->users.end())
-        return nullptr;
-    else if(itr->second.getPassword() != password)
         return nullptr;
     else return &(itr->second);
 }
@@ -186,14 +192,30 @@ void DataBase::cancel_request(QString sender, QString receiver)
     }
 }
 
-void DataBase::editUser(QString username)
+void DataBase::editUserData(QString username)
 {
     User* user = &this->users[username];
 
     QSqlQuery update_Qry;
-    update_Qry.prepare("UPDATE users SET name='"+user->getName()+"',password='"+user->getPassword()+"',email='"+user->getEmail()+"' WHERE username='"+user->getUsername()+"';");
+    update_Qry.prepare("UPDATE users SET name = :name, password = :password, email = :email, avatar = :avatar WHERE username = :username;");
+
+    update_Qry.bindValue(":username",user->getUsername());
+    update_Qry.bindValue(":password",user->getPassword());
+    update_Qry.bindValue(":email",user->getEmail());
+    update_Qry.bindValue(":name",user->getName());
+
+    QByteArray byteArray;
+    QBuffer buffer(&byteArray);
+    buffer.open(QIODevice::WriteOnly);
+    user->getAvatar().save(&buffer, "PNG");
+
+    update_Qry.bindValue(":avatar",byteArray);
+
     if(!update_Qry.exec())
         qDebug("userData update failed");
+
+
+
 }
 
 void DataBase::makeFriend(QString userA, QString userB)
@@ -232,7 +254,7 @@ void DataBase::deleteUser(QString username)
     // remove friend
     for(auto &f_name : *userFriends){
         User* f = &this->users[f_name];
-        f->getFriends_ptr()->remove(username);
+        f->removeFriend(username);
         editFriends(f);
     }
 
