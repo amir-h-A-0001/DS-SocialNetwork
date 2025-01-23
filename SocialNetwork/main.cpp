@@ -8,6 +8,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     Login_SignUp s;
-    // s.show();
+    s.show();
     return a.exec();
 }
