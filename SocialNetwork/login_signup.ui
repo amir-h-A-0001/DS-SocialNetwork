@@ -6,25 +6,424 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>994</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Login Signup</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>21</height>
-    </rect>
-   </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+	background-color: rgb(176, 188, 157);
+
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="mainFrame">
+    <property name="geometry">
+     <rect>
+      <x>136</x>
+      <y>110</y>
+      <width>711</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {
+	border-radius: 10px;
+	background-color: rgb(255, 255, 255);
+}
+
+QLineEdit {
+	background-color: rgb(230, 230, 230);
+	font: 10pt &quot;Dosis&quot;;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5px;
+	color: rgb(0, 0, 0);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+QLineEdit:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+QLineEdit:hover {
+	background-color: rgb(151, 151, 151);
+}
+
+QPushButton {
+  /* background-color: rgb(230, 230, 230);*/
+	font: 10pt &quot;Dosis&quot;;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(39, 61, 29, 255), stop:1 rgba(197, 255, 192, 255));
+	color: rgb(0, 0, 0);
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+QPushButton:hover {
+    
+}
+
+QLabel {
+    color: #333333;
+	font: 12pt &quot;Dosis&quot;;
+    background-color: transparent;
+    padding: 5px;
+}
+
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QLineEdit" name="nameLE">
+     <property name="geometry">
+      <rect>
+       <x>428</x>
+       <y>240</y>
+       <width>190</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+     <property name="placeholderText">
+      <string>Name</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="usernaemLE">
+     <property name="geometry">
+      <rect>
+       <x>428</x>
+       <y>92</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="creatAccountLB">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>31</y>
+       <width>211</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Create An Account : </string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="passwordLE_2">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>190</y>
+       <width>189</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Repeat Password</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="usernameERLB">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>120</y>
+       <width>181</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="passwordERLB">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>170</y>
+       <width>181</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rpPasswordERLB">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>220</y>
+       <width>181</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="nameERLB">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>270</y>
+       <width>181</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="emailERLB">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>320</y>
+       <width>181</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="emailLE">
+     <property name="geometry">
+      <rect>
+       <x>428</x>
+       <y>290</y>
+       <width>190</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Email</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="passwordLE">
+     <property name="geometry">
+      <rect>
+       <x>428</x>
+       <y>140</y>
+       <width>191</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Password</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="signupPB">
+     <property name="geometry">
+      <rect>
+       <x>516</x>
+       <y>341</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Signup</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="loginLB">
+     <property name="geometry">
+      <rect>
+       <x>34</x>
+       <y>40</y>
+       <width>161</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background : transparent;</string>
+     </property>
+     <property name="text">
+      <string>Login : </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="passwordLoginERLB">
+     <property name="geometry">
+      <rect>
+       <x>85</x>
+       <y>207</y>
+       <width>181</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background : transparent;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="loginPB">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>260</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Login</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="passwordLoginLE">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>173</y>
+       <width>191</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="placeholderText">
+      <string>Password</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="usernameLoginERLB">
+     <property name="geometry">
+      <rect>
+       <x>85</x>
+       <y>151</y>
+       <width>181</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background : transparent;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="usernameLoginLE">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>120</y>
+       <width>191</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>Username</string>
+     </property>
+    </widget>
+    <zorder>emailLE</zorder>
+    <zorder>passwordLE</zorder>
+    <zorder>signupPB</zorder>
+    <zorder>usernaemLE</zorder>
+    <zorder>creatAccountLB</zorder>
+    <zorder>nameLE</zorder>
+    <zorder>passwordLE_2</zorder>
+    <zorder>usernameERLB</zorder>
+    <zorder>passwordERLB</zorder>
+    <zorder>rpPasswordERLB</zorder>
+    <zorder>nameERLB</zorder>
+    <zorder>emailERLB</zorder>
+    <zorder>loginLB</zorder>
+    <zorder>passwordLoginERLB</zorder>
+    <zorder>loginPB</zorder>
+    <zorder>passwordLoginLE</zorder>
+    <zorder>usernameLoginERLB</zorder>
+    <zorder>usernameLoginLE</zorder>
+   </widget>
+   <widget class="QFrame" name="picture">
+    <property name="geometry">
+     <rect>
+      <x>142</x>
+      <y>115</y>
+      <width>351</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame {
+    
+	background-image: url(:/Backgrounds/Premium_Vector_Woodland_forest_landscape_with_trees_enhanced.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    border: 1px solid transparent; /* Optional */
+}
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="openLoginSignupPB">
+     <property name="geometry">
+      <rect>
+       <x>125</x>
+       <y>326</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Login</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

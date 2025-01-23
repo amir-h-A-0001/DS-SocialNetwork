@@ -2,6 +2,7 @@
 #define LOGIN_SIGNUP_H
 
 #include <QMainWindow>
+#include <QPropertyAnimation>
 
 namespace Ui {
 class Login_SignUp;
@@ -15,7 +16,14 @@ public:
     explicit Login_SignUp(QWidget *parent = nullptr);
     ~Login_SignUp();
 
+
+
+
+private slots :
+    void animation ();
+
 private:
+    void setFramesShadow ();
     Ui::Login_SignUp *ui;
 };
 
