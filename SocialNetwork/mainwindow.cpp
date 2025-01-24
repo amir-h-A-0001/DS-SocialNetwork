@@ -2,9 +2,10 @@
 #include "ui_mainwindow.h"
 #include <QGraphicsDropShadowEffect>
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(DataBase *database, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , database(database)
 {
     ui->setupUi(this);
     setFramesShadow();

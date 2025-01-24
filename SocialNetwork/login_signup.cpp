@@ -15,6 +15,8 @@ Login_SignUp::Login_SignUp(DataBase *database, QWidget *parent)
 
     setFramesShadow();
     connect(ui->openLoginSignupPB, SIGNAL(toggled(bool)), this, SLOT(animation()));
+    connect(ui->loginPB, SIGNAL(clicked(bool)), this, SLOT(loginPBClicked()));
+    connect(ui->signupPB, SIGNAL(clicked(bool)), this, SLOT(signupPBClicked()));
 
 }
 
@@ -223,14 +225,15 @@ void Login_SignUp::animation() {
     if(button->isChecked()) {
         button->hide();
         frameAnimationLogin->start();
-        button->setText("Signup");
+        button->setText("Sign up");
 
     } else {
         button->hide();
         frameAnimationSignup->start();
         button->setText("Login");
-    }
 
+    }
+    resetAll();
     connect(frameAnimationLogin, SIGNAL(finished()), button, SLOT(show()));
     connect(frameAnimationSignup, SIGNAL(finished()), button, SLOT(show()));
 
@@ -240,6 +243,7 @@ void Login_SignUp::animation() {
 void Login_SignUp::signupPBClicked() {
     resetSignupERLB();
     if(!checkAllSignupErrors()) return;
+    // Make new User
     User newUser;
     newUser.setUsername(ui->usernameLE->text());
     newUser.setPassword(ui->passwordLE->text());
@@ -257,13 +261,19 @@ void Login_SignUp::signupPBClicked() {
 
     database->addUser(newUser);
 
-    // add a qmessage box for signup
-
     resetAll();
+    MainWindow mainWin(database);
+    this->close();
+    mainWin.show();
 }
 
 void Login_SignUp::loginPBClicked() {
-
+    resetLoginERL();
+    if(!checkAllLoginErrors()) return;
+    resetAll();
+    MainWindow mainWin(database);
+    this->close();
+    mainWin.show();
 }
 
 void Login_SignUp::resetAll() {

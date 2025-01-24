@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPropertyAnimation>
 #include <database.h>
+#include <mainwindow.h>
 
 namespace Ui {
 class Login_SignUp;
