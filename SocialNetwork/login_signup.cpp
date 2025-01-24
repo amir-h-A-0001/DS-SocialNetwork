@@ -3,6 +3,7 @@
 #include <QPropertyAnimation>
 #include <QGraphicsDropShadowEffect>
 #include <QPushButton>
+#include <QFileDialog>
 #include <QFrame>
 
 Login_SignUp::Login_SignUp(DataBase *database, QWidget *parent)
@@ -234,4 +235,58 @@ void Login_SignUp::animation() {
     connect(frameAnimationSignup, SIGNAL(finished()), button, SLOT(show()));
 
 
+}
+
+void Login_SignUp::signupPBClicked() {
+    resetSignupERLB();
+    if(!checkAllSignupErrors()) return;
+    User newUser;
+    newUser.setUsername(ui->usernameLE->text());
+    newUser.setPassword(ui->passwordLE->text());
+    newUser.setName(ui->nameLE->text());
+    newUser.setEmail(ui->emailLE->text());
+
+    // Select an avatar
+    QString filePath = QFileDialog::getOpenFileName(nullptr, "Select an avatar for your account :", "", "*.jpg *.jpeg *.png");
+
+    if(!filePath.isEmpty()) {
+        QPixmap avatar;
+        avatar.load(filePath);
+        newUser.setAvatar(avatar);
+    }
+
+    database->addUser(newUser);
+
+    // add a qmessage box for signup
+
+    resetAll();
+}
+
+void Login_SignUp::loginPBClicked() {
+
+}
+
+void Login_SignUp::resetAll() {
+    // Login Widgets
+    ui->usernameLoginLE->setText("");
+    ui->passwordLoginLE->setText("");
+    resetLoginERL();
+    // Signup Widgets
+    ui->usernameLE->setText("");
+    ui->passwordLE->setText("");
+    ui->emailLE->setText("");
+    ui->nameLE->setText("");
+    resetSignupERLB();
+}
+
+void Login_SignUp::resetLoginERL() {
+    ui->usernameLoginERLB->setText("");
+    ui->passwordLoginERLB->setText("");
+}
+
+void Login_SignUp::resetSignupERLB() {
+    ui->emailERLB->setText("");
+    ui->usernameERLB->setText("");
+    ui->nameERLB->setText("");
+    ui->passwordERLB->setText("");
 }

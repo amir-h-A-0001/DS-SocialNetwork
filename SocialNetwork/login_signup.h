@@ -22,10 +22,19 @@ private slots :
     // Animation slot
     void animation ();
 
+    // Signup & Login slots
+    void signupPBClicked ();
+    void loginPBClicked ();
+
 private:
     // Database
     DataBase * database;
 
+    // Reset All LineEdits and Labels
+    void resetAll ();
+
+    void resetLoginERL ();
+    void resetSignupERLB ();
 
     // Set Shadows for frames
     void setFramesShadow ();
