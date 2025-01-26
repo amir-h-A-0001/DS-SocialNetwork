@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <database.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -14,11 +15,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(DataBase *database, QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
+    DataBase *database;
     void setFramesShadow ();
 };
 #endif // MAINWINDOW_H

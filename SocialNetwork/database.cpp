@@ -5,7 +5,7 @@ DataBase::DataBase() {
 
 
     DB = QSqlDatabase::addDatabase("QSQLITE");
-    DB.setDatabaseName("F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
+    DB.setDatabaseName("E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
 
     if (!DB.open()){
         qDebug("failed to open database");
@@ -111,6 +111,54 @@ DataBase::DataBase() {
         this->requests[read_Qry.value(0).toString()].push_back(read_Qry.value(1).toString());
     }
 
+}
+
+void DataBase::addUser(User &newUser) {
+    // Add user to the map
+    users[newUser.getUsername()] = newUser;
+
+    // Open Database
+    if (!DB.open()) {
+        qDebug() << "Failed to open database:" << DB.lastError().text();
+        return;
+    }
+
+    // Add new user avatar to the database
+    QPixmap avatar = newUser.getAvatar();
+
+    // Convert the pixmap into byteArray data to insert it into database
+    QByteArray byteArray;
+    QBuffer buffer(&byteArray);
+    buffer.open(QIODevice::WriteOnly);
+    avatar.save(&buffer, "PNG");
+    buffer.close();
+
+    // insert to data base
+
+    QDate date = newUser.getJoinDate();
+
+    // Make a string of users friends username
+    // std::list<QString> * friends = newUser.getFriends_ptr();
+    // QString friends_str;
+    // for(auto it = friends->begin(); it != friends->end(); ++it) {
+    //     friends_str = friends_str  + "/" + *it;
+    // }
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO users (username,password,name,email,avatar,year,month,day) VALUES (:username,:password,:name,:email,:avatar,:year,:month,:day)");
+    query.bindValue(":username", newUser.getUsername());
+    query.bindValue(":password", newUser.getPassword());
+    query.bindValue(":name", newUser.getName());
+    query.bindValue(":email", newUser.getEmail());
+    query.bindValue(":year", date.year());
+    query.bindValue(":day", date.day());
+    query.bindValue(":month", date.month());
+    query.bindValue(":avatar", byteArray);
+    // query.bindValue(":bio", newUser.getBio());
+    // query.bindValue("friends", friends_str);
+
+    query.exec();
+    DB.close();
 }
 
 void DataBase::editFriends(User *user)

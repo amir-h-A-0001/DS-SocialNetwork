@@ -22,6 +22,8 @@ private:
 public:
     DataBase();
 
+    void addUser (User& user);
+
     User* findUser(QString username);
     std::list<QString>* recived_requests(QString username);
     bool has_requests(QString username);
