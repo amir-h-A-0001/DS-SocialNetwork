@@ -11,6 +11,7 @@ Login_SignUp::Login_SignUp(DataBase *database, QWidget *parent)
     , database(database)
     , ui(new Ui::Login_SignUp)
 {
+
     ui->setupUi(this);
 
     setFramesShadow();
@@ -42,7 +43,7 @@ bool Login_SignUp::checkAllLoginErrors() {
 }
 
 bool Login_SignUp::checkUsernameLoginError() {
-    QString const username = ui->usernameLE->text();
+    QString const username = ui->usernameLoginLE->text();
     QLabel * usernameError = ui->usernameLoginERLB;
 
     if(username.length() == 0) {
@@ -123,6 +124,7 @@ bool Login_SignUp::checkUsernameSignupError() {
 
 bool Login_SignUp::checkPasswordSignupError() {
     QLabel  * passwordError = ui->passwordERLB;
+    QString const secPassword = ui->repeatPass->text();
     QString const password = ui->passwordLE->text();
 
     if(password.length() == 0) {
@@ -138,6 +140,11 @@ bool Login_SignUp::checkPasswordSignupError() {
 
     if(password.length() < 8) {
         passwordError->setText(allErrorTexts(4));
+        return false;
+    }
+
+    if(password != secPassword) {
+        ui->rpPasswordERLB->setText(allErrorTexts(5));
         return false;
     }
 
@@ -190,6 +197,7 @@ QString Login_SignUp::allErrorTexts(const int i) {
     QString invalidError ("Invalid data !");
     QString repeatedUsername ("This username is already taken !");
     QString shortPassword ("Password is too short");
+    QString notSamePassword("Not same");
 
     switch (i) {
     case 0:
@@ -202,6 +210,8 @@ QString Login_SignUp::allErrorTexts(const int i) {
         return repeatedUsername;
     case 4:
         return shortPassword;
+    case 5:
+        return notSamePassword;
     default:
         return "What ?";
     }
@@ -243,12 +253,18 @@ void Login_SignUp::animation() {
 void Login_SignUp::signupPBClicked() {
     resetSignupERLB();
     if(!checkAllSignupErrors()) return;
+
+    // Date of users sign up
+    QDate signUpDate;
+    signUpDate.setDate(QDate::currentDate().year(), QDate::currentDate().month(), QDate::currentDate().day());
+
     // Make new User
     User newUser;
     newUser.setUsername(ui->usernameLE->text());
     newUser.setPassword(ui->passwordLE->text());
     newUser.setName(ui->nameLE->text());
     newUser.setEmail(ui->emailLE->text());
+    newUser.setJoinDate(signUpDate);
 
     // Select an avatar
     QString filePath = QFileDialog::getOpenFileName(nullptr, "Select an avatar for your account :", "", "*.jpg *.jpeg *.png");
@@ -262,18 +278,18 @@ void Login_SignUp::signupPBClicked() {
     database->addUser(newUser);
 
     resetAll();
-    MainWindow mainWin(database);
+    MainWindow *mainWin = new MainWindow(database);
     this->close();
-    mainWin.show();
+    mainWin->show();
 }
 
 void Login_SignUp::loginPBClicked() {
     resetLoginERL();
     if(!checkAllLoginErrors()) return;
     resetAll();
-    MainWindow mainWin(database);
+    MainWindow *mainWin = new MainWindow(database);
     this->close();
-    mainWin.show();
+    mainWin->show();
 }
 
 void Login_SignUp::resetAll() {

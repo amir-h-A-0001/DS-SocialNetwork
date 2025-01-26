@@ -59,9 +59,7 @@ QLineEdit:hover {
 }
 
 QPushButton {
-  /* background-color: rgb(230, 230, 230);*/
 	font: 10pt &quot;Dosis&quot;;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(39, 61, 29, 255), stop:1 rgba(197, 255, 192, 255));
 	color: rgb(0, 0, 0);
     border: 1px solid #cccccc;
     border-radius: 5px;
@@ -130,7 +128,7 @@ QLabel {
       <string>Create An Account : </string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="passwordLE_2">
+    <widget class="QLineEdit" name="repeatPass">
      <property name="geometry">
       <rect>
        <x>430</x>
@@ -147,10 +145,19 @@ QLabel {
      <property name="geometry">
       <rect>
        <x>430</x>
-       <y>120</y>
+       <y>121</y>
        <width>181</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	color : rgb(169, 0, 3);
+	font: 700 10pt &quot;Dosis&quot;;
+    background-color: transparent;
+    padding: 5px;
+}
+</string>
      </property>
      <property name="text">
       <string/>
@@ -165,6 +172,15 @@ QLabel {
        <height>21</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	color : rgb(169, 0, 3);
+	font: 700 10pt &quot;Dosis&quot;;
+    background-color: transparent;
+    padding: 5px;
+}
+</string>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -172,11 +188,20 @@ QLabel {
     <widget class="QLabel" name="rpPasswordERLB">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>220</y>
+       <x>431</x>
+       <y>221</y>
        <width>181</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	color : rgb(169, 0, 3);
+	font: 700 10pt &quot;Dosis&quot;;
+    background-color: transparent;
+    padding: 5px;
+}
+</string>
      </property>
      <property name="text">
       <string/>
@@ -191,6 +216,15 @@ QLabel {
        <height>21</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	color : rgb(169, 0, 3);
+	font: 700 10pt &quot;Dosis&quot;;
+    background-color: transparent;
+    padding: 5px;
+}
+</string>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -203,6 +237,15 @@ QLabel {
        <width>181</width>
        <height>21</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+	color : rgb(169, 0, 3);
+	font: 700 10pt &quot;Dosis&quot;;
+    background-color: transparent;
+    padding: 5px;
+}
+</string>
      </property>
      <property name="text">
       <string/>
@@ -243,8 +286,8 @@ QLabel {
     <widget class="QPushButton" name="signupPB">
      <property name="geometry">
       <rect>
-       <x>516</x>
-       <y>341</y>
+       <x>517</x>
+       <y>349</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -262,8 +305,8 @@ QLabel {
     <widget class="QLabel" name="loginLB">
      <property name="geometry">
       <rect>
-       <x>34</x>
-       <y>40</y>
+       <x>50</x>
+       <y>30</y>
        <width>161</width>
        <height>41</height>
       </rect>
@@ -278,8 +321,8 @@ QLabel {
     <widget class="QLabel" name="passwordLoginERLB">
      <property name="geometry">
       <rect>
-       <x>85</x>
-       <y>207</y>
+       <x>91</x>
+       <y>222</y>
        <width>181</width>
        <height>21</height>
       </rect>
@@ -294,8 +337,8 @@ QLabel {
     <widget class="QPushButton" name="loginPB">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>260</y>
+       <x>178</x>
+       <y>241</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -313,8 +356,8 @@ QLabel {
     <widget class="QLineEdit" name="passwordLoginLE">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>173</y>
+       <x>90</x>
+       <y>190</y>
        <width>191</width>
        <height>33</height>
       </rect>
@@ -330,7 +373,7 @@ QLabel {
      <property name="geometry">
       <rect>
        <x>85</x>
-       <y>151</y>
+       <y>150</y>
        <width>181</width>
        <height>21</height>
       </rect>
@@ -345,8 +388,8 @@ QLabel {
     <widget class="QLineEdit" name="usernameLoginLE">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>120</y>
+       <x>90</x>
+       <y>140</y>
        <width>191</width>
        <height>31</height>
       </rect>
@@ -361,7 +404,7 @@ QLabel {
     <zorder>usernameLE</zorder>
     <zorder>creatAccountLB</zorder>
     <zorder>nameLE</zorder>
-    <zorder>passwordLE_2</zorder>
+    <zorder>repeatPass</zorder>
     <zorder>usernameERLB</zorder>
     <zorder>passwordERLB</zorder>
     <zorder>rpPasswordERLB</zorder>
