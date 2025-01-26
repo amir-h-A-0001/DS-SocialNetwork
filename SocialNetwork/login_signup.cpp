@@ -143,6 +143,11 @@ bool Login_SignUp::checkPasswordSignupError() {
         return false;
     }
 
+    if(secPassword.length() == 0) {
+        ui->rpPasswordERLB->setText(allErrorTexts(0));
+        return false;
+    }
+
     if(password != secPassword) {
         ui->rpPasswordERLB->setText(allErrorTexts(5));
         return false;
@@ -294,25 +299,26 @@ void Login_SignUp::loginPBClicked() {
 
 void Login_SignUp::resetAll() {
     // Login Widgets
-    ui->usernameLoginLE->setText("");
-    ui->passwordLoginLE->setText("");
+    ui->usernameLoginLE->clear();
+    ui->passwordLoginLE->clear();
     resetLoginERL();
     // Signup Widgets
-    ui->usernameLE->setText("");
-    ui->passwordLE->setText("");
-    ui->emailLE->setText("");
-    ui->nameLE->setText("");
+    ui->usernameLE->clear();
+    ui->passwordLE->clear();
+    ui->emailLE->clear();
+    ui->nameLE->clear();
     resetSignupERLB();
 }
 
 void Login_SignUp::resetLoginERL() {
-    ui->usernameLoginERLB->setText("");
-    ui->passwordLoginERLB->setText("");
+    ui->usernameLoginERLB->clear();
+    ui->passwordLoginERLB->clear();
 }
 
 void Login_SignUp::resetSignupERLB() {
-    ui->emailERLB->setText("");
-    ui->usernameERLB->setText("");
-    ui->nameERLB->setText("");
-    ui->passwordERLB->setText("");
+    ui->emailERLB->clear();
+    ui->usernameERLB->clear();
+    ui->nameERLB->clear();
+    ui->passwordERLB->clear();
+    ui->rpPasswordERLB->clear();
 }
