@@ -29,12 +29,15 @@ private:
     QHash <QPushButton*, User*> friendsPB;
 
     void setFramesShadow ();
-    void setSqrollAreasLayout ();
+    void setFirstUiSettings ();
 
     void setUsersFriend ();
     void setUsersInformation (User * userPage);
     void addUsersFriend ();
     void addUsersFriendPB (User * user);
+    void addUsersPosts (User *userPage);
+    void addUsersPostsWidgetToSA (PostWidget *post);
+    void cleanUsersPostsSA ();
 
     QPixmap makeCircleScalePixmap(QPixmap & pixmap, QSize & size);
 

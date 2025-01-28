@@ -8,15 +8,14 @@
 #include <QSizePolicy>
 #include "post.h"
 
-class PostWidget : public QFrame
-{
+class PostWidget : public QFrame {
+    Q_OBJECT
     //Post* post;
     QLabel* text;
     QLabel* timeAndDate;
     QPushButton* editPB;
 public:
     PostWidget(Post* post);
-
 
 };
 

@@ -10,13 +10,14 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     ui->setupUi(this);
 
     // ui
-    setSqrollAreasLayout();
+    setFirstUiSettings();
     setFramesShadow();
 
     // user
     setUsersFriend();
     setUsersInformation(user);
 
+    // connectes for buttons
 }
 
 MainWindow::~MainWindow()
@@ -68,6 +69,7 @@ void MainWindow::setUsersInformation(User * userPage) {
             ui->homePB->setIconSize(size);
         }
     }
+    addUsersPosts(userPage);
 
 }
 
@@ -105,16 +107,50 @@ void MainWindow::addUsersFriendPB(User *user) {
     connect(userPB, &QPushButton::clicked, [this]{friendsPBCliced();});
 }
 
+void MainWindow::addUsersPosts(User *userPage) {
+    std::list<Post> * usersPosts = userPage->getPosts_ptr();
+
+    if(usersPosts->empty()) return;
+
+    for(auto it : *usersPosts) {
+        PostWidget *postWidget = new PostWidget(&it);
+        addUsersPostsWidgetToSA(postWidget);
+        if(user->getUsername() == userPage->getUsername()) {
+        // connect its push button -----------------------------------------------------------------
+        }
+        else {
+            // disable its pushbutton --------------------------------------------------------------
+        }
+    }
+}
+
+void MainWindow::addUsersPostsWidgetToSA(PostWidget *post) {
+    QVBoxLayout * layout = qobject_cast<QVBoxLayout*> (ui->postsSA->layout());
+    layout->insertWidget(layout->count() - 2, post);
+}
+
+void MainWindow::cleanUsersPostsSA() {
+    QVBoxLayout * layout = qobject_cast<QVBoxLayout*> (ui->postsSA->layout());
+    while(layout->count() > 2) {
+        QLayoutItem * item = layout->takeAt(0);
+        PostWidget * postWidget = qobject_cast<PostWidget *> (item->widget());
+        postWidget->deleteLater();
+        delete item;
+    }
+}
+
 void MainWindow::friendsPBCliced() {
     QPushButton * userPB = qobject_cast<QPushButton*>(sender());
     User *user = friendsPB[userPB];
 
+    cleanUsersPostsSA();
     setUsersInformation(user);
     ui->settingPB->hide();
 }
 
-void MainWindow::setSqrollAreasLayout() {
+void MainWindow::setFirstUiSettings() {
     ui->settingPB->show();
+    ui->mainSV->setCurrentIndex(0);
     ui->postsSA->setLayout(ui->verticalLayout_2);
     ui->searchResultSA->setLayout(ui->verticalLayout_3);
     ui->sideUserSA->setLayout(ui->verticalLayout);
