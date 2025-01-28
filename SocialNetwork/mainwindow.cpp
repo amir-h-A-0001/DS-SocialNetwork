@@ -8,7 +8,7 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     , database(database)
     , user(user) {
     ui->setupUi(this);
-    ui->postsSA->setLayout(ui->verticalLayout_2);
+
 
     setFramesShadow();
     fillTheLabels();
@@ -56,4 +56,8 @@ void MainWindow::setUsersFriend() {
     for(auto it : *userFreinds) {
         friends[idx++] = database->findUser(it);
     }
+}
+
+void MainWindow::setSqrollAreasLayout() {
+     ui->postsSA->setLayout(ui->verticalLayout_2);
 }

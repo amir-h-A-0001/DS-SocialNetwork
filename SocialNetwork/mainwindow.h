@@ -28,5 +28,6 @@ private:
     void setFramesShadow ();
     void fillTheLabels ();
     void setUsersFriend ();
+    void setSqrollAreasLayout ();
 };
 #endif // MAINWINDOW_H
