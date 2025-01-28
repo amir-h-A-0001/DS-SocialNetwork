@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QGraphicsDropShadowEffect>
+#include <QFileDialog>
+#include <QPainter>
+#include <QPainterPath>
 #include "user.h"
 #include "database.h"
 
@@ -16,6 +19,8 @@ class Settings : public QMainWindow
 
     User* user;
     DataBase* dataBase;
+    QPixmap newAvatar;
+    bool changedAvatar;
 
 public:
     explicit Settings(User* user,DataBase* dataBase,QWidget *parent = nullptr);
@@ -23,6 +28,10 @@ public:
 
 private slots:
     void on_avatarPB_clicked();
+
+    void on_savePB_clicked();
+
+    void on_DeleteAccountPB_clicked();
 
 private:
     Ui::Settings *ui;

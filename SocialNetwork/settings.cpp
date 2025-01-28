@@ -28,6 +28,8 @@ Settings::Settings(User* user,DataBase* dataBase,QWidget *parent)
 
     ui->passwordErrorL->hide();
     ui->repaetErrorL->hide();
+
+    this->changedAvatar = false;
 }
 
 Settings::~Settings()
@@ -37,7 +39,31 @@ Settings::~Settings()
 
 void Settings::on_avatarPB_clicked()
 {
+    QString filter = "Image Files (*.png *.jpg *.jpeg *.bmp);;All Files (*)";
+    QString filePath = QFileDialog::getOpenFileName(nullptr,
+                                                    "Choose an Image",
+                                                    "",
+                                                    filter);
+    if(newAvatar.load(filePath)){
+        changedAvatar = true;
 
+        int size = ui->avatarL->height()-1;
+
+        QPixmap circularAvatar(size, size);
+        circularAvatar.fill(Qt::transparent);
+
+        QPainter painter(&circularAvatar);
+        painter.setRenderHint(QPainter::Antialiasing);
+        painter.setRenderHint(QPainter::SmoothPixmapTransform);
+
+        // Draw a circle
+        QPainterPath path;
+        path.addEllipse(0, 0, size, size);
+        painter.setClipPath(path);
+        painter.drawPixmap(0, 0, size, size, newAvatar.scaled(size, size, Qt::KeepAspectRatioByExpanding));
+
+        ui->avatarL->setPixmap(circularAvatar);
+    }
 }
 
 
@@ -54,23 +80,6 @@ void Settings::on_savePB_clicked()
 
     bool changed = false;
 
-    if(!newName.isEmpty()){
-        if(newName != user->getName()){
-            user->setName(newName);
-            changed = true;
-        }
-    }
-    if(!newBio.isEmpty()){
-        if(newBio != user->getBio()){
-            user->setBio(newBio);
-            changed = true;
-        }
-    }
-    if(!newEmail.isEmpty()){
-        if(newEmail != user->getEmail()){
-            user->setEmail(newEmail);
-        }
-    }
 
     if(!newPassword.isEmpty()){
         if(newPassword.length() < 5){
@@ -90,8 +99,41 @@ void Settings::on_savePB_clicked()
         }
     }
 
+    if(!newName.isEmpty()){
+        if(newName != user->getName()){
+            user->setName(newName);
+            changed = true;
+        }
+    }
+    if(!newBio.isEmpty()){
+        if(newBio != user->getBio()){
+            user->setBio(newBio);
+            changed = true;
+        }
+    }
+    if(!newEmail.isEmpty()){
+        if(newEmail != user->getEmail()){
+            user->setEmail(newEmail);
+        }
+    }
+    if(changedAvatar){
+        user->setAvatar(newAvatar);
+        changed = true;
+    }
+
     if(changed){
         dataBase->editUserData(user->getUsername());
+
+        this->hide();
+        // return to the main window and update data
     }
+}
+
+
+void Settings::on_DeleteAccountPB_clicked()
+{
+    dataBase->deleteUser(user->getUsername());
+
+
 }
 

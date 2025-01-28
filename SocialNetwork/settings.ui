@@ -221,9 +221,9 @@ border-radius: 15px;</string>
     <widget class="QGroupBox" name="privateDataGB">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>40</x>
        <y>30</y>
-       <width>661</width>
+       <width>641</width>
        <height>181</height>
       </rect>
      </property>
@@ -320,7 +320,7 @@ color:rgb(80,80,80);</string>
        <enum>Qt::LogicalMoveStyle</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="nameL_2">
+     <widget class="QLabel" name="passwordL">
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -370,12 +370,48 @@ color:rgb(80,80,80);
        <string>repeat new password</string>
       </property>
      </widget>
+     <widget class="QLabel" name="passwordErrorL">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>82</y>
+        <width>191</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(200,100,100);
+border:none;
+padding-left:2px;</string>
+      </property>
+      <property name="text">
+       <string>must be at least 5 characters</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="repaetErrorL">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>82</y>
+        <width>191</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(200,100,100);
+border:none;
+padding-left:2px;</string>
+      </property>
+      <property name="text">
+       <string>repeat new password correctly !</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QPushButton" name="savePB">
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>230</y>
+       <y>237</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -393,7 +429,7 @@ color:rgb(100,100,100);</string>
      <property name="geometry">
       <rect>
        <x>380</x>
-       <y>236</y>
+       <y>243</y>
        <width>121</width>
        <height>31</height>
       </rect>
@@ -410,8 +446,8 @@ color:rgb(100,100,100);</string>
     <widget class="QPushButton" name="DeleteAccountPB">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>240</y>
+       <x>60</x>
+       <y>247</y>
        <width>101</width>
        <height>24</height>
       </rect>

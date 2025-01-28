@@ -19,6 +19,8 @@ class DataBase
 private:
     void editFriends(User* user);
     void editAllRequests();
+    bool haveRequest(QString userA,QString userB);
+    bool areFriends(User* userA, User* userB);
 public:
     DataBase();
 
