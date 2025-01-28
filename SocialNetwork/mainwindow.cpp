@@ -14,22 +14,6 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     fillTheLabels();
     setUsersFriend();
 
-
-
-
-
-    // ke ke kari
-
-    Post postt;
-    QDate date(::QDate::currentDate());
-    postt.setDate(date);
-    postt.setText("amiramiramir");
-    QTime time(::QTime::currentTime());
-    postt.setTime(time);
-    PostWidget * post = new PostWidget(&postt);
-
-    QVBoxLayout * layout = qobject_cast<QVBoxLayout *>(ui->postsSA->layout());
-    layout->insertWidget(layout->count() - 2, post);
 }
 
 MainWindow::~MainWindow()
