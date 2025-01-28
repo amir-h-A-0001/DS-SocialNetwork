@@ -1,6 +1,7 @@
 #include "login_signup.h"
 #include <QApplication>
 #include <database.h>
+#include "searchwidget.h"
 
 int main(int argc, char *argv[]) {
 

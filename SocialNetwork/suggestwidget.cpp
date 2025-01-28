@@ -1,5 +1,4 @@
 #include "suggestwidget.h"
-#include "qpainter.h"
 
 
 
@@ -88,7 +87,6 @@ suggestWidget::suggestWidget(User* user) : user(user){
         )");
 
     this->setFixedSize(150, 200);
-    this->show();
 
     request->setText("Request");
     request->setCheckable(true);
