@@ -197,20 +197,17 @@ QScrollArea QWidget {
      <property name="frameShadow">
       <enum>QFrame::Shadow::Raised</enum>
      </property>
-     <widget class="QLabel" name="sideUserProfileLB">
+     <widget class="QPushButton" name="homePB">
       <property name="geometry">
        <rect>
-        <x>19</x>
+        <x>10</x>
         <y>10</y>
-        <width>70</width>
-        <height>70</height>
+        <width>81</width>
+        <height>71</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(0, 0, 0);</string>
-      </property>
       <property name="text">
-       <string>Profile</string>
+       <string>PushButton</string>
       </property>
      </widget>
     </widget>

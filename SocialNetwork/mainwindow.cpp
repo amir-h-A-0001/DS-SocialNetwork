@@ -2,15 +2,16 @@
 #include "ui_mainwindow.h"
 #include <QGraphicsDropShadowEffect>
 
-MainWindow::MainWindow(DataBase *database, QWidget *parent)
+MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , database(database)
+    , user(user)
 {
     ui->setupUi(this);
     setFramesShadow();
-    ui->searchSVP->show();
-    ui->suggestionSA->show();
+    fillTheLabels();
+    setUsersFriend();
 }
 
 MainWindow::~MainWindow()
@@ -25,4 +26,31 @@ void MainWindow::setFramesShadow() {
     coverShadow->setOffset(0.0);
     ui->userInformationF->setGraphicsEffect(coverShadow);
 
+}
+
+void MainWindow::fillTheLabels() {
+    ui->usernameLB->setText(user->getUsername());
+    if(!user->getAvatar().isNull())
+        ui->userProfileLB->setPixmap(user->getAvatar());
+    else {
+
+    }
+    ui->nameLB->setText(user->getName());
+    ui->userBioLB->setText(user->getBio());
+}
+
+void MainWindow::setUsersFriend() {
+    const std::list<QString> *userFreinds = user->getFriends_ptr();
+    const int userFriends = user->getFriends_ptr()->size();
+
+    int userRequests = 0;
+    if(database->has_requests(user->getUsername()))
+        userRequests = database->recived_requests(user->getUsername())->size();
+
+    friends = new User * [userFriends + userRequests];
+
+    int idx = 0;
+    for(auto it : *userFreinds) {
+        friends[idx++] = database->findUser(it);
+    }
 }

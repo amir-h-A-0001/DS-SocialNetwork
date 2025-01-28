@@ -141,7 +141,7 @@ void DataBase::addUser(User &newUser) {
     // std::list<QString> * friends = newUser.getFriends_ptr();
     // QString friends_str;
     // for(auto it = friends->begin(); it != friends->end(); ++it) {
-    //     friends_str = friends_str  + "/" + *it;
+    //     friends_str = friends_str  + "-" + *it;
     // }
 
     QSqlQuery query;
