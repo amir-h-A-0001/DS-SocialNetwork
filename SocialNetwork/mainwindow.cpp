@@ -9,7 +9,7 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     , user(user) {
     ui->setupUi(this);
 
-
+    setSqrollAreasLayout();
     setFramesShadow();
     fillTheLabels();
     setUsersFriend();
@@ -34,7 +34,7 @@ void MainWindow::fillTheLabels() {
     ui->usernameLB->setText(user->getUsername());
     if(!user->getAvatar().isNull())
         ui->userProfileLB->setPixmap(user->getAvatar());
-        // for home pb icon ------------------------------------------------------------------------------
+    // for home pb icon ------------------------------------------------------------------------------
     else {
 
     }
@@ -59,5 +59,9 @@ void MainWindow::setUsersFriend() {
 }
 
 void MainWindow::setSqrollAreasLayout() {
-     ui->postsSA->setLayout(ui->verticalLayout_2);
+    ui->postsSA->setLayout(ui->verticalLayout_2);
+    ui->searchResultSA->setLayout(ui->verticalLayout_3);
+    ui->sideUserSA->setLayout(ui->verticalLayout);
+    ui->suggestionSA->setLayout(ui->horizontalLayout_2);
+
 }
