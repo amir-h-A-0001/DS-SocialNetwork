@@ -200,14 +200,15 @@ QScrollArea QWidget {
      <widget class="QPushButton" name="homePB">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>81</width>
-        <height>71</height>
+        <x>15</x>
+        <y>9</y>
+        <width>70</width>
+        <height>70</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgba(125, 125, 125,20);</string>
+       <string notr="true">background-color: rgba(125, 125, 125,120);
+border-radius : 35px;</string>
       </property>
       <property name="text">
        <string>PushButton</string>
@@ -447,16 +448,20 @@ QPushButton {
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>20</y>
-         <width>190</width>
-         <height>190</height>
+         <y>15</y>
+         <width>200</width>
+         <height>200</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgba(125, 125, 125,20);</string>
+        <string notr="true">background-color: rgba(125, 125, 125,20);
+border-radius : 100px;</string>
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="margin">
+        <number>0</number>
        </property>
       </widget>
       <widget class="QLabel" name="usernameLB">
@@ -485,8 +490,7 @@ QPushButton {
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Name</string>
