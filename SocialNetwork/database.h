@@ -34,7 +34,7 @@ public:
     void addPost(Post& post,QString username);
     void editUserData(QString username);
     void makeFriend(QString userA,QString userB);
-    void editPost(QString username,QString hashCode,QString newText);
+    void editPost(QString username,Post* post);
     void deletePost(QString username,QString hashCode);
     void deleteUser(QString username);
 

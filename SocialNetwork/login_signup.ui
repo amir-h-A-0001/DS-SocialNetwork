@@ -78,10 +78,10 @@ QLabel {
 </string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
+     <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
+     <enum>QFrame::Raised</enum>
     </property>
     <widget class="QLineEdit" name="nameLE">
      <property name="geometry">
@@ -93,7 +93,7 @@ QLabel {
       </rect>
      </property>
      <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
      <property name="placeholderText">
       <string>Name</string>
@@ -286,8 +286,8 @@ QLabel {
     <widget class="QPushButton" name="signupPB">
      <property name="geometry">
       <rect>
-       <x>517</x>
-       <y>349</y>
+       <x>470</x>
+       <y>350</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -297,6 +297,12 @@ QLabel {
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:10px;
+border:1px solid transparent;
+background-color: rgb(176, 198, 157);
+color:rgb(100,100,100);</string>
      </property>
      <property name="text">
       <string>Signup</string>
@@ -439,24 +445,30 @@ QLabel {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 15px;
-    border: 1px solid transparent; /* Optional */
+    border: 1px solid rgb(42, 111, 64);
 }
+
 </string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
+     <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
+     <enum>QFrame::Raised</enum>
     </property>
     <widget class="QPushButton" name="openLoginSignupPB">
      <property name="geometry">
       <rect>
-       <x>125</x>
-       <y>326</y>
-       <width>101</width>
-       <height>31</height>
+       <x>115</x>
+       <y>316</y>
+       <width>121</width>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:15px;
+border:1px solid green;
+background-color: rgb(9, 59, 47);</string>
      </property>
      <property name="text">
       <string>Login</string>
