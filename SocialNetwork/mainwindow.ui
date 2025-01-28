@@ -101,7 +101,7 @@ QScrollArea QWidget {
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-color: rgb(0, 0, 0);</string>
+          <string notr="true">background-color: rgba(125, 125, 125,20);</string>
          </property>
          <property name="text">
           <string/>
@@ -134,7 +134,7 @@ QScrollArea QWidget {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 0, 0);</string>
+      <string notr="true">background-color: rgba(125, 125, 125,20);</string>
      </property>
      <property name="text">
       <string/>
@@ -150,7 +150,7 @@ QScrollArea QWidget {
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 0, 0);</string>
+      <string notr="true">background-color: rgba(125, 125, 125,20);</string>
      </property>
      <property name="text">
       <string/>
@@ -205,6 +205,9 @@ QScrollArea QWidget {
         <width>81</width>
         <height>71</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(125, 125, 125,20);</string>
       </property>
       <property name="text">
        <string>PushButton</string>
@@ -282,9 +285,9 @@ border-top-right-radius : 25px;</string>
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>270</y>
+        <y>260</y>
         <width>831</width>
-        <height>361</height>
+        <height>381</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -295,8 +298,13 @@ border-radius: 10px;
 QScrollArea QWidget {
 	background : transparent;
 }
+
+
     
 </string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
@@ -307,61 +315,86 @@ QScrollArea QWidget {
          <x>0</x>
          <y>0</y>
          <width>831</width>
-         <height>361</height>
+         <height>381</height>
         </rect>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <spacer name="verticalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Orientation::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>13</width>
-            <height>322</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
-          <item>
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Orientation::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="newPostPB">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>50</y>
+          <width>601</width>
+          <height>261</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="spacing">
+          <number>5</number>
+         </property>
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>13</width>
+             <height>322</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="newPostPB">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="cursor">
+              <cursorShape>PointingHandCursor</cursorShape>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgba(125, 125, 125,20);
 color: rgb(0, 0, 0);</string>
-            </property>
-            <property name="text">
-             <string>New Post</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
+             </property>
+             <property name="text">
+              <string>New Post</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
      <widget class="QFrame" name="userInformationF">
@@ -377,7 +410,7 @@ color: rgb(0, 0, 0);</string>
        <string notr="true"> QFrame {
         border-radius: 15px;
 	background-color: rgb(255, 255, 255);
-    }
+   }
 QLabel {
 	background : transparent;
 	font: 10pt &quot;Dosis&quot;;
@@ -419,6 +452,9 @@ QPushButton {
          <height>190</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(125, 125, 125,20);</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -432,6 +468,9 @@ QPushButton {
          <height>41</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>Username</string>
        </property>
@@ -444,6 +483,10 @@ QPushButton {
          <width>231</width>
          <height>41</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+</string>
        </property>
        <property name="text">
         <string>Name</string>
@@ -460,6 +503,9 @@ QPushButton {
          <width>271</width>
          <height>81</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Bio</string>

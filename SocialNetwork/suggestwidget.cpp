@@ -2,7 +2,4 @@
 
 suggestWidget::suggestWidget(User* user) {
 
-
-
-
 }

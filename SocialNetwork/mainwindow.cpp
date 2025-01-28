@@ -6,12 +6,30 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , database(database)
-    , user(user)
-{
+    , user(user) {
     ui->setupUi(this);
+    ui->postsSA->setLayout(ui->verticalLayout_2);
+
     setFramesShadow();
     fillTheLabels();
     setUsersFriend();
+
+
+
+
+
+    // ke ke kari
+
+    Post postt;
+    QDate date(::QDate::currentDate());
+    postt.setDate(date);
+    postt.setText("amiramiramir");
+    QTime time(::QTime::currentTime());
+    postt.setTime(time);
+    PostWidget * post = new PostWidget(&postt);
+
+    QVBoxLayout * layout = qobject_cast<QVBoxLayout *>(ui->postsSA->layout());
+    layout->insertWidget(layout->count() - 2, post);
 }
 
 MainWindow::~MainWindow()
@@ -32,6 +50,7 @@ void MainWindow::fillTheLabels() {
     ui->usernameLB->setText(user->getUsername());
     if(!user->getAvatar().isNull())
         ui->userProfileLB->setPixmap(user->getAvatar());
+        // for home pb icon ------------------------------------------------------------------------------
     else {
 
     }

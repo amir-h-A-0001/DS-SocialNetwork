@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <database.h>
+#include <postwidget.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,6 +24,7 @@ private:
     DataBase *database;
     User * user;
     User ** friends;
+    int friendsSize;
     void setFramesShadow ();
     void fillTheLabels ();
     void setUsersFriend ();

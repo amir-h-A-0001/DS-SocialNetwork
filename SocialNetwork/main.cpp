@@ -11,5 +11,8 @@ int main(int argc, char *argv[]) {
     Login_SignUp login_Signup(&database);
     login_Signup.show();
 
+    MainWindow mainw(&database, new User);
+    mainw.show();
+
     return a.exec();
 }
