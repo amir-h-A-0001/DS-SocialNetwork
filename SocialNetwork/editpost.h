@@ -2,6 +2,11 @@
 #define EDITPOST_H
 
 #include <QMainWindow>
+#include "post.h"
+#include "user.h"
+#include "postwidget.h"
+#include "database.h"
+#include <list>
 
 namespace Ui {
 class EditPost;
@@ -11,9 +16,23 @@ class EditPost : public QMainWindow
 {
     Q_OBJECT
 
+    User* user;
+    Post* post;
+    PostWidget* widget;
+    DataBase* dataBase;
+
+    bool edit;
+
 public:
-    explicit EditPost(QWidget *parent = nullptr);
+    explicit EditPost(bool edit,User* user,Post* post,PostWidget* widget,DataBase* dataBase,QWidget *parent = nullptr);
     ~EditPost();
+
+private slots:
+    void on_deletePB_clicked();
+
+    void on_cancelPB_clicked();
+
+    void on_savePB_clicked();
 
 private:
     Ui::EditPost *ui;

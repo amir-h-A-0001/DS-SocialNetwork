@@ -18,6 +18,9 @@ public:
     PostWidget(Post* post);
 
 
+
+    QString getText() const;
+    void setText(QString newText);
 };
 
 #endif // POSTWIDGET_H

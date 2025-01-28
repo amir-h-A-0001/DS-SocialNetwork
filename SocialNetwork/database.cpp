@@ -289,6 +289,25 @@ void DataBase::cancel_request(QString sender, QString receiver)
     }
 }
 
+void DataBase::addPost(Post &post,QString username)
+{
+    QSqlQuery add_Qry;
+    add_Qry.prepare("INSERT INTO "+username+"_posts (hashCode,text,year,month,day,hour,minute,second) VALUES (:hashCode,:text,:year,:month,:day,:hour,:minute,:second)");
+    add_Qry.bindValue(":hashCode",post.getHashCode());
+    add_Qry.bindValue(":text",post.getText());
+    QDate date = post.getDate();
+    add_Qry.bindValue(":year",date.year());
+    add_Qry.bindValue(":month",date.month());
+    add_Qry.bindValue(":day",date.day());
+    QTime time = post.getTime();
+    add_Qry.bindValue(":hourr",time.hour());
+    add_Qry.bindValue(":minute",time.minute());
+    add_Qry.bindValue(":second",time.second());
+
+    if(!add_Qry.exec())
+        qDebug("adding new post failed");
+}
+
 void DataBase::editUserData(QString username)
 {
     User* user = &this->users[username];
@@ -326,10 +345,10 @@ void DataBase::makeFriend(QString userA, QString userB)
     editFriends(user);
 }
 
-void DataBase::editPost(QString username, QString hashCode,QString newText)
+void DataBase::editPost(QString username,Post* post)
 {
     QSqlQuery update_Qry;
-    update_Qry.prepare("UPDATE "+username+"_posts SET text='"+newText+"' WHERE hashCode='"+hashCode+"';");
+    update_Qry.prepare("UPDATE "+username+"_posts SET text='"+post->getText()+"' WHERE hashCode='"+post->getHashCode()+"';");
     if(!update_Qry.exec())
         qDebug("userData update failed");
 }

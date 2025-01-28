@@ -1,5 +1,15 @@
 #include "postwidget.h"
 
+QString PostWidget::getText() const
+{
+    return text->text();
+}
+
+void PostWidget::setText(QString newText)
+{
+    text->setText(newText);
+}
+
 PostWidget::PostWidget(Post* post) {
 
     //this->post = post;
