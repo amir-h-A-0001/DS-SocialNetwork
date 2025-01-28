@@ -18,6 +18,7 @@ SOURCES += \
     postwidget.cpp \
     requests.cpp \
     requestwidget.cpp \
+    searchwidget.cpp \
     settings.cpp \
     suggestwidget.cpp \
     user.cpp
@@ -31,6 +32,7 @@ HEADERS += \
     postwidget.h \
     requests.h \
     requestwidget.h \
+    searchwidget.h \
     settings.h \
     suggestwidget.h \
     user.h

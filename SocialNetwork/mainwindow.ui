@@ -279,7 +279,7 @@ border-top-right-radius : 25px;</string>
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="usersPageSVP">
      <widget class="QScrollArea" name="postsSA">
