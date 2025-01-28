@@ -31,6 +31,7 @@ public:
     bool has_requests(QString username);
     void cancel_request(QString sender,QString receiver);
 
+    void addPost(Post& post,QString username);
     void editUserData(QString username);
     void makeFriend(QString userA,QString userB);
     void editPost(QString username,QString hashCode,QString newText);
