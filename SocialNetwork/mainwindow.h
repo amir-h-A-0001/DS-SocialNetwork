@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <database.h>
 #include <postwidget.h>
+#include <QHash>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,9 +26,22 @@ private:
     User * user;
     User ** friends;
     int friendsSize;
+    QHash <QPushButton*, User*> friendsPB;
+
     void setFramesShadow ();
-    void fillTheLabels ();
+    void setFirstUiSettings ();
+
     void setUsersFriend ();
-    void setSqrollAreasLayout ();
+    void setUsersInformation (User * userPage);
+    void addUsersFriend ();
+    void addUsersFriendPB (User * user);
+    void addUsersPosts (User *userPage);
+    void addUsersPostsWidgetToSA (PostWidget *post);
+    void cleanUsersPostsSA ();
+
+    QPixmap makeCircleScalePixmap(QPixmap & pixmap, QSize & size);
+
+private slots :
+    void friendsPBCliced ();
 };
 #endif // MAINWINDOW_H

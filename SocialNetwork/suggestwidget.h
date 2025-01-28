@@ -9,9 +9,8 @@
 #include <user.h>
 #include <QPainter>
 
-class suggestWidget : public QFrame
-{
- Q_OBJECT
+class suggestWidget : public QFrame {
+    Q_OBJECT
 
     QLabel * avatar;
     QLabel * username;

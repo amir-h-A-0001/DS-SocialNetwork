@@ -221,7 +221,7 @@ QScrollArea QWidget {
 border-radius : 35px;</string>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string/>
       </property>
      </widget>
     </widget>
@@ -289,7 +289,7 @@ border-top-right-radius : 25px;</string>
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="usersPageSVP">
      <widget class="QScrollArea" name="postsSA">
@@ -592,7 +592,7 @@ QLineEdit:hover {
 }</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="suggestSVP">
        <widget class="QScrollArea" name="suggestionSA">
