@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     post.cpp \
+    postwidget.cpp \
     requests.cpp \
     requestwidget.cpp \
     settings.cpp \
@@ -27,6 +28,7 @@ HEADERS += \
     login_signup.h \
     mainwindow.h \
     post.h \
+    postwidget.h \
     requests.h \
     requestwidget.h \
     settings.h \
