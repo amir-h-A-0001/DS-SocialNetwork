@@ -18,6 +18,8 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     setUsersInformation(user);
 
     // connectes for buttons
+    // connect(ui->settingPB, &QPushButton::clicked, [this]{;});
+    // connect(ui->searchBoxLE, &QLineEdit::focusIn, )
 }
 
 MainWindow::~MainWindow()
