@@ -5,7 +5,9 @@ DataBase::DataBase() {
 
 
     DB = QSqlDatabase::addDatabase("QSQLITE");
-    DB.setDatabaseName("E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
+    DB.setDatabaseName("F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
+    //"F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"
+    //"E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"
 
     if (!DB.open()){
         qDebug("failed to open database");
@@ -192,6 +194,53 @@ void DataBase::editAllRequests()
     }
 }
 
+bool DataBase::haveRequest(QString userA, QString userB)
+{
+    std::map<QString,std::list<QString>>::iterator itrA = this->requests.find(userA);
+    std::map<QString,std::list<QString>>::iterator itrB = this->requests.find(userB);
+
+    if(itrA != this->requests.end()){
+        std::list<QString> senders = itrA->second;
+
+        for(auto &user : senders){
+            if(user == userB)
+                return true;
+        }
+    }
+    if(itrB != this->requests.end()){
+        std::list<QString> senders = itrB->second;
+
+        for(auto &user : senders){
+            if(user == userA)
+                return true;
+        }
+    }
+    return false;
+}
+
+bool DataBase::areFriends(User* userA, User* userB)
+{
+    std::list<QString>* Afriends = userA->getFriends_ptr();
+    std::list<QString>* Bfriends = userB->getFriends_ptr();
+
+    QString Ausername = userA->getUsername();
+    QString Busername = userB->getUsername();
+
+    if(Afriends->size() < Bfriends->size()){
+        for(auto &f : *Afriends){
+            if(f == Busername)
+                return true;
+        }
+    }
+    else {
+        for(auto &f : *Bfriends){
+            if(f == Ausername)
+                return true;
+        }
+    }
+    return false;
+}
+
 User *DataBase::findUser(QString username)
 {
     std::map<QString,User>::iterator itr = this->users.find(username);
@@ -332,13 +381,14 @@ void DataBase::deleteUser(QString username)
 
 std::list<suggestWidget *> *DataBase::suggest(QString username)
 {
+    User* user = &users[username];
     std::list<suggestWidget*>* suggests = new std::list<suggestWidget*>;
     std::multimap<float,User*> order;
+    std::list<QString>* friendsList = user->getFriends_ptr();
 
-    std::list<QString>* friendsList = users[username].getFriends_ptr();
     for(auto &i : this->users){
 
-        if(i.second.getUsername() == username)
+        if((i.second.getUsername() == username)|| haveRequest(username,i.second.getUsername()) || areFriends(user,&i.second))
             continue;
 
         std::list<QString>* i_friendsList = i.second.getFriends_ptr();
