@@ -309,6 +309,12 @@ void DataBase::sendRequest(QString sender, QString receiver)
     else {
         itr->second.push_back(sender);
 
+        QString senders = "";
+        std::list<QString>* requestsList = &itr->second;
+        for(auto &i : *requestsList){
+            senders += i + "-";
+        }
+
         QSqlQuery update_Qry;
         update_Qry.prepare("UPDATE requests SET senders='"+senders+"' WHERE receiver='"+receiver+";");
         if(!update_Qry.exec())
