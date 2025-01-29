@@ -38,7 +38,8 @@ void EditPost::on_deletePB_clicked()
 
     // return to the mainWindow
     this->parentWidget()->show();
-    delete this;
+    this->close();
+    this->deleteLater();
 }
 
 
@@ -46,7 +47,8 @@ void EditPost::on_cancelPB_clicked()
 {
     //return to the mainWindow
     this->parentWidget()->show();
-    delete this;
+    this->close();
+    this->deleteLater();
 }
 
 
@@ -70,16 +72,13 @@ void EditPost::on_savePB_clicked()
         QString code = date + time;
         post->setHashCode(code);
 
-        *widget = new PostWidget(post);
-
         user->addPost(*post);
         dataBase->addPost(*post,user->getUsername());
     }
 
     // return to the mainWindow
     this->parentWidget()->show();
-    emit this->destroyed();
-
-    delete this;
+    this->close();
+    this->deleteLater();
 }
 

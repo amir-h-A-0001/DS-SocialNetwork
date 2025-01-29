@@ -141,3 +141,10 @@ void Settings::on_DeleteAccountPB_clicked()
 
 }
 
+void Settings::on_cancelPB_clicked()
+{
+    this->close();
+    this->parentWidget()->show();
+    this->deleteLater();
+}
+
