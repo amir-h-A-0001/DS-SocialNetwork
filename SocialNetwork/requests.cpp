@@ -30,12 +30,12 @@ Requests::~Requests()
 void Requests::accept(QString username, RequestWidget *widget)
 {
     this->dataBase->makeFriend(username,this->user->getUsername());
-    this->dataBase->deleteRequest(username,this->user->getUsername());
+    this->dataBase->cancelRequest(username,this->user->getUsername());
     delete widget;
 }
 
 void Requests::reject(QString username, RequestWidget *widget)
 {
-    this->dataBase->deleteRequest(username,this->user->getUsername());
+    this->dataBase->cancelRequest(username,this->user->getUsername());
     delete widget;
 }

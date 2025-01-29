@@ -264,7 +264,7 @@ bool DataBase::has_requests(QString username)
     else return !this->requests[username].empty();
 }
 
-void DataBase::cancel_request(QString sender, QString receiver)
+void DataBase::cancelRequest(QString sender, QString receiver)
 {
     std::list<QString>* user_requests = &this->requests[receiver];
 
@@ -287,7 +287,7 @@ void DataBase::cancel_request(QString sender, QString receiver)
         QSqlQuery update_Qry;
         update_Qry.prepare("UPDATE requests SET senders='"+senders+"' WHERE receiver='"+receiver+";");
         if(!update_Qry.exec())
-            qDebug("userData update failed");
+            qDebug("updating user requests failed");
     }
 }
 
@@ -398,32 +398,6 @@ void DataBase::deleteUser(QString username)
     }
     this->editAllRequests();
 
-}
-
-void DataBase::deleteRequest(QString sender, QString receiver)
-{
-    std::list<QString>* userRequests = &this->requests[receiver];
-    userRequests->remove(sender);
-
-    if(userRequests->empty()){
-        this->requests.erase(receiver);
-
-        QSqlQuery delete_Qry;
-        delete_Qry.prepare("DELETE FROM requests WHERE receiver='"+receiver+"';");
-        if(!delete_Qry.exec())
-            qDebug("delete requests of user failed");
-    }
-    else {
-        QString senders = "";
-        for (auto &i : *userRequests){
-            senders += i + "-";
-        }
-
-        QSqlQuery update_Qry;
-        update_Qry.prepare("UPDATE requests SET senders='"+senders+"' WHERE receiver='"+receiver+";");
-        if(!update_Qry.exec())
-            qDebug("updating user requests failed");
-    }
 }
 
 std::list<suggestWidget *> *DataBase::suggest(QString username)
