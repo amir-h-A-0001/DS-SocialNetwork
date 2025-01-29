@@ -112,13 +112,13 @@ void MainWindow::addUsersPosts(User *userPage) {
 
     if(usersPosts->empty()) return;
 
-    for(auto it : *usersPosts) {
+    for(auto &it : *usersPosts) {
         PostWidget *postWidget = new PostWidget(&it);
         addUsersPostsWidgetToSA(postWidget);
         if(user->getUsername() == userPage->getUsername()) {
-            connect(postWidget, &PostWidget::editPBClicked,
-            this, &MainWindow::editPostPBClicked);
-
+            connect(postWidget, &PostWidget::editPBClicked, this, [this, &it, postWidget]() {
+                openEditPost(&it, postWidget);
+            });
         }
         else {
             postWidget->hideEditPB();
@@ -186,6 +186,29 @@ QPixmap MainWindow::makeCircleScalePixmap(QPixmap & pixmap, QSize & size) {
     return circularPixmap;
 }
 
+void MainWindow::updateUserLabels(User *user) {
+    cleanUsersPostsSA();
+    ui->usernameLB->setText(user->getUsername());
+    ui->nameLB->setText(user->getName());
+    ui->userBioLB->setText(user->getBio());
+
+    if(!user->getAvatar().isNull()) {
+        QPixmap avatar = user->getAvatar();
+        QSize size = ui->userProfileLB->size();
+        QPixmap newAvatar = makeCircleScalePixmap(avatar, size);
+        ui->userProfileLB->setPixmap(newAvatar);
+        ui->userProfileLB->setAlignment(Qt::AlignCenter);
+
+            QIcon icon(newAvatar);
+            size.setHeight(70);
+            size.setWidth(70);
+            ui->homePB->setIcon(icon);
+            ui->homePB->setIconSize(size);
+    }
+
+
+}
+
 
 void MainWindow::on_newPostPB_clicked()
 {
@@ -198,13 +221,20 @@ void MainWindow::on_newPostPB_clicked()
     this->hide();
     newPostPage->show();
 
-    connect(newPostPage,&EditPost::destroyed,[this, newPost, &newWidget]{
-        if(! newPost->getHashCode().isEmpty()){
-            newWidget = new PostWidget(newPost);
+
+
+    connect(newPostPage, &EditPost::destroyed, [this, newPost] {
+        if (!newPost->getHashCode().isEmpty()) {
+            PostWidget* newWidget = new PostWidget(newPost);
             addUsersPostsWidgetToSA(newWidget);
+
+            connect(newWidget, &PostWidget::editPBClicked, this, [this, newPost, newWidget] {
+                openEditPost(newPost, newWidget);
+            });
         }
-        else delete newPost;
-        disconnect();
+        else {
+            // delete newPost;
+        }
     });
 }
 
@@ -214,14 +244,34 @@ void MainWindow::on_settingPB_clicked() {
     Settings * settingWindow = new Settings(user, database, this);
     settingWindow->show();
     connect(settingWindow, &QMainWindow::destroyed, [this]{
-        setUsersInformation(user);
+        updateUserLabels(user);
         disconnect();
     });
 
 }
 
-void MainWindow::editPostPBClicked(PostWidget *postWidget, Post *post) {
-    EditPost *editPostWindow = new EditPost(true, user, post, postWidget, database, this);
-    editPostWindow->show();
+void MainWindow::openEditPost(Post *post, PostWidget *widget) {
+
+    EditPost* editWindow = new EditPost(true, user, post, widget, database, this);
+
+    connect(editWindow, &EditPost::postDeleted, this, &MainWindow::deletePostWidget);
+
+    connect(editWindow, &EditPost::postUpdated, this, [widget](QString newText) {
+            widget->updatePost(newText);
+        });
+        editWindow->show();
+
 }
 
+void MainWindow::deletePostWidget(PostWidget *widget) {
+    QVBoxLayout * layout = qobject_cast<QVBoxLayout *>(ui->postsSA->layout());
+
+    for(int i = 0; i < layout->count(); i++) {
+        QLayoutItem * item = layout->itemAt(i);
+        if(widget == qobject_cast<PostWidget*>(item->widget())) {
+            PostWidget * tmp = qobject_cast<PostWidget*>(item->widget());
+            layout->removeItem(item);
+            tmp->deleteLater();
+        }
+    }
+}

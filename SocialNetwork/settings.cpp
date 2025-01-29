@@ -142,7 +142,7 @@ void Settings::on_DeleteAccountPB_clicked() {
 
     dataBase->deleteUser(user->getUsername());
     this->close();
-    this->parentWidget()->show();
+    this->parentWidget()->parentWidget()->show();
     this->deleteLater();
 
 }

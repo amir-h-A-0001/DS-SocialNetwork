@@ -10,6 +10,11 @@ void PostWidget::setText(QString newText)
     text->setText(newText);
 }
 
+void PostWidget::updatePost(QString newPost) {
+    this->post->setText(newPost);
+    this->setText(newPost);
+}
+
 void PostWidget::showEditPB() {
     this->editPB->show();
 }
@@ -54,8 +59,8 @@ PostWidget::PostWidget(Post* post) {
     this->setBaseSize(size);
 
     QVBoxLayout * vLayout = new QVBoxLayout(this);
-    QHBoxLayout * hLayout2 = new QHBoxLayout(this);
-    QHBoxLayout * hLayout1 = new QHBoxLayout(this);
+    QHBoxLayout * hLayout2 = new QHBoxLayout;
+    QHBoxLayout * hLayout1 = new QHBoxLayout;
     QSpacerItem * horizentalSpacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
     hLayout2->addWidget(timeAndDate);
@@ -68,6 +73,9 @@ PostWidget::PostWidget(Post* post) {
     vLayout->insertItem(0, hLayout1);
     vLayout->insertItem(1, hLayout2);
 
-    connect(this->editPB, &QPushButton::clicked, [this, &post]{
-        emit editPBClicked(this, post);});
+    connect(editPB, &QPushButton::clicked, this, [this]() {
+        emit editPBClicked(this->post, this);
+    });
+
+
 }
