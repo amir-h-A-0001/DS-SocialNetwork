@@ -29,15 +29,16 @@ public:
     User* findUser(QString username);
     std::list<QString>* recived_requests(QString username);
     bool has_requests(QString username);
-    void cancel_request(QString sender,QString receiver);
+    void cancelRequest(QString sender,QString receiver);
 
+    void sendRequest(QString sender,QString receiver);
     void addPost(Post& post,QString username);
     void editUserData(QString username);
     void makeFriend(QString userA,QString userB);
     void editPost(QString username,Post* post);
     void deletePost(QString username,QString hashCode);
     void deleteUser(QString username);
-    void deleteRequest(QString sender,QString receiver);
+
     std::list<suggestWidget*>* suggest(QString username);
 };
 
