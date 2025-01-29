@@ -23,6 +23,9 @@ public:
 public slots:
     void accept(QString username,RequestWidget* widget);
     void reject(QString username,RequestWidget* widget);
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::Requests *ui;
 };

@@ -284,3 +284,19 @@ void MainWindow::on_homePB_clicked()
     setUsersInformation(this->user);
 }
 
+
+void MainWindow::on_sideRequestPB_clicked()
+{
+    Requests *reqPage = new Requests(this->user,this->database,this);
+    reqPage->show();
+    this->hide();
+}
+
+
+void MainWindow::on_sideLogoutPB_clicked()
+{
+    this->parentWidget()->show();
+    this->close();
+    this->deleteLater();
+}
+
