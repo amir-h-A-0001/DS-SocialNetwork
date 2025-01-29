@@ -44,14 +44,17 @@ private:
     void addUsersPosts (User *userPage);
     void addUsersPostsWidgetToSA (PostWidget *post);
     void cleanUsersPostsSA ();
+    void setUsersInformation (User * userPage);
 
     QPixmap makeCircleScalePixmap(QPixmap & pixmap, QSize & size);
 
 private slots :
-    void setUsersInformation (User * userPage);
+    void updateUserLabels(User * user);
     void friendsPBCliced ();
     void on_settingPB_clicked();
-    void editPostPBClicked (PostWidget * postWidget, Post* post);
+    void openEditPost(Post* post, PostWidget* widget);
+    void deletePostWidget (PostWidget * widget);
+
 
     void on_searchPB_clicked();
     void on_sideSearchPB_clicked();

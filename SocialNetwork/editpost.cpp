@@ -31,7 +31,8 @@ void EditPost::on_deletePB_clicked()
 {
     dataBase->deletePost(user->getUsername(),post->getHashCode());
     user->removePost(*post);
-    delete widget;
+
+    emit postDeleted(widget);
 
     // return to the mainWindow
     this->parentWidget()->show();
@@ -56,6 +57,7 @@ void EditPost::on_savePB_clicked(){
         post->setText(newText);
         widget->setText(newText);
         dataBase->editPost(user->getUsername(),post);
+        emit postUpdated(newText);
     }
     else {
         post->setDate(QDate::currentDate());
@@ -70,7 +72,9 @@ void EditPost::on_savePB_clicked(){
 
         user->addPost(*post);
         dataBase->addPost(*post,user->getUsername());
+        emit newPost(post);
     }
+
 
     // return to the mainWindow
     this->parentWidget()->show();
