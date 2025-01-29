@@ -17,7 +17,7 @@ searchWidget::searchWidget(User * user) : user(user) {
     hLayout->addWidget(username, 0, Qt::AlignHCenter);
     hLayout->addWidget(request, 0, Qt::AlignHCenter);
 
-     hLayout->insertSpacerItem(2, spacer);
+    hLayout->insertSpacerItem(2, spacer);
     hLayout->insertSpacerItem(1, spacer);
 
 
@@ -46,11 +46,13 @@ searchWidget::searchWidget(User * user) : user(user) {
     QPushButton {
         background-color : rgb(176, 188, 157);
         color : rgb(0, 0, 0);
+        border-radius:3px;
     }
         )");
 
-    this->setFixedSize(780, 90);
+    this->setFixedSize(760, 70);
 
+    request->setFixedSize(80,50);
     request->setText("Request");
     request->setCheckable(true);
     connect(request, &QPushButton::toggled, [this]{emit_signal();});

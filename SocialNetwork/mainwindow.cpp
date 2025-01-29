@@ -16,6 +16,7 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     setUsersFriend();
     setUsersInformation(user);
 
+    ui->searchErrorLB->hide();
 }
 
 MainWindow::~MainWindow()
@@ -157,7 +158,7 @@ void MainWindow::setFirstUiSettings() {
     ui->postsSA->setLayout(ui->verticalLayout_2);
     ui->searchResultSA->setLayout(ui->verticalLayout_3);
     ui->sideUserSA->setLayout(ui->verticalLayout);
-    ui->suggestionSA->setLayout(ui->horizontalLayout_2);
+    ui->suggestSA->setLayout(ui->horizontalLayout_2);
 
 }
 
@@ -223,5 +224,81 @@ void MainWindow::on_settingPB_clicked() {
 void MainWindow::editPostPBClicked(PostWidget *postWidget, Post *post) {
     EditPost *editPostWindow = new EditPost(true, user, post, postWidget, database, this);
     editPostWindow->show();
+}
+
+
+void MainWindow::on_searchPB_clicked()
+{
+    ui->searchErrorLB->hide();
+
+    QString enteredUsername = ui->searchBoxLE->text();
+    User* user = database->findUser(enteredUsername);
+
+    if(user == nullptr){
+        ui->searchErrorLB->setText("user was not found");
+        ui->searchErrorLB->show();
+        return;
+    }
+
+    searchWidget* foundUser = new searchWidget(user);
+    connect(foundUser,&searchWidget::requested,this,&MainWindow::sentRequest);
+    connect(foundUser,&searchWidget::canceledRequest,this,&MainWindow::canceledRequest);
+
+    QVBoxLayout* layout = qobject_cast<QVBoxLayout*>(ui->verticalLayout_3);
+    layout->insertWidget(0,foundUser);
+
+
+}
+
+void MainWindow::on_sideSearchPB_clicked()
+{
+    if(ui->mainSV->currentIndex() == 1)
+        return;
+
+    ui->mainSV->setCurrentIndex(1);
+
+    std::list<suggestWidget*>* suggestions = this->database->suggest(this->user->getUsername());
+    for(auto &suggestion : *suggestions){
+        ui->horizontalLayout_2->insertWidget(0,suggestion);
+
+        connect(suggestion,&suggestWidget::requested,this,&MainWindow::sentRequest);
+        connect(suggestion,&suggestWidget::canceledRequest,this,&MainWindow::canceledRequest);
+    }
+}
+
+void MainWindow::sentRequest(QString receiver)
+{
+    this->database->sendRequest(this->user->getUsername(),receiver);
+}
+
+void MainWindow::canceledRequest(QString receiver)
+{
+    this->database->cancelRequest(this->user->getUsername(),receiver);
+}
+
+
+void MainWindow::on_homePB_clicked()
+{
+    if(ui->mainSV->currentIndex() == 0)
+        return;
+
+    ui->mainSV->setCurrentIndex(0);
+    setUsersInformation(this->user);
+}
+
+
+void MainWindow::on_sideRequestPB_clicked()
+{
+    Requests *reqPage = new Requests(this->user,this->database,this);
+    reqPage->show();
+    this->hide();
+}
+
+
+void MainWindow::on_sideLogoutPB_clicked()
+{
+    this->parentWidget()->show();
+    this->close();
+    this->deleteLater();
 }
 

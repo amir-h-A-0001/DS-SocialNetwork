@@ -5,7 +5,7 @@ DataBase::DataBase() {
 
 
     DB = QSqlDatabase::addDatabase("QSQLITE");
-    DB.setDatabaseName("E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
+    DB.setDatabaseName("F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
     //"F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"
     //"E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"
 
@@ -291,6 +291,37 @@ void DataBase::cancelRequest(QString sender, QString receiver)
     }
 }
 
+void DataBase::sendRequest(QString sender, QString receiver)
+{
+    std::map<QString,std::list<QString>>::iterator itr = this->requests.find(sender);
+
+    if(itr == this->requests.end()){
+        this->requests[receiver].push_back(sender);
+
+        QSqlQuery add_Qry;
+        add_Qry.prepare("INSERT INTO requests (receiver,senders) VALUES (:receiver,:senders)");
+        add_Qry.bindValue(":receiver",receiver);
+        add_Qry.bindValue(":senders",sender+"-");
+
+        if(!add_Qry.exec())
+            qDebug("adding new request list for user failed");
+    }
+    else {
+        itr->second.push_back(sender);
+
+        QString senders = "";
+        std::list<QString>* requestsList = &itr->second;
+        for(auto &i : *requestsList){
+            senders += i + "-";
+        }
+
+        QSqlQuery update_Qry;
+        update_Qry.prepare("UPDATE requests SET senders='"+senders+"' WHERE receiver='"+receiver+";");
+        if(!update_Qry.exec())
+            qDebug("updating user requests failed");
+    }
+}
+
 void DataBase::addPost(Post &post,QString username)
 {
     QSqlQuery add_Qry;
@@ -453,8 +484,9 @@ std::list<suggestWidget *> *DataBase::suggest(QString username)
     }
 
     int count = 0;
-    for(std::multimap<float,User*>::reverse_iterator i = order.rbegin(); i != order.rend() && count < 6;++i){
+    for(std::multimap<float,User*>::reverse_iterator i = order.rbegin(); i != order.rend() && (count < 6);++i){
         suggests->push_back(new suggestWidget(i->second));
+        count++;
     }
 
     return suggests;
