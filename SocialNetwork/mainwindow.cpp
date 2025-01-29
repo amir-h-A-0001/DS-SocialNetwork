@@ -245,6 +245,16 @@ void MainWindow::on_searchPB_clicked()
     QVBoxLayout* layout = qobject_cast<QVBoxLayout*>(ui->verticalLayout_3);
     layout->insertWidget(0,foundUser);
 
+
+}
+
+void MainWindow::on_sideSearchPB_clicked()
+{
+    if(ui->mainSV->currentIndex() == 1)
+        return;
+
+    ui->mainSV->setCurrentIndex(1);
+
     std::list<suggestWidget*>* suggestions = this->database->suggest(this->user->getUsername());
     for(auto &suggestion : *suggestions){
         ui->horizontalLayout_2->insertWidget(0,suggestion);
@@ -252,11 +262,6 @@ void MainWindow::on_searchPB_clicked()
         connect(suggestion,&suggestWidget::requested,this,&MainWindow::sentRequest);
         connect(suggestion,&suggestWidget::canceledRequest,this,&MainWindow::canceledRequest);
     }
-}
-
-void MainWindow::on_sideSearchPB_clicked()
-{
-    ui->mainSV->setCurrentIndex(1);
 }
 
 void MainWindow::sentRequest(QString receiver)
@@ -272,6 +277,9 @@ void MainWindow::canceledRequest(QString receiver)
 
 void MainWindow::on_homePB_clicked()
 {
+    if(ui->mainSV->currentIndex() == 0)
+        return;
+
     ui->mainSV->setCurrentIndex(0);
     setUsersInformation(this->user);
 }
