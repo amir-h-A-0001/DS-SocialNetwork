@@ -57,11 +57,12 @@ Settings::~Settings()
 void Settings::on_avatarPB_clicked()
 {
     QString filter = "Image Files (*.png *.jpg *.jpeg *.bmp);;All Files (*)";
-    QString filePath = QFileDialog::getOpenFileName(nullptr,
+    QString filePath = QFileDialog::getOpenFileName(this,
                                                     "Choose an Image",
                                                     "",
                                                     filter);
-    if(newAvatar.load(filePath)){
+
+    if(filePath.length() != 0 && newAvatar.load(filePath)){
         changedAvatar = true;
 
         int size = ui->avatarL->height()-1;

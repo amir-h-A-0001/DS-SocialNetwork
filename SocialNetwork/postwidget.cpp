@@ -25,7 +25,7 @@ PostWidget::PostWidget(Post* post) {
     this->text->setText(post->getText());
     this->text->setWordWrap(true);
 
-    QString date = post->getDate().toString("yy,MM,dd");
+    QString date = post->getDate().toString("yy/MM/dd");
     QString time = post->getTime().toString("HH:mm:ss");
 
     this->timeAndDate->setText(date + " at " + time);
