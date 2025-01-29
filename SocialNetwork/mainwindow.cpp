@@ -190,17 +190,20 @@ void MainWindow::on_newPostPB_clicked()
 {
     Post* newPost = new Post;
     PostWidget* newWidget;
+
     newPost->setHashCode("");
 
-    EditPost* newPostPage = new EditPost(false,user,newPost,&newWidget,database,this);
+    EditPost* newPostPage = new EditPost(false,user,newPost,nullptr,database,this);
     this->hide();
     newPostPage->show();
 
-    connect(newPostPage,&EditPost::destroyed,[this, &newPost, &newWidget]{
+    connect(newPostPage,&EditPost::destroyed,[this, newPost, &newWidget]{
         if(! newPost->getHashCode().isEmpty()){
+            newWidget = new PostWidget(newPost);
             addUsersPostsWidgetToSA(newWidget);
         }
         else delete newPost;
+        disconnect();
     });
 }
 

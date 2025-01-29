@@ -5,7 +5,7 @@ DataBase::DataBase() {
 
 
     DB = QSqlDatabase::addDatabase("QSQLITE");
-    DB.setDatabaseName("E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
+    DB.setDatabaseName("F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
     //"F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"
     //"E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"
 
@@ -17,7 +17,7 @@ DataBase::DataBase() {
     QSqlQuery read_Qry;
     read_Qry.prepare("SELECT * FROM users");
     if(!read_Qry.exec()){
-        qDebug("reading usersData table failed");
+        qDebug("reading users table failed");
         return;
     }
 
@@ -36,7 +36,6 @@ DataBase::DataBase() {
     //-----
 
     while(read_Qry.next()){
-
 
         tmp_user.setUsername(read_Qry.value(0).toString());
         tmp_user.setPassword(read_Qry.value(1).toString());
@@ -77,7 +76,7 @@ DataBase::DataBase() {
 
         post_Query.prepare("SELECT * FROM "+tmp_user.getUsername()+"_posts");
         if(!post_Query.exec()){
-            qDebug("reading usersData table failed");
+            qDebug("reading user's posts table failed");
             return;
         }
 
@@ -110,7 +109,7 @@ DataBase::DataBase() {
 
     request_Qry.prepare("SELECT * FROM requests");
     if(!request_Qry.exec()){
-        qDebug("reading usersData table failed");
+        qDebug("reading request table failed");
         return;
     }
 
@@ -165,6 +164,15 @@ void DataBase::addUser(User &newUser) {
     // query.bindValue("friends", friends_str);
 
     query.exec();
+
+    query.clear();
+
+    query.prepare("CREATE TABLE "+newUser.getUsername()+"_posts (hashCode TEXT,text TEXT,year INTEGER,month  INTEGER,day INTEGER,hour INTEGER,minute INTEGER,second INTEGER);");
+
+    if(!query.exec()){
+        qDebug("failed to create the new table");
+    }
+
     DB.close();
 }
 
@@ -305,7 +313,7 @@ void DataBase::addPost(Post &post,QString username)
     add_Qry.bindValue(":month",date.month());
     add_Qry.bindValue(":day",date.day());
     QTime time = post.getTime();
-    add_Qry.bindValue(":hourr",time.hour());
+    add_Qry.bindValue(":hour",time.hour());
     add_Qry.bindValue(":minute",time.minute());
     add_Qry.bindValue(":second",time.second());
 
@@ -384,17 +392,17 @@ void DataBase::deleteUser(QString username)
     QSqlQuery delete_Qry;
     delete_Qry.prepare("DELETE FROM users WHERE username='"+username+"';");
     if(!delete_Qry.exec())
-        qDebug("userData update failed");
+        qDebug("userData delete failed");
 
     // remove posts
     delete_Qry.prepare("DROP TABLE "+username+"_posts;");
     if(!delete_Qry.exec())
-        qDebug("userData update failed");
+        qDebug("delete user's posts table failed");
 
     // remove requests
     delete_Qry.prepare("DELETE FROM requests WHERE receiver='"+username+"';");
     if(!delete_Qry.exec())
-        qDebug("userData update failed");
+        qDebug("delete user's received requests failed");
 
     for(auto &r : this->requests){
         r.second.remove(username);
