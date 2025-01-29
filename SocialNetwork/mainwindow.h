@@ -5,8 +5,8 @@
 #include <database.h>
 #include <postwidget.h>
 #include <QHash>
-#include "editpost.h"
 #include <settings.h>
+#include <editpost.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -50,5 +50,6 @@ private slots :
     void friendsPBCliced ();
     void on_settingPB_clicked();
     void editPostPBClicked (PostWidget * postWidget, Post * post);
+
 };
 #endif // MAINWINDOW_H

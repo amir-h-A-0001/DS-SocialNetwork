@@ -115,8 +115,8 @@ void MainWindow::addUsersPosts(User *userPage) {
     for(auto it : *usersPosts) {
         PostWidget *postWidget = new PostWidget(&it);
         addUsersPostsWidgetToSA(postWidget);
-        if(user->getUsername() == userPage->getUsername()) {            
-            connect(postWidget, SIGNAL(editPBClicked(PostWidget*,Post*)), this, SLOT(editPostPBClicked(postWidget,&it)));
+        if(user->getUsername() == userPage->getUsername()) {
+            connect(postWidget, &PostWidget::editPBClicked,this, &MainWindow::editPostPBClicked);
         }
         else {
             postWidget->hideEditPB();

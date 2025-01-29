@@ -132,7 +132,6 @@ void Settings::on_savePB_clicked()
         dataBase->editUserData(user->getUsername());
 
         this->close();
-        // return to the main window and update data
         this->parentWidget()->show();
         this->deleteLater();
     }

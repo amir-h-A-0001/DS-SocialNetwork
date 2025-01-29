@@ -10,13 +10,12 @@ void PostWidget::setText(QString newText)
     text->setText(newText);
 }
 
-void PostWidget::emitSignal() {
-
-    emit this->editPBClicked(this, post);
-}
-
 void PostWidget::showEditPB() {
     this->editPB->show();
+}
+
+Post *PostWidget::getPost() {
+    return post;
 }
 
 void PostWidget::hideEditPB() {
@@ -25,7 +24,7 @@ void PostWidget::hideEditPB() {
 
 PostWidget::PostWidget(Post* post) {
 
-    //this->post = post;
+    this->post = post;
     this->text = new QLabel(this);
     this->timeAndDate = new QLabel(this);
     this->editPB = new QPushButton(this);
@@ -69,5 +68,7 @@ PostWidget::PostWidget(Post* post) {
     vLayout->insertItem(0, hLayout1);
     vLayout->insertItem(1, hLayout2);
 
-    connect(this->editPB, &QPushButton::clicked, [this]{emitSignal();});
+    connect(this->editPB, &QPushButton::clicked, [this, post]{
+        emit editPBClicked(this, post);
+    });
 }
