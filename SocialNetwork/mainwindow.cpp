@@ -16,6 +16,7 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     setUsersFriend();
     setUsersInformation(user);
 
+    ui->searchErrorLB->hide();
 }
 
 MainWindow::~MainWindow()
@@ -221,5 +222,31 @@ void MainWindow::on_settingPB_clicked() {
 void MainWindow::editPostPBClicked(PostWidget *postWidget, Post *post) {
     EditPost *editPostWindow = new EditPost(true, user, post, postWidget, database, this);
     editPostWindow->show();
+}
+
+
+void MainWindow::on_searchPB_clicked()
+{
+    ui->searchErrorLB->hide();
+
+    QString enteredUsername = ui->searchBoxLE->text();
+    User* user = database->findUser(enteredUsername);
+
+    if(user == nullptr){
+        ui->searchErrorLB->setText("user was not found");
+        ui->searchErrorLB->show();
+        return;
+    }
+
+    searchWidget* foundUser = new searchWidget(user);
+
+    QVBoxLayout* layout = qobject_cast<QVBoxLayout*>(ui->verticalLayout_3);
+    layout->insertWidget(0,foundUser);
+}
+
+
+void MainWindow::on_sideSearchPB_clicked()
+{
+    ui->mainSV->setCurrentIndex(1);
 }
 

@@ -7,6 +7,7 @@
 #include <QHash>
 #include <settings.h>
 #include <editpost.h>
+#include "searchwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -51,5 +52,7 @@ private slots :
     void on_settingPB_clicked();
     void editPostPBClicked (PostWidget * postWidget, Post * post);
 
+    void on_searchPB_clicked();
+    void on_sideSearchPB_clicked();
 };
 #endif // MAINWINDOW_H

@@ -5,7 +5,7 @@ DataBase::DataBase() {
 
 
     DB = QSqlDatabase::addDatabase("QSQLITE");
-    DB.setDatabaseName("E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
+    DB.setDatabaseName("F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
     //"F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"
     //"E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"
 
@@ -283,6 +283,31 @@ void DataBase::cancelRequest(QString sender, QString receiver)
         for (auto &i : *user_requests){
             senders += i + "-";
         }
+
+        QSqlQuery update_Qry;
+        update_Qry.prepare("UPDATE requests SET senders='"+senders+"' WHERE receiver='"+receiver+";");
+        if(!update_Qry.exec())
+            qDebug("updating user requests failed");
+    }
+}
+
+void DataBase::sendRequest(QString sender, QString receiver)
+{
+    std::map<QString,std::list<QString>>::iterator itr = this->requests.find(sender);
+
+    if(itr == this->requests.end()){
+        this->requests[receiver].push_back(sender);
+
+        QSqlQuery add_Qry;
+        add_Qry.prepare("INSERT INTO requests (receiver,senders) VALUES (:receiver,:senders)");
+        add_Qry.bindValue(":receiver",receiver);
+        add_Qry.bindValue(":senders",sender+"-");
+
+        if(!add_Qry.exec())
+            qDebug("adding new request list for user failed");
+    }
+    else {
+        itr->second.push_back(sender);
 
         QSqlQuery update_Qry;
         update_Qry.prepare("UPDATE requests SET senders='"+senders+"' WHERE receiver='"+receiver+";");

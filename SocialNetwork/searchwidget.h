@@ -1,5 +1,4 @@
-// #ifndef SEARCHWIDGET_H wtf
-#define SEARCHWIDGET_H
+#pragma once
 
 #include <QObject>
 #include <QPushButton>
