@@ -49,6 +49,6 @@ RequestWidget::RequestWidget(User *sender)
     layout->addWidget(accept,20);
     layout->addWidget(ignore,20);
 
-    connect(accept,&QPushButton::pressed,[this]{emit RequestWidget::accepted(username->text());});
-    connect(ignore,&QPushButton::pressed,[this]{emit RequestWidget::ignored(username->text());});
+    connect(accept,&QPushButton::pressed,[this]{emit RequestWidget::accepted(username->text(),this);});
+    connect(ignore,&QPushButton::pressed,[this]{emit RequestWidget::ignored(username->text(),this);});
 }
