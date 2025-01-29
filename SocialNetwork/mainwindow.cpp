@@ -156,7 +156,7 @@ void MainWindow::setFirstUiSettings() {
     ui->postsSA->setLayout(ui->verticalLayout_2);
     ui->searchResultSA->setLayout(ui->verticalLayout_3);
     ui->sideUserSA->setLayout(ui->verticalLayout);
-    ui->suggestionSA->setLayout(ui->horizontalLayout_2);
+    ui->suggestSA->setLayout(ui->horizontalLayout_2);
 
 }
 
@@ -244,6 +244,14 @@ void MainWindow::on_searchPB_clicked()
 
     QVBoxLayout* layout = qobject_cast<QVBoxLayout*>(ui->verticalLayout_3);
     layout->insertWidget(0,foundUser);
+
+    std::list<suggestWidget*>* suggestions = this->database->suggest(this->user->getUsername());
+    for(auto &suggestion : *suggestions){
+        ui->horizontalLayout_2->insertWidget(0,suggestion);
+
+        connect(suggestion,&suggestWidget::requested,this,&MainWindow::sentRequest);
+        connect(suggestion,&suggestWidget::canceledRequest,this,&MainWindow::canceledRequest);
+    }
 }
 
 void MainWindow::on_sideSearchPB_clicked()
