@@ -24,6 +24,9 @@ public:
 
     void emitSignal ();
 
+    void hideEditPB ();
+    void showEditPB ();
+
 signals :
     void editPBClicked (PostWidget *postWidget, Post * post);
 };

@@ -18,13 +18,13 @@ class EditPost : public QMainWindow
 
     User* user;
     Post* post;
-    PostWidget** widget;
+    PostWidget* widget;
     DataBase* dataBase;
 
     bool edit;
 
 public:
-    explicit EditPost(bool edit,User* user,Post* post,PostWidget** widget,DataBase* dataBase,QWidget *parent = nullptr);
+    explicit EditPost(bool edit,User* user,Post* post,PostWidget* widget,DataBase* dataBase,QWidget *parent = nullptr);
     ~EditPost();
 
 private slots:

@@ -22,6 +22,7 @@ class Settings : public QMainWindow
     QPixmap newAvatar;
     bool changedAvatar;
 
+    QPixmap makeCircleScalePixmap(QPixmap & pixmap, QSize & size);
 public:
     explicit Settings(User* user,DataBase* dataBase,QWidget *parent = nullptr);
     ~Settings();

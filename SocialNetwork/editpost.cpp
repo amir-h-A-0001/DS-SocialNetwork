@@ -1,7 +1,7 @@
 #include "editpost.h"
 #include "ui_editpost.h"
 
-EditPost::EditPost(bool edit,User* user,Post* post,PostWidget** widget,DataBase* dataBase,QWidget *parent)
+EditPost::EditPost(bool edit,User* user,Post* post,PostWidget* widget,DataBase* dataBase,QWidget *parent)
     : QMainWindow(parent)
     ,user(user)
     ,post(post)
@@ -57,7 +57,7 @@ void EditPost::on_savePB_clicked(){
 
     if(edit){
         post->setText(newText);
-        (*widget)->setText(newText);
+        widget->setText(newText);
         dataBase->editPost(user->getUsername(),post);
     }
     else {

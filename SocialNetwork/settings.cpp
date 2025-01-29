@@ -29,20 +29,9 @@ Settings::Settings(User* user,DataBase* dataBase,QWidget *parent)
     ui->passwordErrorL->hide();
     ui->repaetErrorL->hide();
 
-    int size = user->getAvatar().size().height();
-
-    QPixmap circularAvatar(size, size);
-    circularAvatar.fill(Qt::transparent);
-
-    QPainter painter(&circularAvatar);
-    painter.setRenderHint(QPainter::Antialiasing);
-    painter.setRenderHint(QPainter::SmoothPixmapTransform);
-
-    // Draw a circle
-    QPainterPath path;
-    path.addEllipse(0, 0, size, size);
-    painter.setClipPath(path);
-    painter.drawPixmap(0, 0, size, size, newAvatar.scaled(size, size, Qt::KeepAspectRatioByExpanding));
+    int size = ui->avatarL->size().height();
+    QPixmap userPixmap = user->getAvatar();
+    QPixmap circularAvatar = makeCircleScalePixmap(userPixmap, *new QSize(size, size));
 
     ui->avatarL->setPixmap(circularAvatar);
 
@@ -165,4 +154,30 @@ void Settings::on_cancelPB_clicked()
     this->parentWidget()->show();
     this->deleteLater();
 }
+
+QPixmap Settings::makeCircleScalePixmap(QPixmap & pixmap, QSize & size) {
+
+    QPixmap scaledPixmap = pixmap.scaled(size, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+
+    QBitmap mask(size);
+    // for background
+    mask.fill(Qt::color0);
+
+    QPainter painter(&mask);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.setBrush(Qt::color1);
+    painter.drawEllipse(0, 0, size.width(), size.height());
+    painter.end();
+
+    QPixmap circularPixmap(size);
+    circularPixmap.fill(Qt::transparent);
+    QPainter pixmapPainter(&circularPixmap);
+    pixmapPainter.setRenderHint(QPainter::Antialiasing, true);
+    pixmapPainter.setClipRegion(QRegion(mask));
+    pixmapPainter.drawPixmap(0, 0, scaledPixmap);
+    pixmapPainter.end();
+
+    return circularPixmap;
+}
+
 

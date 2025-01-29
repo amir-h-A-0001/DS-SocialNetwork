@@ -37,7 +37,6 @@ private:
     void setFirstUiSettings ();
 
     void setUsersFriend ();
-    void setUsersInformation (User * userPage);
     void addUsersFriend ();
     void addUsersFriendPB (User * user);
     void addUsersPosts (User *userPage);
@@ -47,7 +46,9 @@ private:
     QPixmap makeCircleScalePixmap(QPixmap & pixmap, QSize & size);
 
 private slots :
+    void setUsersInformation (User * userPage);
     void friendsPBCliced ();
     void on_settingPB_clicked();
+    void editPostPBClicked (PostWidget * postWidget, Post * post);
 };
 #endif // MAINWINDOW_H

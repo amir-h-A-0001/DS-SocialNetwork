@@ -5,7 +5,7 @@ DataBase::DataBase() {
 
 
     DB = QSqlDatabase::addDatabase("QSQLITE");
-    DB.setDatabaseName("F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
+    DB.setDatabaseName("E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
     //"F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"
     //"E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"
 
@@ -21,21 +21,20 @@ DataBase::DataBase() {
         return;
     }
 
-    // temporary variables
-    User tmp_user;
-    Post tmp_post;
-
-    QDate tmp_date;
-    int y,mon,d;
-
-    QTime tmp_time;
-    int h,min,s;
-
-    QPixmap tmp_pixmap;
-    QByteArray byteArray;
-    //-----
-
     while(read_Qry.next()){
+        // temporary variables
+        User tmp_user;
+        Post tmp_post;
+
+        QDate tmp_date;
+        int y,mon,d;
+
+        QTime tmp_time;
+        int h,min,s;
+
+        QPixmap tmp_pixmap;
+        QByteArray byteArray;
+        //-----
 
         tmp_user.setUsername(read_Qry.value(0).toString());
         tmp_user.setPassword(read_Qry.value(1).toString());
@@ -143,13 +142,6 @@ void DataBase::addUser(User &newUser) {
 
     QDate date = newUser.getJoinDate();
 
-    // Make a string of users friends username
-    // std::list<QString> * friends = newUser.getFriends_ptr();
-    // QString friends_str;
-    // for(auto it = friends->begin(); it != friends->end(); ++it) {
-    //     friends_str = friends_str  + "-" + *it;
-    // }
-
     QSqlQuery query;
     query.prepare("INSERT INTO users (username,password,name,email,avatar,year,month,day) VALUES (:username,:password,:name,:email,:avatar,:year,:month,:day)");
     query.bindValue(":username", newUser.getUsername());
@@ -160,9 +152,6 @@ void DataBase::addUser(User &newUser) {
     query.bindValue(":day", date.day());
     query.bindValue(":month", date.month());
     query.bindValue(":avatar", byteArray);
-    // query.bindValue(":bio", newUser.getBio());
-    // query.bindValue("friends", friends_str);
-
     query.exec();
 
     query.clear();

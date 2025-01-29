@@ -15,6 +15,14 @@ void PostWidget::emitSignal() {
     emit this->editPBClicked(this, post);
 }
 
+void PostWidget::showEditPB() {
+    this->editPB->show();
+}
+
+void PostWidget::hideEditPB() {
+    this->editPB->hide();
+}
+
 PostWidget::PostWidget(Post* post) {
 
     //this->post = post;

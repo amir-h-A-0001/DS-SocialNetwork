@@ -11,13 +11,10 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
 
     // ui
     setFirstUiSettings();
-    setFramesShadow();
 
     // user
     setUsersFriend();
     setUsersInformation(user);
-
-    // connectes for buttons
 
 }
 
@@ -52,6 +49,7 @@ void MainWindow::setUsersFriend() {
 }
 
 void MainWindow::setUsersInformation(User * userPage) {
+    cleanUsersPostsSA();
     ui->usernameLB->setText(userPage->getUsername());
     ui->nameLB->setText(userPage->getName());
     ui->userBioLB->setText(userPage->getBio());
@@ -106,7 +104,7 @@ void MainWindow::addUsersFriendPB(User *user) {
     layout->insertWidget(0, userPB);
 
     friendsPB.insert(userPB, user);
-    connect(userPB, &QPushButton::clicked, [this]{friendsPBCliced();});
+    connect(userPB, SIGNAL(clicked(bool)), this, SLOT(friendsPBCliced()));
 }
 
 void MainWindow::addUsersPosts(User *userPage) {
@@ -117,11 +115,11 @@ void MainWindow::addUsersPosts(User *userPage) {
     for(auto it : *usersPosts) {
         PostWidget *postWidget = new PostWidget(&it);
         addUsersPostsWidgetToSA(postWidget);
-        if(user->getUsername() == userPage->getUsername()) {
-        // connect its push button -----------------------------------------------------------------
+        if(user->getUsername() == userPage->getUsername()) {            
+            connect(postWidget, SIGNAL(editPBClicked(PostWidget*,Post*)), this, SLOT(editPostPBClicked(postWidget,&it)));
         }
         else {
-            // disable its pushbutton --------------------------------------------------------------
+            postWidget->hideEditPB();
         }
     }
 }
@@ -152,6 +150,7 @@ void MainWindow::friendsPBCliced() {
 
 void MainWindow::setFirstUiSettings() {
     ui->settingPB->show();
+    setFramesShadow();
     ui->mainSV->setCurrentIndex(0);
     ui->postsSA->setLayout(ui->verticalLayout_2);
     ui->searchResultSA->setLayout(ui->verticalLayout_3);
@@ -212,5 +211,15 @@ void MainWindow::on_settingPB_clicked() {
     this->hide();
     Settings * settingWindow = new Settings(user, database, this);
     settingWindow->show();
+    connect(settingWindow, &QMainWindow::destroyed, [this]{
+        setUsersInformation(user);
+        disconnect();
+    });
+
+}
+
+void MainWindow::editPostPBClicked(PostWidget *postWidget, Post *post) {
+    EditPost *editPostWindow = new EditPost(true, user, post, postWidget, database, this);
+    editPostWindow->show();
 }
 
