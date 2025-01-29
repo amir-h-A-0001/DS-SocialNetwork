@@ -127,7 +127,7 @@ void Settings::on_savePB_clicked()
         this->hide();
         // return to the main window and update data
         this->parentWidget()->show();
-        this->deleteLater();
+        delete this;
     }
 }
 
@@ -137,15 +137,7 @@ void Settings::on_DeleteAccountPB_clicked()
     dataBase->deleteUser(user->getUsername());
     this->hide();
     this->parentWidget()->show();
-    this->deleteLater();
+    delete this;
 
-}
-
-
-void Settings::on_cancelPB_clicked()
-{
-    this->close();
-    this->parentWidget()->show();
-    this->deleteLater();
 }
 
