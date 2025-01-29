@@ -50,8 +50,7 @@ void EditPost::on_cancelPB_clicked()
 }
 
 
-void EditPost::on_savePB_clicked()
-{
+void EditPost::on_savePB_clicked(){
     QString newText = ui->textEdit->toPlainText();
 
     if(edit){

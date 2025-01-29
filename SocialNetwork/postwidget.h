@@ -10,7 +10,7 @@
 
 class PostWidget : public QFrame {
     Q_OBJECT
-    //Post* post;
+    Post* post;
     QLabel* text;
     QLabel* timeAndDate;
     QPushButton* editPB;
@@ -21,6 +21,11 @@ public:
 
     QString getText() const;
     void setText(QString newText);
+
+    void emitSignal ();
+
+signals :
+    void editPBClicked (PostWidget *postWidget, Post * post);
 };
 
 #endif // POSTWIDGET_H

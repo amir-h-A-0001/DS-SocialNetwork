@@ -18,8 +18,7 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     setUsersInformation(user);
 
     // connectes for buttons
-    // connect(ui->settingPB, &QPushButton::clicked, [this]{;});
-    // connect(ui->searchBoxLE, &QLineEdit::focusIn, )
+
 }
 
 MainWindow::~MainWindow()
@@ -203,5 +202,12 @@ void MainWindow::on_newPostPB_clicked()
         }
         else delete newPost;
     });
+}
+
+
+void MainWindow::on_settingPB_clicked() {
+    this->hide();
+    Settings * settingWindow = new Settings(user, database, this);
+    settingWindow->show();
 }
 

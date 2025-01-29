@@ -29,6 +29,23 @@ Settings::Settings(User* user,DataBase* dataBase,QWidget *parent)
     ui->passwordErrorL->hide();
     ui->repaetErrorL->hide();
 
+    int size = user->getAvatar().size().height();
+
+    QPixmap circularAvatar(size, size);
+    circularAvatar.fill(Qt::transparent);
+
+    QPainter painter(&circularAvatar);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
+
+    // Draw a circle
+    QPainterPath path;
+    path.addEllipse(0, 0, size, size);
+    painter.setClipPath(path);
+    painter.drawPixmap(0, 0, size, size, newAvatar.scaled(size, size, Qt::KeepAspectRatioByExpanding));
+
+    ui->avatarL->setPixmap(circularAvatar);
+
     this->changedAvatar = false;
 }
 
@@ -124,20 +141,27 @@ void Settings::on_savePB_clicked()
     if(changed){
         dataBase->editUserData(user->getUsername());
 
-        this->hide();
+        this->close();
         // return to the main window and update data
         this->parentWidget()->show();
-        delete this;
+        this->deleteLater();
     }
 }
 
 
-void Settings::on_DeleteAccountPB_clicked()
-{
-    dataBase->deleteUser(user->getUsername());
-    this->hide();
-    this->parentWidget()->show();
-    delete this;
+void Settings::on_DeleteAccountPB_clicked() {
 
+    dataBase->deleteUser(user->getUsername());
+    this->close();
+    this->parentWidget()->show();
+    this->deleteLater();
+
+}
+
+
+void Settings::on_cancelPB_clicked() {
+    this->parentWidget()->show();
+    this->close();
+    this->deleteLater();
 }
 

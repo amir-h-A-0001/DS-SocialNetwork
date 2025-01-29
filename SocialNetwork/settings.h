@@ -33,6 +33,8 @@ private slots:
 
     void on_DeleteAccountPB_clicked();
 
+    void on_cancelPB_clicked();
+
 private:
     Ui::Settings *ui;
 };

@@ -283,7 +283,7 @@ void Login_SignUp::signupPBClicked() {
     database->addUser(newUser);
 
     resetAll();
-    MainWindow *mainWin = new MainWindow(database, &newUser);
+    MainWindow *mainWin = new MainWindow(database, &newUser, this);
     this->close();
     mainWin->show();
 }
@@ -293,7 +293,7 @@ void Login_SignUp::loginPBClicked() {
     if(!checkAllLoginErrors()) return;
     User * user = database->findUser(ui->usernameLoginLE->text());
     resetAll();
-    MainWindow *mainWin = new MainWindow(database, user);
+    MainWindow *mainWin = new MainWindow(database, user, this);
     this->close();
     mainWin->show();
 }

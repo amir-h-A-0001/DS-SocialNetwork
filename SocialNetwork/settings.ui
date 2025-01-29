@@ -32,10 +32,10 @@
 border-radius: 15px;</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::Shape::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Shadow::Raised</enum>
     </property>
     <widget class="QLabel" name="avatarL">
      <property name="geometry">
@@ -56,7 +56,7 @@ border: 1px solid rgb(176, 188, 157);</string>
       <string>Not set</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
     </widget>
     <widget class="QPushButton" name="avatarPB">
@@ -67,6 +67,9 @@ border: 1px solid rgb(176, 188, 157);</string>
        <width>101</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(176, 188, 157);
@@ -96,7 +99,7 @@ border: 1px solid rgb(156, 156, 156);
       <string>Profile</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
      </property>
      <property name="flat">
       <bool>false</bool>
@@ -145,7 +148,7 @@ color:rgb(20,20,20);</string>
        <string>Name :</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLabel" name="infoL">
@@ -165,7 +168,7 @@ color:rgb(20,20,20);</string>
        <string>Info :</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QTextEdit" name="infoTE">
@@ -213,10 +216,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
 border-radius: 15px;</string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::Shape::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Shadow::Raised</enum>
     </property>
     <widget class="QGroupBox" name="privateDataGB">
      <property name="geometry">
@@ -259,7 +262,7 @@ color:rgb(80,80,80);</string>
        <number>19</number>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
       <property name="placeholderText">
        <string>userEmail@email.com</string>
@@ -282,7 +285,7 @@ color:rgb(20,20,20);</string>
        <string>Email :</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLineEdit" name="passwordLE">
@@ -311,13 +314,13 @@ color:rgb(80,80,80);</string>
        <number>20</number>
       </property>
       <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
+       <enum>QLineEdit::EchoMode::Password</enum>
       </property>
       <property name="placeholderText">
        <string>new password</string>
       </property>
       <property name="cursorMoveStyle">
-       <enum>Qt::LogicalMoveStyle</enum>
+       <enum>Qt::CursorMoveStyle::LogicalMoveStyle</enum>
       </property>
      </widget>
      <widget class="QLabel" name="passwordL">
@@ -337,7 +340,7 @@ color:rgb(20,20,20);</string>
        <string>Password :</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QLineEdit" name="password_repeatLE">
@@ -364,7 +367,7 @@ color:rgb(80,80,80);
        <number>20</number>
       </property>
       <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
+       <enum>QLineEdit::EchoMode::Password</enum>
       </property>
       <property name="placeholderText">
        <string>repeat new password</string>
@@ -416,6 +419,9 @@ padding-left:2px;</string>
        <height>41</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(176, 198, 157);
 border-radius:10px;
@@ -434,6 +440,9 @@ color:rgb(100,100,100);</string>
        <height>31</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgba(170, 170, 170,100);
 border-radius:10px;
@@ -451,6 +460,9 @@ color:rgb(100,100,100);</string>
        <width>101</width>
        <height>24</height>
       </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 62, 62);</string>
