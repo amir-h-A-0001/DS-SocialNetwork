@@ -15,8 +15,8 @@ Requests::Requests(User* user,DataBase* dataBase, QWidget *parent)
         User* senderAccout = dataBase->findUser(senderUsername);
 
         RequestWidget* widget = new RequestWidget(senderAccout);
-        connect(widget,&RequestWidget::accepted,this,Requests::Accepted);
-        connect(widget,&RequestWidget::accepted,this,Requests::Rejected);
+        connect(widget,&RequestWidget::accepted,this,&Requests::accept);
+        connect(widget,&RequestWidget::accepted,this,&Requests::reject);
 
         ui->verticalLayout->insertWidget(0,widget);
     }
