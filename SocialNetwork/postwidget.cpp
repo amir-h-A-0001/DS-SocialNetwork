@@ -62,8 +62,8 @@ PostWidget::PostWidget(Post* post) {
     this->setBaseSize(size);
 
     QVBoxLayout * vLayout = new QVBoxLayout(this);
-    QHBoxLayout * hLayout2 = new QHBoxLayout(this);
-    QHBoxLayout * hLayout1 = new QHBoxLayout(this);
+    QHBoxLayout * hLayout2 = new QHBoxLayout();
+    QHBoxLayout * hLayout1 = new QHBoxLayout();
     QSpacerItem * horizentalSpacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
     hLayout2->addWidget(timeAndDate);
