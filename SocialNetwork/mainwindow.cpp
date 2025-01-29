@@ -15,7 +15,7 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
     // user
     setUsersFriend();
     setUsersInformation(user);
-
+    addUsersFriend();
     ui->searchErrorLB->hide();
 }
 
@@ -30,6 +30,12 @@ void MainWindow::setFramesShadow() {
     coverShadow->setColor(palette().color(QPalette::Shadow));
     coverShadow->setOffset(0.0);
     ui->userInformationF->setGraphicsEffect(coverShadow);
+
+    QGraphicsDropShadowEffect *buttonCoverShadow = new QGraphicsDropShadowEffect(ui->homePB);
+    buttonCoverShadow->setBlurRadius(40.0);
+    buttonCoverShadow->setColor(palette().color(QPalette::Shadow));
+    buttonCoverShadow->setOffset(0.0);
+    ui->homePB->setGraphicsEffect(coverShadow);
 
 }
 
@@ -47,6 +53,7 @@ void MainWindow::setUsersFriend() {
     for(auto it : *userFreinds) {
         friends[idx++] = database->findUser(it);
     }
+    this->friendsSize = idx;
 }
 
 void MainWindow::setUsersInformation(User * userPage) {
@@ -317,8 +324,6 @@ void MainWindow::canceledRequest(QString receiver)
 
 void MainWindow::on_homePB_clicked()
 {
-    if(ui->mainSV->currentIndex() == 0)
-        return;
 
     ui->mainSV->setCurrentIndex(0);
     setUsersInformation(this->user);

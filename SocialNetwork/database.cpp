@@ -52,7 +52,7 @@ DataBase::DataBase() {
         tmp_date.setDate(y,mon,d);
         tmp_user.setJoinDate(tmp_date);
 
-        QString friends = read_Qry.value(7).toString();
+        QString friends = read_Qry.value(9).toString();
 
         int j;
 
@@ -63,7 +63,8 @@ DataBase::DataBase() {
             j = friends.lastIndexOf('-');
 
             if (j<0){
-                tmp_user.addFriend(friends);
+                if(friends != "")
+                    tmp_user.addFriend(friends);
                 break;
             }
             tmp_user.addFriend(friends.sliced(j+1));
@@ -127,7 +128,8 @@ DataBase::DataBase() {
             j = senders.lastIndexOf('-');
 
             if (j<0){
-                sendersList->push_back(senders);
+                if(senders != "")
+                    sendersList->push_back(senders);
                 break;
             }
             sendersList->push_back(senders.sliced(j+1));
