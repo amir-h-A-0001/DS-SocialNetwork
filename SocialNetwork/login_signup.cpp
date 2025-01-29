@@ -264,12 +264,12 @@ void Login_SignUp::signupPBClicked() {
     signUpDate.setDate(QDate::currentDate().year(), QDate::currentDate().month(), QDate::currentDate().day());
 
     // Make new User
-    User newUser;
-    newUser.setUsername(ui->usernameLE->text());
-    newUser.setPassword(ui->passwordLE->text());
-    newUser.setName(ui->nameLE->text());
-    newUser.setEmail(ui->emailLE->text());
-    newUser.setJoinDate(signUpDate);
+    User* newUser = new User;
+    newUser->setUsername(ui->usernameLE->text());
+    newUser->setPassword(ui->passwordLE->text());
+    newUser->setName(ui->nameLE->text());
+    newUser->setEmail(ui->emailLE->text());
+    newUser->setJoinDate(signUpDate);
 
     // Select an avatar
     QString filePath = QFileDialog::getOpenFileName(nullptr, "Select an avatar for your account :", "", "*.jpg *.jpeg *.png");
@@ -277,13 +277,13 @@ void Login_SignUp::signupPBClicked() {
     if(!filePath.isEmpty()) {
         QPixmap avatar;
         avatar.load(filePath);
-        newUser.setAvatar(avatar);
+        newUser->setAvatar(avatar);
     }
 
-    database->addUser(newUser);
+    database->addUser(*newUser);
 
     resetAll();
-    MainWindow *mainWin = new MainWindow(database, &newUser, this);
+    MainWindow *mainWin = new MainWindow(database, newUser, this);
     this->close();
     mainWin->show();
 }

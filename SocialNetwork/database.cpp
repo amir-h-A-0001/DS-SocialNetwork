@@ -113,7 +113,27 @@ DataBase::DataBase() {
     }
 
     while(request_Qry.next()){
-        this->requests[request_Qry.value(0).toString()].push_back(request_Qry.value(1).toString());
+
+        QString receiver = request_Qry.value(0).toString();
+        QString senders = request_Qry.value(1).toString();
+        std::list<QString>* sendersList = &this->requests[receiver];
+
+        int j;
+
+        senders.chop(1);
+
+        while(true){
+
+            j = senders.lastIndexOf('-');
+
+            if (j<0){
+                sendersList->push_back(senders);
+                break;
+            }
+            sendersList->push_back(senders.sliced(j+1));
+
+            senders.chop(senders.size()-j);
+        }
     }
 
 }
