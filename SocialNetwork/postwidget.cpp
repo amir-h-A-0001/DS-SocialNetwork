@@ -10,6 +10,10 @@ void PostWidget::setText(QString newText)
     text->setText(newText);
 }
 
+void PostWidget::emitSignal() {
+    emit this->editPBClicked(this, post);
+}
+
 void PostWidget::showEditPB() {
     this->editPB->show();
 }
@@ -68,7 +72,6 @@ PostWidget::PostWidget(Post* post) {
     vLayout->insertItem(0, hLayout1);
     vLayout->insertItem(1, hLayout2);
 
-    connect(this->editPB, &QPushButton::clicked, [this]{
-        emit editPBClicked(this);
-    });
+    connect(this->editPB, &QPushButton::clicked, [this, &post]{
+        emit editPBClicked(this, post);});
 }

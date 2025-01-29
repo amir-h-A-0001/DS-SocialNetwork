@@ -22,12 +22,13 @@ public:
     QString getText() const;
     void setText(QString newText);
 
+
     void hideEditPB ();
     void showEditPB ();
     Post * getPost ();
 
 signals :
-    void editPBClicked (PostWidget * postWidget);
+    void editPBClicked (PostWidget * postWidget, Post * post);
 };
 
 #endif // POSTWIDGET_H

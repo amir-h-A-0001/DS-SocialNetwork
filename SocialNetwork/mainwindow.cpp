@@ -116,7 +116,9 @@ void MainWindow::addUsersPosts(User *userPage) {
         PostWidget *postWidget = new PostWidget(&it);
         addUsersPostsWidgetToSA(postWidget);
         if(user->getUsername() == userPage->getUsername()) {
-            connect(postWidget, &PostWidget::editPBClicked,this, &MainWindow::editPostPBClicked);
+            connect(postWidget, &PostWidget::editPBClicked,
+            this, &MainWindow::editPostPBClicked);
+
         }
         else {
             postWidget->hideEditPB();
@@ -218,8 +220,8 @@ void MainWindow::on_settingPB_clicked() {
 
 }
 
-void MainWindow::editPostPBClicked(PostWidget *postWidget) {
-    EditPost *editPostWindow = new EditPost(true, user, postWidget->getPost(), postWidget, database, this);
+void MainWindow::editPostPBClicked(PostWidget *postWidget, Post *post) {
+    EditPost *editPostWindow = new EditPost(true, user, post, postWidget, database, this);
     editPostWindow->show();
 }
 
