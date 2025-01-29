@@ -37,7 +37,7 @@ public:
     void editPost(QString username,Post* post);
     void deletePost(QString username,QString hashCode);
     void deleteUser(QString username);
-
+    void deleteRequest(QString sender,QString receiver);
     std::list<suggestWidget*>* suggest(QString username);
 };
 

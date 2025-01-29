@@ -15,15 +15,8 @@ Requests::Requests(User* user,DataBase* dataBase, QWidget *parent)
         User* senderAccout = dataBase->findUser(senderUsername);
 
         RequestWidget* widget = new RequestWidget(senderAccout);
-        connect(widget,&RequestWidget::accepted,[this, &senderUsername, &widget]{
-            this->dataBase->makeFriend(senderUsername,this->user->getUsername());
-            // delete the request from database
-            delete widget;
-        });
-        connect(widget,&RequestWidget::accepted,[this, &widget]{
-            //delete the request from database
-            delete widget;
-        });
+        connect(widget,&RequestWidget::accepted,this,Requests::Accepted);
+        connect(widget,&RequestWidget::accepted,this,Requests::Rejected);
 
         ui->verticalLayout->insertWidget(0,widget);
     }
@@ -32,4 +25,17 @@ Requests::Requests(User* user,DataBase* dataBase, QWidget *parent)
 Requests::~Requests()
 {
     delete ui;
+}
+
+void Requests::accept(QString username, RequestWidget *widget)
+{
+    this->dataBase->makeFriend(username,this->user->getUsername());
+    this->dataBase->deleteRequest(username,this->user->getUsername());
+    delete widget;
+}
+
+void Requests::reject(QString username, RequestWidget *widget)
+{
+    this->dataBase->deleteRequest(username,this->user->getUsername());
+    delete widget;
 }

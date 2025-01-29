@@ -20,8 +20,8 @@ public:
     RequestWidget();
     RequestWidget(User* sender);
 signals:
-    void accepted(QString username);
-    void ignored(QString username);
+    void accepted(QString username,RequestWidget* widget);
+    void ignored(QString username,RequestWidget* widget);
 };
 
 #endif // REQUESTWIDGET_H

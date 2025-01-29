@@ -20,7 +20,9 @@ class Requests : public QDialog
 public:
     explicit Requests(User* user,DataBase* dataBase, QWidget *parent = nullptr);
     ~Requests();
-
+public slots:
+    void accept(QString username,RequestWidget* widget);
+    void reject(QString username,RequestWidget* widget);
 private:
     Ui::Requests *ui;
 };
