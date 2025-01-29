@@ -388,7 +388,7 @@ border:none;
 padding-left:2px;</string>
       </property>
       <property name="text">
-       <string>must be at least 5 characters</string>
+       <string>must be at least 8 characters</string>
       </property>
      </widget>
      <widget class="QLabel" name="repaetErrorL">

@@ -34,6 +34,11 @@ private slots:
 
     void on_savePB_clicked();
 
+signals:
+    void postUpdated(QString newText);
+    void postDeleted(PostWidget * postWidget);
+    void newPost(Post * newPost);
+
 private:
     Ui::EditPost *ui;
 };
