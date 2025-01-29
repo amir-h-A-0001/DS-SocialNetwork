@@ -68,7 +68,7 @@ PostWidget::PostWidget(Post* post) {
     vLayout->insertItem(0, hLayout1);
     vLayout->insertItem(1, hLayout2);
 
-    connect(this->editPB, &QPushButton::clicked, [this, post]{
-        emit editPBClicked(this, post);
+    connect(this->editPB, &QPushButton::clicked, [this]{
+        emit editPBClicked(this);
     });
 }

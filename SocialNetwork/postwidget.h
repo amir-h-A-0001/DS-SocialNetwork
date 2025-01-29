@@ -27,7 +27,7 @@ public:
     Post * getPost ();
 
 signals :
-    void editPBClicked (PostWidget * postWidget, Post * post);
+    void editPBClicked (PostWidget * postWidget);
 };
 
 #endif // POSTWIDGET_H

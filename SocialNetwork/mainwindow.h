@@ -49,7 +49,7 @@ private slots :
     void setUsersInformation (User * userPage);
     void friendsPBCliced ();
     void on_settingPB_clicked();
-    void editPostPBClicked (PostWidget * postWidget, Post * post);
+    void editPostPBClicked (PostWidget * postWidget);
 
 };
 #endif // MAINWINDOW_H

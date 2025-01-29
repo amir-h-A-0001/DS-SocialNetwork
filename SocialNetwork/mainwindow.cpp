@@ -218,8 +218,8 @@ void MainWindow::on_settingPB_clicked() {
 
 }
 
-void MainWindow::editPostPBClicked(PostWidget *postWidget, Post *post) {
-    EditPost *editPostWindow = new EditPost(true, user, post, postWidget, database, this);
+void MainWindow::editPostPBClicked(PostWidget *postWidget) {
+    EditPost *editPostWindow = new EditPost(true, user, postWidget->getPost(), postWidget, database, this);
     editPostWindow->show();
 }
 

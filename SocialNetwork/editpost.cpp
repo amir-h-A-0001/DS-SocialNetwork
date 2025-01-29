@@ -20,9 +20,6 @@ EditPost::EditPost(bool edit,User* user,Post* post,PostWidget* widget,DataBase* 
         ui->savePB->setText("Create");
         ui->deletePB->hide();
     }
-
-
-
 }
 
 EditPost::~EditPost()
