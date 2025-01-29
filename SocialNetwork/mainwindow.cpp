@@ -156,7 +156,7 @@ void MainWindow::setFirstUiSettings() {
     ui->postsSA->setLayout(ui->verticalLayout_2);
     ui->searchResultSA->setLayout(ui->verticalLayout_3);
     ui->sideUserSA->setLayout(ui->verticalLayout);
-    ui->suggestionSA->setLayout(ui->horizontalLayout_2);
+    ui->suggestSA->setLayout(ui->horizontalLayout_2);
 
 }
 
@@ -244,11 +244,24 @@ void MainWindow::on_searchPB_clicked()
 
     QVBoxLayout* layout = qobject_cast<QVBoxLayout*>(ui->verticalLayout_3);
     layout->insertWidget(0,foundUser);
+
+
 }
 
 void MainWindow::on_sideSearchPB_clicked()
 {
+    if(ui->mainSV->currentIndex() == 1)
+        return;
+
     ui->mainSV->setCurrentIndex(1);
+
+    std::list<suggestWidget*>* suggestions = this->database->suggest(this->user->getUsername());
+    for(auto &suggestion : *suggestions){
+        ui->horizontalLayout_2->insertWidget(0,suggestion);
+
+        connect(suggestion,&suggestWidget::requested,this,&MainWindow::sentRequest);
+        connect(suggestion,&suggestWidget::canceledRequest,this,&MainWindow::canceledRequest);
+    }
 }
 
 void MainWindow::sentRequest(QString receiver)
@@ -264,7 +277,26 @@ void MainWindow::canceledRequest(QString receiver)
 
 void MainWindow::on_homePB_clicked()
 {
+    if(ui->mainSV->currentIndex() == 0)
+        return;
+
     ui->mainSV->setCurrentIndex(0);
     setUsersInformation(this->user);
+}
+
+
+void MainWindow::on_sideRequestPB_clicked()
+{
+    Requests *reqPage = new Requests(this->user,this->database,this);
+    reqPage->show();
+    this->hide();
+}
+
+
+void MainWindow::on_sideLogoutPB_clicked()
+{
+    this->parentWidget()->show();
+    this->close();
+    this->deleteLater();
 }
 

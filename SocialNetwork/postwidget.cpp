@@ -29,6 +29,14 @@ PostWidget::PostWidget(Post* post) {
     this->timeAndDate = new QLabel(this);
     this->editPB = new QPushButton(this);
 
+    this->editPB->setStyleSheet(R"(
+        QPushButton{
+            color:rgb(80,80,80);
+            background-color:rgba(200,200,200,20);
+            border-radius:3px;
+        }
+    )");
+
     this->text->setText(post->getText());
     this->text->setWordWrap(true);
 
@@ -50,12 +58,12 @@ PostWidget::PostWidget(Post* post) {
         }
     )");
 
-    QSize  size(800, 100);
+    QSize  size(700, 100);
     this->setBaseSize(size);
 
     QVBoxLayout * vLayout = new QVBoxLayout(this);
-    QHBoxLayout * hLayout2 = new QHBoxLayout(this);
-    QHBoxLayout * hLayout1 = new QHBoxLayout(this);
+    QHBoxLayout * hLayout2 = new QHBoxLayout();
+    QHBoxLayout * hLayout1 = new QHBoxLayout();
     QSpacerItem * horizentalSpacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
     hLayout2->addWidget(timeAndDate);

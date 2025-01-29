@@ -484,8 +484,9 @@ std::list<suggestWidget *> *DataBase::suggest(QString username)
     }
 
     int count = 0;
-    for(std::multimap<float,User*>::reverse_iterator i = order.rbegin(); i != order.rend() && count < 6;++i){
+    for(std::multimap<float,User*>::reverse_iterator i = order.rbegin(); i != order.rend() && (count < 6);++i){
         suggests->push_back(new suggestWidget(i->second));
+        count++;
     }
 
     return suggests;

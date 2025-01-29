@@ -57,6 +57,13 @@ suggestWidget::suggestWidget(User* user) : user(user){
     vLayout->addWidget(username, 0, Qt::AlignCenter);
     vLayout->addWidget(source, 0, Qt::AlignCenter);
     vLayout->addWidget(request);
+    this->request->setStyleSheet(R"(
+    QPushButton {
+        background-color : rgb(176, 188, 157);
+        color : rgb(0, 0, 0);
+        border-radius:3px;
+    }
+        )");
 
     avatar->setFixedSize(80, 80);
     avatar->setStyleSheet(R"(

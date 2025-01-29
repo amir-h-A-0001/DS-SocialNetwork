@@ -39,3 +39,11 @@ void Requests::reject(QString username, RequestWidget *widget)
     this->dataBase->cancelRequest(username,this->user->getUsername());
     delete widget;
 }
+
+void Requests::on_pushButton_clicked()
+{
+    this->close();
+    this->parentWidget()->show();
+    this->deleteLater();
+}
+

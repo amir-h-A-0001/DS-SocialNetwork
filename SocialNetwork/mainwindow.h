@@ -8,6 +8,7 @@
 #include <settings.h>
 #include <editpost.h>
 #include "searchwidget.h"
+#include "requests.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -58,5 +59,7 @@ private slots :
     void sentRequest(QString receiver);
     void canceledRequest(QString receiver);
     void on_homePB_clicked();
+    void on_sideRequestPB_clicked();
+    void on_sideLogoutPB_clicked();
 };
 #endif // MAINWINDOW_H

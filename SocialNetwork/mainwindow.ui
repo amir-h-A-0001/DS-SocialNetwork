@@ -46,10 +46,10 @@ QPushButton {
     <widget class="QScrollArea" name="sideUserSA">
      <property name="geometry">
       <rect>
-       <x>-1</x>
+       <x>9</x>
        <y>100</y>
-       <width>101</width>
-       <height>471</height>
+       <width>91</width>
+       <height>431</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -87,8 +87,8 @@ QScrollArea QWidget {
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>101</width>
-        <height>471</height>
+        <width>91</width>
+        <height>431</height>
        </rect>
       </property>
       <widget class="QWidget" name="verticalLayoutWidget_3">
@@ -96,21 +96,34 @@ QScrollArea QWidget {
         <rect>
          <x>20</x>
          <y>80</y>
-         <width>160</width>
-         <height>80</height>
+         <width>72</width>
+         <height>121</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QPushButton" name="sideSearchPB">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="minimumSize">
            <size>
-            <width>0</width>
-            <height>0</height>
+            <width>70</width>
+            <height>70</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>70</width>
+            <height>70</height>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgba(125, 125, 125,20);</string>
+           <string notr="true">background-color: rgb(156, 168, 137);
+border-radius:35px;</string>
           </property>
           <property name="text">
            <string/>
@@ -138,13 +151,14 @@ QScrollArea QWidget {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>620</y>
+       <y>597</y>
        <width>60</width>
-       <height>18</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgba(125, 125, 125,20);</string>
+      <string notr="true">background-color: rgba(225, 225, 225,50);
+</string>
      </property>
      <property name="text">
       <string/>
@@ -154,13 +168,14 @@ QScrollArea QWidget {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>600</y>
+       <y>550</y>
        <width>60</width>
-       <height>18</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgba(125, 125, 125,20);</string>
+      <string notr="true">background-color: rgba(225, 225, 225,50);
+</string>
      </property>
      <property name="text">
       <string/>
@@ -170,7 +185,7 @@ QScrollArea QWidget {
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>570</y>
+       <y>530</y>
        <width>101</width>
        <height>20</height>
       </rect>
@@ -293,7 +308,7 @@ border-top-right-radius : 25px;</string>
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="usersPageSVP">
      <widget class="QScrollArea" name="postsSA">
@@ -394,15 +409,23 @@ QScrollArea QWidget {
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="minimumSize">
+              <size>
+               <width>40</width>
+               <height>40</height>
+              </size>
+             </property>
              <property name="cursor">
               <cursorShape>PointingHandCursor</cursorShape>
              </property>
              <property name="styleSheet">
-              <string notr="true">background-color: rgba(125, 125, 125,20);
-color: rgb(0, 0, 0);</string>
+              <string notr="true">background-color: rgba(225,225, 225,26);
+color: rgb(80,80, 80);
+border-radius:5px;
+font: 700 26pt &quot;Segoe UI&quot;;</string>
              </property>
              <property name="text">
-              <string>New Post</string>
+              <string>+</string>
              </property>
             </widget>
            </item>
@@ -546,11 +569,15 @@ border-radius : 100px;</string>
      <widget class="QPushButton" name="searchPB">
       <property name="geometry">
        <rect>
-        <x>550</x>
-        <y>31</y>
-        <width>80</width>
-        <height>18</height>
+        <x>530</x>
+        <y>20</y>
+        <width>51</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius:5px;
+background-color: rgb(49, 68, 5);</string>
       </property>
       <property name="text">
        <string>Search</string>
@@ -559,10 +586,10 @@ border-radius : 100px;</string>
      <widget class="QLineEdit" name="searchBoxLE">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>29</y>
-        <width>261</width>
-        <height>21</height>
+        <x>230</x>
+        <y>19</y>
+        <width>281</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -584,168 +611,152 @@ QLineEdit:hover {
 }</string>
       </property>
      </widget>
-     <widget class="QStackedWidget" name="searchSV">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>90</y>
-        <width>800</width>
-        <height>400</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QStackedWidget {
-	background : transparent;
-}</string>
-      </property>
-      <property name="currentIndex">
-       <number>1</number>
-      </property>
-      <widget class="QWidget" name="suggestSVP">
-       <widget class="QScrollArea" name="suggestionSA">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>10</y>
-          <width>761</width>
-          <height>301</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QScrollArea {
-	background : rgba(255, 255, 255, 50);
-border-radius: 10px;
-}
-QScrollArea QWidget {
-	background : transparent;
-}
-    </string>
-        </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents_3">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>761</width>
-           <height>301</height>
-          </rect>
-         </property>
-         <widget class="QWidget" name="horizontalLayoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>150</x>
-            <y>20</y>
-            <width>160</width>
-            <height>275</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>608</width>
-               <height>273</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="searchAllUserSVP">
-       <widget class="QScrollArea" name="searchResultSA">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>780</width>
-          <height>370</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QScrollArea {
-	background : rgba(255, 255, 255, 50);
-border-radius: 10px;
-}
-QScrollArea QWidget {
-	background : transparent;
-}
-    </string>
-        </property>
-        <property name="widgetResizable">
-         <bool>true</bool>
-        </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents_4">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>780</width>
-           <height>370</height>
-          </rect>
-         </property>
-         <widget class="QWidget" name="verticalLayoutWidget_2">
-          <property name="geometry">
-           <rect>
-            <x>370</x>
-            <y>80</y>
-            <width>160</width>
-            <height>80</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <property name="leftMargin">
-            <number>10</number>
-           </property>
-           <property name="topMargin">
-            <number>10</number>
-           </property>
-           <property name="rightMargin">
-            <number>10</number>
-           </property>
-           <property name="bottomMargin">
-            <number>10</number>
-           </property>
-           <item>
-            <spacer name="verticalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>356</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </widget>
-      </widget>
-     </widget>
      <widget class="QLabel" name="searchErrorLB">
       <property name="geometry">
        <rect>
-        <x>256</x>
-        <y>53</y>
-        <width>301</width>
+        <x>230</x>
+        <y>50</y>
+        <width>281</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 93, 93);</string>
       </property>
       <property name="text">
        <string>Error Label</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QScrollArea" name="searchResultSA">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>80</y>
+        <width>780</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QScrollArea {
+	background : rgba(255, 255, 255, 50);
+border-radius: 10px;
+}
+QScrollArea QWidget {
+	background : transparent;
+}
+    </string>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_4">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>780</width>
+         <height>301</height>
+        </rect>
+       </property>
+       <widget class="QWidget" name="verticalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>80</y>
+          <width>160</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>10</number>
+         </property>
+         <property name="rightMargin">
+          <number>10</number>
+         </property>
+         <property name="bottomMargin">
+          <number>10</number>
+         </property>
+         <item>
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>356</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QScrollArea" name="suggestSA">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>400</y>
+        <width>781</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QScrollArea {
+	background : rgba(255, 255, 255, 50);
+border-radius: 10px;
+}
+QScrollArea QWidget {
+	background : transparent;
+}
+    </string>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_6">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>781</width>
+         <height>231</height>
+        </rect>
+       </property>
+       <widget class="QWidget" name="horizontalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>-60</y>
+          <width>160</width>
+          <height>275</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>608</width>
+             <height>273</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </widget>
