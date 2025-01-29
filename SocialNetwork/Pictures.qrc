@@ -2,5 +2,8 @@
     <qresource prefix="/">
         <file>Backgrounds/Premium_Vector_Woodland_forest_landscape_with_trees_enhanced.png</file>
         <file>Backgrounds/Firewatch Green Wallpaper_enhanced.jpg</file>
+        <file>icons/search icon.png</file>
+        <file>icons/envelope.png</file>
+        <file>icons/out.png</file>
     </qresource>
 </RCC>
