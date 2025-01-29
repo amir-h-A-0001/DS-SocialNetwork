@@ -10,10 +10,6 @@ void PostWidget::setText(QString newText)
     text->setText(newText);
 }
 
-void PostWidget::emitSignal() {
-    emit this->editPBClicked(this, post);
-}
-
 void PostWidget::showEditPB() {
     this->editPB->show();
 }
