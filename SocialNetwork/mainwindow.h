@@ -54,5 +54,8 @@ private slots :
 
     void on_searchPB_clicked();
     void on_sideSearchPB_clicked();
+
+    void sentRequest(QString receiver);
+    void canceledRequest(QString receiver);
 };
 #endif // MAINWINDOW_H

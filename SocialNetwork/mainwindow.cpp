@@ -239,14 +239,25 @@ void MainWindow::on_searchPB_clicked()
     }
 
     searchWidget* foundUser = new searchWidget(user);
+    connect(foundUser,&searchWidget::requested,this,&MainWindow::sentRequest);
+    connect(foundUser,&searchWidget::canceledRequest,this,&MainWindow::canceledRequest);
 
     QVBoxLayout* layout = qobject_cast<QVBoxLayout*>(ui->verticalLayout_3);
     layout->insertWidget(0,foundUser);
 }
 
-
 void MainWindow::on_sideSearchPB_clicked()
 {
     ui->mainSV->setCurrentIndex(1);
+}
+
+void MainWindow::sentRequest(QString receiver)
+{
+    this->database->sendRequest(this->user->getUsername(),receiver);
+}
+
+void MainWindow::canceledRequest(QString receiver)
+{
+    this->database->cancelRequest(this->user->getUsername(),receiver);
 }
 

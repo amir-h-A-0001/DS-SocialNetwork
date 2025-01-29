@@ -17,7 +17,7 @@ searchWidget::searchWidget(User * user) : user(user) {
     hLayout->addWidget(username, 0, Qt::AlignHCenter);
     hLayout->addWidget(request, 0, Qt::AlignHCenter);
 
-     hLayout->insertSpacerItem(2, spacer);
+    hLayout->insertSpacerItem(2, spacer);
     hLayout->insertSpacerItem(1, spacer);
 
 
