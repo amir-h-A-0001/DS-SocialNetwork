@@ -62,6 +62,7 @@ void MainWindow::setUsersInformation(User * userPage) {
         QSize size = ui->userProfileLB->size();
         QPixmap newAvatar = makeCircleScalePixmap(avatar, size);
         ui->userProfileLB->setPixmap(newAvatar);
+        ui->userProfileLB->setAlignment(Qt::AlignCenter);
 
         if(user->getUsername() == userPage->getUsername()) {
             QIcon icon(newAvatar);
@@ -196,9 +197,9 @@ void MainWindow::on_newPostPB_clicked()
     this->hide();
     newPostPage->show();
 
-    connect(newPostPage,&EditPost::destroyed,[this, &newPost]{
+    connect(newPostPage,&EditPost::destroyed,[this, &newPost, &newWidget]{
         if(! newPost->getHashCode().isEmpty()){
-            // insert newWidget into the posts
+            addUsersPostsWidgetToSA(newWidget);
         }
         else delete newPost;
     });

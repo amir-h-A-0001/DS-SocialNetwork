@@ -37,6 +37,7 @@ DataBase::DataBase() {
 
     while(read_Qry.next()){
 
+
         tmp_user.setUsername(read_Qry.value(0).toString());
         tmp_user.setPassword(read_Qry.value(1).toString());
         tmp_user.setName(read_Qry.value(2).toString());
@@ -72,27 +73,29 @@ DataBase::DataBase() {
             friends.chop(friends.size()-j);
         }
 
-        read_Qry.prepare("SELECT * FROM "+tmp_user.getUsername()+"_posts");
-        if(!read_Qry.exec()){
+        QSqlQuery post_Query;
+
+        post_Query.prepare("SELECT * FROM "+tmp_user.getUsername()+"_posts");
+        if(!post_Query.exec()){
             qDebug("reading usersData table failed");
             return;
         }
 
-        while(read_Qry.next()){
+        while(post_Query.next()){
 
-            tmp_post.setHashCode(read_Qry.value(0).toString());
-            tmp_post.setText(read_Qry.value(1).toString());
+            tmp_post.setHashCode(post_Query.value(0).toString());
+            tmp_post.setText(post_Query.value(1).toString());
 
-            y=read_Qry.value(2).toInt();
-            mon=read_Qry.value(3).toInt();
-            d=read_Qry.value(4).toInt();
+            y=post_Query.value(2).toInt();
+            mon=post_Query.value(3).toInt();
+            d=post_Query.value(4).toInt();
 
             tmp_date.setDate(y,mon,d);
             tmp_post.setDate(tmp_date);
 
-            h=read_Qry.value(5).toInt();
-            min=read_Qry.value(6).toInt();
-            s=read_Qry.value(7).toInt();
+            h=post_Query.value(5).toInt();
+            min=post_Query.value(6).toInt();
+            s=post_Query.value(7).toInt();
 
             tmp_time.setHMS(h,min,s);
             tmp_post.setTime(tmp_time);
@@ -103,14 +106,16 @@ DataBase::DataBase() {
         this->users[tmp_user.getUsername()] = tmp_user;
     }
 
-    read_Qry.prepare("SELECT * FROM requests");
-    if(!read_Qry.exec()){
+    QSqlQuery request_Qry;
+
+    request_Qry.prepare("SELECT * FROM requests");
+    if(!request_Qry.exec()){
         qDebug("reading usersData table failed");
         return;
     }
 
-    while(read_Qry.next()){
-        this->requests[read_Qry.value(0).toString()].push_back(read_Qry.value(1).toString());
+    while(request_Qry.next()){
+        this->requests[request_Qry.value(0).toString()].push_back(request_Qry.value(1).toString());
     }
 
 }
