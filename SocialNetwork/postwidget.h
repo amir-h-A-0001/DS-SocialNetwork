@@ -15,15 +15,12 @@ class PostWidget : public QFrame {
     QLabel* timeAndDate;
     QPushButton* editPB;
 public:
-    PostWidget(Post* post);
-
-
+    PostWidget(Post* post,QWidget* parent);
 
     QString getText() const;
     void setText(QString newText);
 
     void updatePost (QString newPost);
-
 
     void hideEditPB ();
     void showEditPB ();

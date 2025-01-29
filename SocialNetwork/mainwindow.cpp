@@ -121,7 +121,7 @@ void MainWindow::addUsersPosts(User *userPage) {
     if(usersPosts->empty()) return;
 
     for(auto &it : *usersPosts) {
-        PostWidget *postWidget = new PostWidget(&it);
+        PostWidget *postWidget = new PostWidget(&it,this);
         addUsersPostsWidgetToSA(postWidget);
         if(user->getUsername() == userPage->getUsername()) {
             connect(postWidget, &PostWidget::editPBClicked, this, [this, &it, postWidget]() {
@@ -233,7 +233,7 @@ void MainWindow::on_newPostPB_clicked()
 
     connect(newPostPage, &EditPost::destroyed, [this, newPost] {
         if (!newPost->getHashCode().isEmpty()) {
-            PostWidget* newWidget = new PostWidget(newPost);
+            PostWidget* newWidget = new PostWidget(newPost,this);
             addUsersPostsWidgetToSA(newWidget);
 
             connect(newWidget, &PostWidget::editPBClicked, this, [this, newPost, newWidget] {
