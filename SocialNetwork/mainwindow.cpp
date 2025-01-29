@@ -261,3 +261,10 @@ void MainWindow::canceledRequest(QString receiver)
     this->database->cancelRequest(this->user->getUsername(),receiver);
 }
 
+
+void MainWindow::on_homePB_clicked()
+{
+    ui->mainSV->setCurrentIndex(0);
+    setUsersInformation(this->user);
+}
+

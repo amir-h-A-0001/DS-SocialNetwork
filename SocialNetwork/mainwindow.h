@@ -57,5 +57,6 @@ private slots :
 
     void sentRequest(QString receiver);
     void canceledRequest(QString receiver);
+    void on_homePB_clicked();
 };
 #endif // MAINWINDOW_H
