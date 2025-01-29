@@ -5,6 +5,7 @@
 #include <database.h>
 #include <postwidget.h>
 #include <QHash>
+#include "editpost.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,6 +20,9 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(DataBase *database, User *user, QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_newPostPB_clicked();
 
 private:
     Ui::MainWindow *ui;

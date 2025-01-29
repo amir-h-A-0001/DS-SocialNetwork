@@ -1,7 +1,7 @@
 #include "editpost.h"
 #include "ui_editpost.h"
 
-EditPost::EditPost(bool edit,User* user,Post* post,PostWidget* widget,DataBase* dataBase,QWidget *parent)
+EditPost::EditPost(bool edit,User* user,Post* post,PostWidget** widget,DataBase* dataBase,QWidget *parent)
     : QMainWindow(parent)
     ,user(user)
     ,post(post)
@@ -37,12 +37,16 @@ void EditPost::on_deletePB_clicked()
     delete widget;
 
     // return to the mainWindow
+    this->parentWidget()->show();
+    delete this;
 }
 
 
 void EditPost::on_cancelPB_clicked()
 {
     //return to the mainWindow
+    this->parentWidget()->show();
+    delete this;
 }
 
 
@@ -52,11 +56,10 @@ void EditPost::on_savePB_clicked()
 
     if(edit){
         post->setText(newText);
-        widget->setText(newText);
+        (*widget)->setText(newText);
         dataBase->editPost(user->getUsername(),post);
     }
     else {
-        post = new Post;
         post->setDate(QDate::currentDate());
         post->setText(newText);
         post->setTime(QTime::currentTime());
@@ -67,10 +70,16 @@ void EditPost::on_savePB_clicked()
         QString code = date + time;
         post->setHashCode(code);
 
+        *widget = new PostWidget(post);
+
         user->addPost(*post);
         dataBase->addPost(*post,user->getUsername());
     }
 
     // return to the mainWindow
+    this->parentWidget()->show();
+    emit this->destroyed();
+
+    delete this;
 }
 

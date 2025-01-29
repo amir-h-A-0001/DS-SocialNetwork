@@ -186,3 +186,21 @@ QPixmap MainWindow::makeCircleScalePixmap(QPixmap & pixmap, QSize & size) {
 }
 
 
+void MainWindow::on_newPostPB_clicked()
+{
+    Post* newPost = new Post;
+    PostWidget* newWidget;
+    newPost->setHashCode("");
+
+    EditPost* newPostPage = new EditPost(false,user,newPost,&newWidget,database,this);
+    this->hide();
+    newPostPage->show();
+
+    connect(newPostPage,&EditPost::destroyed,[this, &newPost]{
+        if(! newPost->getHashCode().isEmpty()){
+            // insert newWidget into the posts
+        }
+        else delete newPost;
+    });
+}
+
