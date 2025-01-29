@@ -20,9 +20,6 @@ EditPost::EditPost(bool edit,User* user,Post* post,PostWidget** widget,DataBase*
         ui->savePB->setText("Create");
         ui->deletePB->hide();
     }
-
-
-
 }
 
 EditPost::~EditPost()
@@ -38,7 +35,8 @@ void EditPost::on_deletePB_clicked()
 
     // return to the mainWindow
     this->parentWidget()->show();
-    delete this;
+    this->close();
+    this->deleteLater();
 }
 
 
@@ -46,7 +44,8 @@ void EditPost::on_cancelPB_clicked()
 {
     //return to the mainWindow
     this->parentWidget()->show();
-    delete this;
+    this->close();
+    this->deleteLater();
 }
 
 
@@ -78,8 +77,8 @@ void EditPost::on_savePB_clicked()
 
     // return to the mainWindow
     this->parentWidget()->show();
+    this->close();
+    this->deleteLater();
     emit this->destroyed();
-
-    delete this;
 }
 
