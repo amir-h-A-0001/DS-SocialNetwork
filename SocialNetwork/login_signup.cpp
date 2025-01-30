@@ -294,7 +294,7 @@ void Login_SignUp::loginPBClicked() {
     User * user = database->findUser(ui->usernameLoginLE->text());
     resetAll();
     MainWindow *mainWin = new MainWindow(database, user, this);
-    this->close();
+    this->hide();
     mainWin->show();
 }
 

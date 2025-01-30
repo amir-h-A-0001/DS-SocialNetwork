@@ -101,6 +101,9 @@ QScrollArea QWidget {
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>6</number>
+        </property>
         <item>
          <widget class="QPushButton" name="sideSearchPB">
           <property name="sizePolicy">
@@ -111,8 +114,8 @@ QScrollArea QWidget {
           </property>
           <property name="minimumSize">
            <size>
-            <width>60</width>
-            <height>60</height>
+            <width>70</width>
+            <height>70</height>
            </size>
           </property>
           <property name="baseSize">
@@ -123,11 +126,20 @@ QScrollArea QWidget {
           </property>
           <property name="styleSheet">
            <string notr="true">background-color: rgb(156, 168, 137);
-border-radius:30px;
-image: url(:/icons/search icon.png);</string>
+border-radius:35px;</string>
           </property>
           <property name="text">
            <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="Pictures.qrc">
+            <normaloff>:/icons/search icon.png</normaloff>:/icons/search icon.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>70</width>
+            <height>70</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -151,38 +163,62 @@ image: url(:/icons/search icon.png);</string>
     <widget class="QPushButton" name="sideLogoutPB">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>597</y>
-       <width>60</width>
-       <height>41</height>
+       <x>32</x>
+       <y>596</y>
+       <width>31</width>
+       <height>32</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgba(225, 225, 225,50);
-image: url(:/icons/out.png);
-border-radius:10px;
-</string>
+      <string notr="true">border : none;
+background : transparent;</string>
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Pictures.qrc">
+       <normaloff>:/icons/out.png</normaloff>:/icons/out.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
      </property>
     </widget>
     <widget class="QPushButton" name="sideRequestPB">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>28</x>
        <y>550</y>
-       <width>61</width>
+       <width>41</width>
        <height>31</height>
       </rect>
      </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgba(225, 225, 225,50);
-image: url(:/icons/envelope.png);
-border-radius:10px;</string>
+      <string notr="true">background : transparent;
+border : none;
+</string>
      </property>
      <property name="text">
       <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Pictures.qrc">
+       <normaloff>:/icons/envelope.png</normaloff>:/icons/envelope.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
      </property>
     </widget>
     <widget class="Line" name="line">
@@ -234,6 +270,9 @@ border-radius:10px;</string>
         <width>70</width>
         <height>70</height>
        </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgba(125, 125, 125,120);
@@ -312,7 +351,7 @@ border-top-right-radius : 25px;</string>
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="usersPageSVP">
      <widget class="QScrollArea" name="postsSA">
@@ -352,101 +391,108 @@ QScrollArea QWidget {
          <height>381</height>
         </rect>
        </property>
-       <widget class="QWidget" name="verticalLayoutWidget">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>50</y>
-          <width>601</width>
-          <height>261</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_2">
-         <property name="spacing">
-          <number>5</number>
-         </property>
-         <property name="leftMargin">
-          <number>10</number>
-         </property>
-         <property name="topMargin">
-          <number>10</number>
-         </property>
-         <property name="rightMargin">
-          <number>10</number>
-         </property>
-         <property name="bottomMargin">
-          <number>10</number>
-         </property>
-         <item>
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Orientation::Vertical</enum>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QWidget" name="widget" native="true">
+          <widget class="QWidget" name="verticalLayoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>-40</x>
+             <y>20</y>
+             <width>601</width>
+             <height>261</height>
+            </rect>
            </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>13</width>
-             <height>322</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Orientation::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="newPostPB">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>40</width>
-               <height>40</height>
-              </size>
-             </property>
-             <property name="cursor">
-              <cursorShape>PointingHandCursor</cursorShape>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgba(225,225, 225,26);
-color: rgb(80,80, 80);
-border-radius:5px;
-font: 700 26pt &quot;Segoe UI&quot;;</string>
-             </property>
-             <property name="text">
-              <string>+</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="widget" native="true">
-        <property name="geometry">
-         <rect>
-          <x>220</x>
-          <y>10</y>
-          <width>120</width>
-          <height>80</height>
-         </rect>
-        </property>
-       </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <property name="spacing">
+             <number>5</number>
+            </property>
+            <property name="leftMargin">
+             <number>10</number>
+            </property>
+            <property name="topMargin">
+             <number>10</number>
+            </property>
+            <property name="rightMargin">
+             <number>10</number>
+            </property>
+            <property name="bottomMargin">
+             <number>10</number>
+            </property>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="newPostPB">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="cursor">
+                 <cursorShape>PointingHandCursor</cursorShape>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QPushButton {
+background : transparent;
+border : none;
+}
+</string>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="Pictures.qrc">
+                  <normaloff>:/icons/plus_4895253.png</normaloff>:/icons/plus_4895253.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>40</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>13</width>
+                <height>322</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
      <widget class="QFrame" name="userInformationF">
@@ -468,10 +514,7 @@ QLabel {
 	font: 10pt &quot;Dosis&quot;;
 	color: rgb(0, 0, 0);
 }
-QPushButton {
-	background : transparent;
-	border : none;
-}</string>
+</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::Shape::StyledPanel</enum>
@@ -482,20 +525,32 @@ QPushButton {
       <widget class="QPushButton" name="settingPB">
        <property name="geometry">
         <rect>
-         <x>750</x>
+         <x>780</x>
          <y>10</y>
-         <width>71</width>
-         <height>20</height>
+         <width>41</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgba(125, 125, 125,20);</string>
+        <string notr="true">background : transparent;
+border : none;
+</string>
        </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>icons/cog_9884568.png</normaloff>icons/cog_9884568.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
        </property>
       </widget>
       <widget class="QLabel" name="userProfileLB">
@@ -528,7 +583,11 @@ border-radius : 100px;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">QLabel {
+	background : transparent;
+	font: 11pt &quot;Dosis&quot;;
+	color: rgb(0, 0, 0);
+}</string>
        </property>
        <property name="text">
         <string>Username</string>
@@ -575,6 +634,11 @@ border-radius : 100px;</string>
         <bool>true</bool>
        </property>
       </widget>
+      <zorder>userProfileLB</zorder>
+      <zorder>usernameLB</zorder>
+      <zorder>nameLB</zorder>
+      <zorder>userBioLB</zorder>
+      <zorder>settingPB</zorder>
      </widget>
      <zorder>userInformationF</zorder>
      <zorder>postsSA</zorder>
@@ -641,7 +705,7 @@ QLineEdit:hover {
        <string>Error Label</string>
       </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
      <widget class="QScrollArea" name="searchResultSA">
@@ -700,7 +764,7 @@ QScrollArea QWidget {
          <item>
           <spacer name="verticalSpacer_3">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -758,7 +822,7 @@ QScrollArea QWidget {
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -778,6 +842,8 @@ QScrollArea QWidget {
    <zorder>sideF</zorder>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="Pictures.qrc"/>
+ </resources>
  <connections/>
 </ui>

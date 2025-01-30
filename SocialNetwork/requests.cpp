@@ -12,11 +12,11 @@ Requests::Requests(User* user,DataBase* dataBase, QWidget *parent)
     std::list<QString> *senders = dataBase->recived_requests(user->getUsername());
 
     for(auto &senderUsername :  *senders){
-        User* senderAccout = dataBase->findUser(senderUsername);
+        User* senderAccount = dataBase->findUser(senderUsername);
 
-        RequestWidget* widget = new RequestWidget(senderAccout);
+        RequestWidget* widget = new RequestWidget(senderAccount);
         connect(widget,&RequestWidget::accepted,this,&Requests::accept);
-        connect(widget,&RequestWidget::accepted,this,&Requests::reject);
+        connect(widget,&RequestWidget::ignored,this,&Requests::reject);
 
         ui->verticalLayout->insertWidget(0,widget);
     }

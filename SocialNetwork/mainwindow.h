@@ -26,6 +26,7 @@ public:
 
 private slots:
     void on_newPostPB_clicked();
+    void newPost (Post * newPost);
 
 private:
     Ui::MainWindow *ui;
@@ -49,7 +50,6 @@ private:
     QPixmap makeCircleScalePixmap(QPixmap & pixmap, QSize & size);
 
 private slots :
-    void updateUserLabels(User * user);
     void friendsPBCliced ();
     void on_settingPB_clicked();
     void openEditPost(Post* post, PostWidget* widget);
