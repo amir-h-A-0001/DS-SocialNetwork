@@ -78,10 +78,10 @@ QLabel {
 </string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
+     <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
+     <enum>QFrame::Raised</enum>
     </property>
     <widget class="QLineEdit" name="nameLE">
      <property name="geometry">
@@ -93,7 +93,7 @@ QLabel {
       </rect>
      </property>
      <property name="alignment">
-      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
      <property name="placeholderText">
       <string>Name</string>
@@ -334,7 +334,9 @@ color:rgb(100,100,100);</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background : transparent;</string>
+      <string notr="true">background : transparent;
+font: 9pt &quot;Segoe UI&quot;;
+color: rgb(255, 89, 89);</string>
      </property>
      <property name="text">
       <string/>
@@ -432,7 +434,7 @@ color:rgb(100,100,100);</string>
    <widget class="QFrame" name="picture">
     <property name="geometry">
      <rect>
-      <x>142</x>
+      <x>140</x>
       <y>115</y>
       <width>351</width>
       <height>421</height>
@@ -457,10 +459,10 @@ color:rgb(100,100,100);</string>
 </string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Shape::StyledPanel</enum>
+     <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Shadow::Raised</enum>
+     <enum>QFrame::Raised</enum>
     </property>
     <widget class="QPushButton" name="openLoginSignupPB">
      <property name="geometry">

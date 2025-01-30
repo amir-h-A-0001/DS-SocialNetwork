@@ -315,6 +315,9 @@ void DataBase::cancelRequest(QString sender, QString receiver)
 
 void DataBase::sendRequest(QString sender, QString receiver)
 {
+    if(haveRequest(sender,receiver) || areFriends(&users[sender],&users[receiver]))
+        return;
+
     std::map<QString,std::list<QString>>::iterator itr = this->requests.find(receiver);
 
     if(itr == this->requests.end()){

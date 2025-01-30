@@ -29,7 +29,7 @@ searchWidget::searchWidget(User * user) : user(user) {
     )");
 
     QPixmap pic = user->getAvatar();
-    QSize size (70, 70);
+    QSize size (60, 60);
     QPixmap circlePixmap = makeCircleScalePixmap(pic, size);
     avatar->setPixmap(circlePixmap);
 
@@ -50,9 +50,9 @@ searchWidget::searchWidget(User * user) : user(user) {
     }
         )");
 
-    this->setFixedSize(760, 70);
+    this->setFixedSize(760, 80);
 
-    request->setFixedSize(80,50);
+    request->setFixedSize(80,55);
     request->setText("Request");
     request->setCheckable(true);
     connect(request, &QPushButton::toggled, [this]{emit_signal();});

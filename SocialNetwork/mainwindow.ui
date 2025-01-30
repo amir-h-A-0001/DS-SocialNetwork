@@ -351,7 +351,7 @@ border-top-right-radius : 25px;</string>
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="usersPageSVP">
      <widget class="QScrollArea" name="postsSA">
@@ -817,7 +817,20 @@ border-radius: 10px;
 QScrollArea QWidget {
 	background : transparent;
 }
-    </string>
+QScrollBar::handle:horizontal {
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 6px;
+        min-width: 20px;
+    }
+
+    QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+        background: transparent;
+        width: 0px;
+    }
+
+    QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+        background: transparent;
+    }</string>
       </property>
       <property name="widgetResizable">
        <bool>true</bool>
