@@ -22,6 +22,7 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    this->deleteLater();
 }
 
 void MainWindow::setFramesShadow() {
@@ -61,6 +62,10 @@ void MainWindow::setUsersInformation(User * userPage) {
     ui->usernameLB->setText(userPage->getUsername());
     ui->nameLB->setText(userPage->getName());
     ui->userBioLB->setText(userPage->getBio());
+
+    if(user->getUsername() == userPage->getUsername()) {
+        ui->settingPB->show();
+    }
 
     if(!user->getAvatar().isNull()) {
         QPixmap avatar = userPage->getAvatar();
@@ -135,17 +140,19 @@ void MainWindow::addUsersPosts(User *userPage) {
 }
 
 void MainWindow::addUsersPostsWidgetToSA(PostWidget *post) {
-    QVBoxLayout * layout = qobject_cast<QVBoxLayout*> (ui->postsSA->layout());
+    QVBoxLayout * layout = qobject_cast<QVBoxLayout*> (ui->widget->layout());
     layout->insertWidget(layout->count() - 2, post);
 }
 
 void MainWindow::cleanUsersPostsSA() {
-    QVBoxLayout * layout = qobject_cast<QVBoxLayout*> (ui->postsSA->layout());
+    QVBoxLayout * layout = qobject_cast<QVBoxLayout*> (ui->widget->layout());
     while(layout->count() > 2) {
         QLayoutItem * item = layout->takeAt(0);
         PostWidget * postWidget = qobject_cast<PostWidget *> (item->widget());
-        postWidget->deleteLater();
-        delete item;
+        layout->removeItem(item);
+        postWidget->setParent(nullptr);
+        postWidget = nullptr;
+        item = nullptr;
     }
 }
 
@@ -162,11 +169,11 @@ void MainWindow::setFirstUiSettings() {
     ui->settingPB->show();
     setFramesShadow();
     ui->mainSV->setCurrentIndex(0);
-    ui->postsSA->setLayout(ui->verticalLayout_2);
+    ui->widget->setLayout(ui->verticalLayout_2);
     ui->searchResultSA->setLayout(ui->verticalLayout_3);
     ui->sideUserSA->setLayout(ui->verticalLayout);
+    ui->verticalLayout->setAlignment(Qt::AlignHCenter);
     ui->suggestSA->setLayout(ui->horizontalLayout_2);
-
 }
 
 QPixmap MainWindow::makeCircleScalePixmap(QPixmap & pixmap, QSize & size) {
@@ -194,65 +201,34 @@ QPixmap MainWindow::makeCircleScalePixmap(QPixmap & pixmap, QSize & size) {
     return circularPixmap;
 }
 
-void MainWindow::updateUserLabels(User *user) {
-    cleanUsersPostsSA();
-    ui->usernameLB->setText(user->getUsername());
-    ui->nameLB->setText(user->getName());
-    ui->userBioLB->setText(user->getBio());
-
-    if(!user->getAvatar().isNull()) {
-        QPixmap avatar = user->getAvatar();
-        QSize size = ui->userProfileLB->size();
-        QPixmap newAvatar = makeCircleScalePixmap(avatar, size);
-        ui->userProfileLB->setPixmap(newAvatar);
-        ui->userProfileLB->setAlignment(Qt::AlignCenter);
-
-            QIcon icon(newAvatar);
-            size.setHeight(70);
-            size.setWidth(70);
-            ui->homePB->setIcon(icon);
-            ui->homePB->setIconSize(size);
-    }
-
-
-}
-
-
 void MainWindow::on_newPostPB_clicked()
 {
     Post* newPost = new Post;
-    PostWidget* newWidget;
-
-    newPost->setHashCode("");
 
     EditPost* newPostPage = new EditPost(false,user,newPost,nullptr,database,this);
     this->hide();
     newPostPage->show();
 
-
-
-    connect(newPostPage, &EditPost::destroyed, [this, newPost] {
-        if (!newPost->getHashCode().isEmpty()) {
-            PostWidget* newWidget = new PostWidget(newPost,this);
-            addUsersPostsWidgetToSA(newWidget);
-
-            connect(newWidget, &PostWidget::editPBClicked, this, [this, newPost, newWidget] {
-                openEditPost(newPost, newWidget);
-            });
-        }
-        else {
-            delete newPost;
-        }
-    });
+    connect(newPostPage, &EditPost::newPost, this, &MainWindow::newPost);
 }
 
+void MainWindow::newPost(Post *newPost) {
+    if(!newPost->getHashCode().isEmpty()) {
+        PostWidget * postWidget = new PostWidget(newPost, nullptr);
+        this->addUsersPostsWidgetToSA(postWidget);
+        connect(postWidget, &PostWidget::editPBClicked, this, [this, newPost, postWidget]() {
+            openEditPost(newPost, postWidget);
+        });
+
+    }
+}
 
 void MainWindow::on_settingPB_clicked() {
     this->hide();
     Settings * settingWindow = new Settings(user, database, this);
     settingWindow->show();
     connect(settingWindow, &QMainWindow::destroyed, [this]{
-        updateUserLabels(user);
+        setUsersInformation(user);
         disconnect();
     });
 
@@ -270,7 +246,6 @@ void MainWindow::openEditPost(Post *post, PostWidget *widget) {
         editWindow->show();
 
 }
-
 
 void MainWindow::on_searchPB_clicked()
 {
@@ -311,8 +286,7 @@ void MainWindow::on_sideSearchPB_clicked()
     }
 }
 
-void MainWindow::sentRequest(QString receiver)
-{
+void MainWindow::sentRequest(QString receiver) {
     this->database->sendRequest(this->user->getUsername(),receiver);
 }
 
@@ -324,7 +298,6 @@ void MainWindow::canceledRequest(QString receiver)
 
 void MainWindow::on_homePB_clicked()
 {
-
     ui->mainSV->setCurrentIndex(0);
     setUsersInformation(this->user);
 }
@@ -335,6 +308,10 @@ void MainWindow::on_sideRequestPB_clicked()
     Requests *reqPage = new Requests(this->user,this->database,this);
     reqPage->show();
     this->hide();
+
+    connect(reqPage, &Requests::destroyed, [this]{
+        setUsersFriend();
+    });
 }
 
 
@@ -342,18 +319,20 @@ void MainWindow::on_sideLogoutPB_clicked()
 {
     this->parentWidget()->show();
     this->close();
-    this->deleteLater();
+    this->setParent(nullptr);
 }
 
 void MainWindow::deletePostWidget(PostWidget *widget) {
-    QVBoxLayout * layout = qobject_cast<QVBoxLayout *>(ui->postsSA->layout());
+    QVBoxLayout * layout = qobject_cast<QVBoxLayout *>(ui->widget->layout());
 
     for(int i = 0; i < layout->count(); i++) {
         QLayoutItem * item = layout->itemAt(i);
         if(widget == qobject_cast<PostWidget*>(item->widget())) {
             PostWidget * tmp = qobject_cast<PostWidget*>(item->widget());
             layout->removeItem(item);
-            tmp->deleteLater();
+            tmp->setParent(nullptr);
+            tmp = nullptr;
         }
     }
+    widget = nullptr;
 }

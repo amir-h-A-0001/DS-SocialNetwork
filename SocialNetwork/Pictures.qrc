@@ -5,5 +5,8 @@
         <file>icons/search icon.png</file>
         <file>icons/envelope.png</file>
         <file>icons/out.png</file>
+        <file>icons/cog_9884568.png</file>
+        <file>icons/plus_4895253.png</file>
+        <file>icons/edit_12108481.png</file>
     </qresource>
 </RCC>

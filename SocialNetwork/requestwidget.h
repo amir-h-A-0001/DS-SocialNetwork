@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <suggestwidget.h>
 #include "user.h"
 
 class RequestWidget : public QFrame
@@ -15,6 +16,8 @@ class RequestWidget : public QFrame
     QLabel* username;
     QPushButton* accept;
     QPushButton* ignore;
+
+    QPixmap makeCircleScalePixmap (QPixmap &pixmap, QSize& size);
 
 public:
     RequestWidget();

@@ -16,6 +16,7 @@ class PostWidget : public QFrame {
     QPushButton* editPB;
 public:
     PostWidget(Post* post,QWidget* parent);
+    ~PostWidget();
 
     QString getText() const;
     void setText(QString newText);
@@ -25,7 +26,6 @@ public:
     void hideEditPB ();
     void showEditPB ();
     Post * getPost ();
-
 signals:
     void editPBClicked(Post* post, PostWidget * postWidget);
 };
