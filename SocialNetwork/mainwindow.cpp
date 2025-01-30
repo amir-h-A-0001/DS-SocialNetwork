@@ -241,7 +241,7 @@ void MainWindow::on_newPostPB_clicked()
             });
         }
         else {
-            // delete newPost;
+            delete newPost;
         }
     });
 }
