@@ -6,18 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>297</height>
+    <width>583</width>
+    <height>460</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Requests </string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QMainWindow {
-	background-color: rgb(176, 188, 157);
-
-}</string>
+   <string notr="true">background-color: rgb(176, 188, 157);
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -30,8 +28,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>380</width>
-        <height>277</height>
+        <width>563</width>
+        <height>440</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">

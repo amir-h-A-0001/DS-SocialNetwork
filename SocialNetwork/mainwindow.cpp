@@ -336,3 +336,20 @@ void MainWindow::deletePostWidget(PostWidget *widget) {
     }
     widget = nullptr;
 }
+
+void MainWindow::on_mainSV_currentChanged(int arg1)
+{
+    QHBoxLayout * layout = qobject_cast<QHBoxLayout *>(ui->horizontalLayout_2);
+
+
+    while(layout->count() > 1) {
+        QLayoutItem * item = layout->itemAt(0);
+
+        suggestWidget* tmp = qobject_cast<suggestWidget*>(item->widget());
+        layout->removeItem(item);
+        tmp->setParent(nullptr);
+        tmp = nullptr;
+
+    }
+}
+

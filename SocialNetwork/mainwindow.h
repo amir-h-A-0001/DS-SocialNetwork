@@ -7,6 +7,7 @@
 #include <QHash>
 #include <settings.h>
 #include <editpost.h>
+#include"suggestwidget.h"
 #include "searchwidget.h"
 #include "requests.h"
 
@@ -64,5 +65,6 @@ private slots :
     void on_homePB_clicked();
     void on_sideRequestPB_clicked();
     void on_sideLogoutPB_clicked();
+    void on_mainSV_currentChanged(int arg1);
 };
 #endif // MAINWINDOW_H

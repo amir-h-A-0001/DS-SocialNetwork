@@ -5,7 +5,7 @@ DataBase::DataBase() {
 
 
     DB = QSqlDatabase::addDatabase("QSQLITE");
-    DB.setDatabaseName("E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
+    DB.setDatabaseName("F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"); // enter the adderess here
     //"F:/Projects/Instagraph/social-network-alo-amiram/SocialNetwork/DataBase"
     //"E:/Code/4031/DataStracture/Social Network Final Project/social-network-alo-amiram/SocialNetwork/DataBase"
 
@@ -315,7 +315,7 @@ void DataBase::cancelRequest(QString sender, QString receiver)
 
 void DataBase::sendRequest(QString sender, QString receiver)
 {
-    std::map<QString,std::list<QString>>::iterator itr = this->requests.find(sender);
+    std::map<QString,std::list<QString>>::iterator itr = this->requests.find(receiver);
 
     if(itr == this->requests.end()){
         this->requests[receiver].push_back(sender);
