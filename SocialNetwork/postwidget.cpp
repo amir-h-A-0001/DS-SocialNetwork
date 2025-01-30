@@ -85,3 +85,11 @@ PostWidget::PostWidget(Post* post, QWidget* parent) : QFrame(parent), post(post)
         emit editPBClicked(this->post, this);
     });
 }
+
+PostWidget::~PostWidget(){
+    this->text = nullptr;
+    this->post = nullptr;
+    this->timeAndDate = nullptr;
+    this->editPB = nullptr;
+    this->deleteLater();
+}
