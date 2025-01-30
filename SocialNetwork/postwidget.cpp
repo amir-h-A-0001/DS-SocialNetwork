@@ -16,6 +16,7 @@ void PostWidget::updatePost(QString newPost) {
 }
 
 void PostWidget::showEditPB() {
+    this->setEnabled(true);
     this->editPB->show();
 }
 
@@ -24,6 +25,7 @@ Post *PostWidget::getPost() {
 }
 
 void PostWidget::hideEditPB() {
+    this->editPB->setEnabled(false);
     this->editPB->hide();
 }
 
@@ -36,11 +38,14 @@ PostWidget::PostWidget(Post* post, QWidget* parent) : QFrame(parent), post(post)
     // Set up widgets
     this->editPB->setStyleSheet(R"(
         QPushButton{
-            color:rgb(80,80,80);
-            background-color:rgba(200,200,200,20);
-            border-radius:3px;
+            border : none;
+            background : transparent;
         }
     )");
+
+    QIcon icon (":/icons/edit_12108481.png");
+    this->editPB->setIcon(icon);
+    this->editPB->setIconSize(QSize(15, 15));
 
     this->text->setText(post->getText());
     this->text->setWordWrap(true);

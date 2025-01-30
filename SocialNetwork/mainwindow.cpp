@@ -22,6 +22,7 @@ MainWindow::MainWindow(DataBase *database, User * user, QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    this->deleteLater();
 }
 
 void MainWindow::setFramesShadow() {
@@ -62,6 +63,10 @@ void MainWindow::setUsersInformation(User * userPage) {
     ui->nameLB->setText(userPage->getName());
     ui->userBioLB->setText(userPage->getBio());
 
+    if(user->getUsername() == userPage->getUsername()) {
+        ui->settingPB->show();
+    }
+
     if(!user->getAvatar().isNull()) {
         QPixmap avatar = userPage->getAvatar();
         QSize size = ui->userProfileLB->size();
@@ -70,15 +75,12 @@ void MainWindow::setUsersInformation(User * userPage) {
         ui->userProfileLB->setAlignment(Qt::AlignCenter);
 
         if(user->getUsername() == userPage->getUsername()) {
-            ui->settingPB->show();
             QIcon icon(newAvatar);
             size.setHeight(70);
             size.setWidth(70);
             ui->homePB->setIcon(icon);
             ui->homePB->setIconSize(size);
         }
-        else
-            ui->settingPB->hide();
     }
     addUsersPosts(userPage);
 
@@ -172,7 +174,6 @@ void MainWindow::setFirstUiSettings() {
     ui->sideUserSA->setLayout(ui->verticalLayout);
     ui->verticalLayout->setAlignment(Qt::AlignHCenter);
     ui->suggestSA->setLayout(ui->horizontalLayout_2);
-
 }
 
 QPixmap MainWindow::makeCircleScalePixmap(QPixmap & pixmap, QSize & size) {
@@ -200,7 +201,6 @@ QPixmap MainWindow::makeCircleScalePixmap(QPixmap & pixmap, QSize & size) {
     return circularPixmap;
 }
 
-
 void MainWindow::on_newPostPB_clicked()
 {
     Post* newPost = new Post;
@@ -222,7 +222,6 @@ void MainWindow::newPost(Post *newPost) {
 
     }
 }
-
 
 void MainWindow::on_settingPB_clicked() {
     this->hide();
@@ -247,7 +246,6 @@ void MainWindow::openEditPost(Post *post, PostWidget *widget) {
         editWindow->show();
 
 }
-
 
 void MainWindow::on_searchPB_clicked()
 {
@@ -288,8 +286,7 @@ void MainWindow::on_sideSearchPB_clicked()
     }
 }
 
-void MainWindow::sentRequest(QString receiver)
-{
+void MainWindow::sentRequest(QString receiver) {
     this->database->sendRequest(this->user->getUsername(),receiver);
 }
 
@@ -301,7 +298,6 @@ void MainWindow::canceledRequest(QString receiver)
 
 void MainWindow::on_homePB_clicked()
 {
-
     ui->mainSV->setCurrentIndex(0);
     setUsersInformation(this->user);
 }
@@ -312,6 +308,10 @@ void MainWindow::on_sideRequestPB_clicked()
     Requests *reqPage = new Requests(this->user,this->database,this);
     reqPage->show();
     this->hide();
+
+    connect(reqPage, &Requests::destroyed, [this]{
+        setUsersFriend();
+    });
 }
 
 
@@ -319,7 +319,7 @@ void MainWindow::on_sideLogoutPB_clicked()
 {
     this->parentWidget()->show();
     this->close();
-    this->deleteLater();
+    this->setParent(nullptr);
 }
 
 void MainWindow::deletePostWidget(PostWidget *widget) {

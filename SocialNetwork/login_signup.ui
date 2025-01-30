@@ -78,10 +78,10 @@ QLabel {
 </string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::Shape::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Shadow::Raised</enum>
     </property>
     <widget class="QLineEdit" name="nameLE">
      <property name="geometry">
@@ -93,7 +93,7 @@ QLabel {
       </rect>
      </property>
      <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
      </property>
      <property name="placeholderText">
       <string>Name</string>
@@ -131,7 +131,7 @@ QLabel {
     <widget class="QLineEdit" name="repeatPass">
      <property name="geometry">
       <rect>
-       <x>430</x>
+       <x>429</x>
        <y>190</y>
        <width>189</width>
        <height>33</height>
@@ -355,6 +355,12 @@ color:rgb(100,100,100);</string>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius:10px;
+border:1px solid transparent;
+background-color: rgb(176, 198, 157);
+color:rgb(100,100,100);</string>
+     </property>
      <property name="text">
       <string>Login</string>
      </property>
@@ -451,10 +457,10 @@ color:rgb(100,100,100);</string>
 </string>
     </property>
     <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
+     <enum>QFrame::Shape::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Shadow::Raised</enum>
     </property>
     <widget class="QPushButton" name="openLoginSignupPB">
      <property name="geometry">
@@ -480,6 +486,18 @@ background-color: rgb(9, 59, 47);</string>
    </widget>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>usernameLE</tabstop>
+  <tabstop>passwordLE</tabstop>
+  <tabstop>repeatPass</tabstop>
+  <tabstop>nameLE</tabstop>
+  <tabstop>emailLE</tabstop>
+  <tabstop>signupPB</tabstop>
+  <tabstop>usernameLoginLE</tabstop>
+  <tabstop>passwordLoginLE</tabstop>
+  <tabstop>loginPB</tabstop>
+  <tabstop>openLoginSignupPB</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
