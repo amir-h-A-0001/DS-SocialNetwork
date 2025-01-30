@@ -86,10 +86,12 @@ suggestWidget::suggestWidget(User* user) : user(user){
     }
     )");
 
+    request->setFixedHeight(20);
     request->setStyleSheet(R"(
     QPushButton {
         background-color : rgb(176, 188, 157);
         color : rgb(0, 0, 0);
+        border-radius:5px;
     }
         )");
 

@@ -173,7 +173,11 @@ void MainWindow::setFirstUiSettings() {
     ui->searchResultSA->setLayout(ui->verticalLayout_3);
     ui->sideUserSA->setLayout(ui->verticalLayout);
     ui->verticalLayout->setAlignment(Qt::AlignHCenter);
-    ui->suggestSA->setLayout(ui->horizontalLayout_2);
+    ui->suggestSA->widget()->setLayout(ui->horizontalLayout_2);
+    ui->suggestSA->widget()->setMinimumHeight(220);
+    ui->suggestSA->widget()->setFixedHeight(220);
+    ui->suggestSA->setAlignment(Qt::AlignTop);
+    ui->suggestSA->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 QPixmap MainWindow::makeCircleScalePixmap(QPixmap & pixmap, QSize & size) {

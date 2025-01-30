@@ -2,15 +2,15 @@
 
 RequestWidget::RequestWidget() {}
 
-RequestWidget::RequestWidget(User *sender)
+RequestWidget::RequestWidget(User *sender,QWidget* parent) : QFrame(parent)
 {
+    this->setFixedHeight(60);
     this->setStyleSheet(R"(
         QFrame{
-            background-color = solid white;
             border-radius:10px;
+            background-color = rgb(255,255,255);
         }
     )");
-    this->setFixedHeight(60);
 
     username = new QLabel(this);
     username->setText(sender->getUsername());

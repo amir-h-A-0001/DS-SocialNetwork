@@ -537,6 +537,7 @@ QLabel {
        <property name="styleSheet">
         <string notr="true">background : transparent;
 border : none;
+image:url(:/icons/cog_9884568.png)
 </string>
        </property>
        <property name="text">
@@ -585,8 +586,8 @@ border-radius : 100px;</string>
        <property name="styleSheet">
         <string notr="true">QLabel {
 	background : transparent;
-	font: 11pt &quot;Dosis&quot;;
 	color: rgb(0, 0, 0);
+	font: 18pt &quot;Arial Rounded MT Bold&quot;;
 }</string>
        </property>
        <property name="text">
@@ -786,6 +787,12 @@ QScrollArea QWidget {
         <width>781</width>
         <height>231</height>
        </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="styleSheet">
        <string notr="true">QScrollArea {

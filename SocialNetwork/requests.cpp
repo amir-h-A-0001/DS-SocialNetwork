@@ -14,7 +14,7 @@ Requests::Requests(User* user,DataBase* dataBase, QWidget *parent)
     for(auto &senderUsername :  *senders){
         User* senderAccount = dataBase->findUser(senderUsername);
 
-        RequestWidget* widget = new RequestWidget(senderAccount);
+        RequestWidget* widget = new RequestWidget(senderAccount,this);
         connect(widget,&RequestWidget::accepted,this,&Requests::accept);
         connect(widget,&RequestWidget::ignored,this,&Requests::reject);
 

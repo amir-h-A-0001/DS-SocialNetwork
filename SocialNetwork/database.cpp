@@ -368,10 +368,11 @@ void DataBase::editUserData(QString username)
     User* user = &this->users[username];
 
     QSqlQuery update_Qry;
-    update_Qry.prepare("UPDATE users SET name = :name, password = :password, email = :email, avatar = :avatar WHERE username = :username;");
+    update_Qry.prepare("UPDATE users SET name = :name, password = :password, bio = :bio, email = :email, avatar = :avatar WHERE username = :username;");
 
     update_Qry.bindValue(":username",user->getUsername());
     update_Qry.bindValue(":password",user->getPassword());
+    update_Qry.bindValue(":bio",user->getBio());
     update_Qry.bindValue(":email",user->getEmail());
     update_Qry.bindValue(":name",user->getName());
 

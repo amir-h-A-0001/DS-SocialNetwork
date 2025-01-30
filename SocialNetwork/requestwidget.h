@@ -21,7 +21,7 @@ class RequestWidget : public QFrame
 
 public:
     RequestWidget();
-    RequestWidget(User* sender);
+    RequestWidget(User* sender,QWidget* parent = nullptr);
 signals:
     void accepted(QString username,RequestWidget* widget);
     void ignored(QString username,RequestWidget* widget);
