@@ -178,6 +178,7 @@ void MainWindow::setFirstUiSettings() {
     ui->suggestSA->widget()->setFixedHeight(220);
     ui->suggestSA->setAlignment(Qt::AlignTop);
     ui->suggestSA->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
 }
 
 QPixmap MainWindow::makeCircleScalePixmap(QPixmap & pixmap, QSize & size) {

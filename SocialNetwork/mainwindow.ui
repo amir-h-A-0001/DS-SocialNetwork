@@ -351,7 +351,7 @@ border-top-right-radius : 25px;</string>
 }</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="usersPageSVP">
      <widget class="QScrollArea" name="postsSA">
@@ -371,6 +371,16 @@ border-radius: 10px;
 QScrollArea QWidget {
 	background : transparent;
 }
+QScrollBar::handle:vertical {
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 6px;
+        min-height: 20px;
+    }
+
+    QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+        background: transparent;
+        height: 0px;
+    }
 
 
     
@@ -419,6 +429,19 @@ QScrollArea QWidget {
             <property name="bottomMargin">
              <number>10</number>
             </property>
+            <item>
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>13</width>
+                <height>322</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
@@ -475,19 +498,6 @@ border : none;
               </item>
              </layout>
             </item>
-            <item>
-             <spacer name="verticalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>13</width>
-                <height>322</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
            </layout>
           </widget>
          </widget>
@@ -508,6 +518,7 @@ border : none;
        <string notr="true"> QFrame {
         border-radius: 15px;
 	background-color: rgb(255, 255, 255);
+	background-color: rgb(246, 255, 227);
    }
 QLabel {
 	background : transparent;
@@ -618,18 +629,22 @@ border-radius : 100px;</string>
         <rect>
          <x>270</x>
          <y>110</y>
-         <width>271</width>
+         <width>501</width>
          <height>81</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">color: rgb(80,80,80);
+</string>
        </property>
        <property name="text">
         <string>Bio</string>
        </property>
        <property name="textFormat">
         <enum>Qt::PlainText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
